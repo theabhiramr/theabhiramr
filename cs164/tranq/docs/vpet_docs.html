@@ -1,0 +1,190 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+        <title>Virtual Pet - Documentation</title>
+        <link rel="icon" type="image/x-icon" href="images/drexel-dragon-all_gold.png">
+</head>
+
+<body style="background-color:mediumseagreen;">
+    <h1 style="font-family:courier; background-color:dodgerblue; color:white;">
+        Virtual Pet Project - Aria
+    </h1>
+
+    <center><img src="images/aria.jpg" style="width: 425px; height:567px;"></center>
+
+    <p style="font-family:arial;">
+        This is my virtual pet Aria (based on my actual dog, Aria). She has several different moods that change based on how you interact with her.
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>States (Moods):</b>
+    </h2>
+
+    <center><img src="images/vp_state_diagram.png" style="width: 400px; height:300px;"></center>
+
+
+    <p style="font-family:arial;">
+        <ul>
+            <li>Excited (0)</li>
+            <li>Playful (1)</li>
+            <li>Hungry (2)</li>
+            <li>Calm (3)</li>
+            <li>Sleepy (4)</li>
+            <li>Menace
+                <ul>
+                    <li>From Excited (5)</li>
+                    <li>From Playful (6)</li>
+                    <li>From Hungry (7)</li>
+                    <li>From Calm (8)</li>
+                    <li>From Sleepy (9)</li>
+                </ul>
+            </li>
+        </ul>
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Inputs:</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        There are many different ways that you can interact with her, but be careful about what she wants, because you DO NOT 
+        want to activate her Menace mood!
+        <ul>
+            <li>Play (P)</li>
+            <li>Pet (E)</li>
+            <li>Chase (C)</li>
+            <li>Feed (F)</li>
+            <li>Put to bed (B)</li>
+        </ul>
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Excited (0):</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        When you first see her, she will obviously be quite excited to see you. You can either play with her, pet her, chase her
+        or feed her. You shouldn't put her to bed though, as it would be quite rude to make someone who is excited to see you 
+        sleep. If you play with her, she will eventually get exhausted and be calm. However, if you pet her or feed her, she will
+        have more energy and will want you to play with her. If you chase her, though, she will have no energy and needs to be 
+        fed. But by all means, do not ignore her because she will be a menace! 
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Playful (1):</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        One thing that Aria loves is to play. So obviously, if you play with her or chase her, she will be happy, but she will 
+        eventually get exhausted and become hungry. If you simply pet her, she will be happy, but it is not enough to satisfy 
+        her playful mood. If you feed her, she will go back to being excited (she does get very distracted). Once again, you 
+        do not want to put her to bed or ignore her, because she will be menacing.
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Hungry (2):</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        It is really quite simple. Feed her, or she will become a menace. If you ignore her or do anything else, you have 
+        sealed your fate. 
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Calm (3):</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        Aria becomes calm when she starts feeling tired, so the best course of action here is to just put her to bed. If you 
+        play with her, pet her or feed her, she won't react because she has had enough fun playing with you. However, it 
+        would be quite rude to chase her in this state. She will eventually become sleepy, however and she can sleep 
+        anywhere (one of the few times she doesn't mind being ignored).
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Sleepy (4):</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        This is when she is done playing or being chased and just wants to sleep. She doesn't mind if you pet her, but if you 
+        annoy her too much, she will become a menace. However, if you try to put her to bed again, or feed her, then she will 
+        become excited again. If you do nothing after a while, she will become excited again.
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Menace (5-9):</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        This is the one mood that you do not want Aria to be in. Based on what action triggered this mode, there's only a few ways to get her out of this mode.
+        <ul>
+            <li>From Excited (5)
+                <ul>
+                    <li>
+                        Fortunately, there are many ways that you can get her out of this mode. She is angry that you are not giving her attention, so if you 
+                        play with her, pet her, chase her or feed her, she will go back to being excited. But if you put her to bed or ignore her, she will be 
+                        sure to let you know that she only wants attention.
+                    </li>
+                </ul>
+            </li>
+            <li>From Playful (6)
+                <ul>
+                    <li>
+                        Much like 5, here you can get her out of menace mode by interacting with her in some way, and she will become excited again.
+                    </li>
+                </ul>
+            </li>
+            <li>From Hungry (7)
+                <ul>
+                    <li>
+                        As mentioned before, here she is angry because you aren't feeding her. Feed her, and she will become excited again. 
+                    </li>
+                </ul>
+            </li>
+            <li>From Calm (8)
+                <ul>
+                    <li>
+                        In this case, she is mad that you chased her and now wants to go to bed. If you put her to bed or feed her, she will become sleepy.
+                    </li>
+                </ul>
+            </li>
+            <li>From Sleepy (9)
+                <ul>
+                    <li>
+                        Here, she is mad that you interrupted her sleep. The only way to get her out of menace mode is to put her to bed and wait for her to 
+                        finish sleeping (or you can feed her if you are bored).
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>Timers:</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        As mentioned before, if Aria is inactive, she can either become a menace, sleepy or excited. Here are the specific times that affect her:
+        <ul>
+            <li>Excited (0) - Becomes menace (5) after 30 seconds of inactivity</li>
+            <li>Playful (1) - Becomes menace (6) after 15 seconds of inactivity</li>
+            <li>Hungry (2) - Becomes menace (7) after 20 seconds of inactivity</li>
+            <li>Calm (3) - Becomes sleepy (4) after 20 seconds of inactivity</li>
+            <li>Sleepy (4) - Becomes excited (0) after 30 seconds of inactivity</li>
+            <li>Menace (5-9) - Prompts you to do an action after 5 seconds of inactivity</li>
+        </ul>
+        Every time you do an action, these timers reset.
+    </p>
+
+    <h2 style="font-family:arial;">
+        <b>State Table:</b>
+    </h2>
+
+    <p style="font-family:arial;">
+        You can also use this handy state table to find out how to prevent her from being a menace (or make her if you are sadistic enough).
+    </p>
+
+    <center><img src="images/vp_state_table.png" style="width: 662px; height:365px;"></center>
+</body>
+
+</html>
