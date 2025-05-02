@@ -1,7 +1,9 @@
 body {
     background-color:#282828; 
     color:whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 a:link {
     color: teal;
     background-color: transparent;
