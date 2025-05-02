@@ -1,3 +1,7 @@
+body {
+    background-color:#282828; 
+    color:whitesmoke";
+}
 a:link {
     color: teal;
     background-color: transparent;
@@ -5,7 +9,7 @@ a:link {
 }
   
 a:visited {
-    color: pink;
+    color: salmon;
     background-color: transparent;
     text-decoration: none;
 }
