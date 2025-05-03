@@ -1,3 +1,27 @@
+header {
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.spacer {
+    display: none;
+}
+
+@media  screen and (min-width: 700px) {
+    header {
+        display: flex;
+    }
+    .logo,
+    .spacer {
+      display: block;
+      width: 278px;
+      flex: 0 0 auto;
+    }
+    .heading {
+      flex: 1 1 auto;
+    }
+}
+
 body {
     background-color:#282828; 
     color:whitesmoke;
@@ -16,7 +40,7 @@ a:visited {
 }
   
 a:hover {
-    color: red;
+    color: salmon;
     background-color: transparent;
     text-decoration: underline;
 }
