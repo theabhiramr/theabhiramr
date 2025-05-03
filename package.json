@@ -20,5 +20,8 @@
     "firebase-functions": "^6.0.1",
     "webpack": "^5.99.7"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
+  }
 }
