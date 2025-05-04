@@ -1,7 +1,11 @@
-header {
+.header {
+    position: sticky;
+    top: 0;
     text-align: center;
     font-family:Arial, Helvetica, sans-serif;
-    background-color: #0cc0df;
+    background-color: #282828;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    z-index: 1000;
 }
 
 .spacer {
@@ -12,8 +16,18 @@ header {
     header {
         display: flex;
     }
+    .header {
+        position: sticky;
+        text-align: center;
+        font-family:Arial, Helvetica, sans-serif;
+        background-color: #282828;
+        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    }
     .logo {
-        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
     }
     .spacer {
       display: block;
@@ -23,6 +37,12 @@ header {
     .heading {
       flex: 1 1 auto;
     }
+    body {
+        font-size: 24px;
+    }
+    h1 {
+        font-size: 2.986rem;
+    }
 }
 
 body {
@@ -30,6 +50,11 @@ body {
     color:whitesmoke;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.profile-pic {
+    border-radius: 100%;
+}
+
 a:link {
     color: teal;
     background-color: transparent;
