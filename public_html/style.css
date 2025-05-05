@@ -55,6 +55,7 @@ body {
     color:whitesmoke;
     font-family: "Geist Mono", monospace;
     font-style: normal;
+    padding: auto;
 }
 
 .profile-pic {
