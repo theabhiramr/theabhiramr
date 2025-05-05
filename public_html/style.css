@@ -1,34 +1,8 @@
-@font-face {
-    font-family: 'Kollektif';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Kollektif'), url('https://fonts.cdnfonts.com/s/19691/Kollektif.woff') format('woff');
-}
-@font-face {
-    font-family: 'Kollektif';
-    font-style: italic;
-    font-weight: 400;
-    src: local('Kollektif'), url('https://fonts.cdnfonts.com/s/19691/Kollektif-Italic.woff') format('woff');
-}
-@font-face {
-    font-family: 'Kollektif';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Kollektif'), url('https://fonts.cdnfonts.com/s/19691/Kollektif-Bold.woff') format('woff');
-}
-@font-face {
-    font-family: 'Kollektif';
-    font-style: italic;
-    font-weight: 700;
-    src: local('Kollektif'), url('https://fonts.cdnfonts.com/s/19691/Kollektif-BoldItalic.woff') format('woff');
-}
-
-
 .header {
     position: sticky;
     top: 0;
     text-align: center;
-    font-family:'Kollektif', sans-serif;
+    font-family:'Poppins', sans-serif;
     font-style: normal;
     background-color: #282828;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
@@ -46,7 +20,7 @@
     .header {
         position: sticky;
         text-align: center;
-        font-family:'Kollektif', sans-serif;
+        font-family:'Poppins', sans-serif;
         background-color: #282828;
         box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
     }
@@ -75,7 +49,7 @@
 body {
     background-color:#282828; 
     color:whitesmoke;
-    font-family: 'Kollektif', sans-serif;
+    font-family: "Geist Mono", monospace;
     font-style: normal;
 }
 
