@@ -52,7 +52,7 @@
 }
 
 .topnav a {
-    float: right;
+    float: left;
     color: whitesmoke;
     text-align: center;
     font-family: 'Geist Mono', monospace;
