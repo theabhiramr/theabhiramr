@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "description": "Cloud Functions for Firebase",
-  "homepage": "https://github.com/theabhiramr/personal_website#readme",
+  "homepage": "https://github.com/theabhiramr/theabhiramr#readme",
   "bugs": {
-    "url": "https://github.com/theabhiramr/personal_website/issues"
+    "url": "https://github.com/theabhiramr/theabhiramr/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theabhiramr/personal_website.git"
+    "url": "git+https://github.com/theabhiramr/theabhiramr.git"
   },
   "license": "ISC",
   "author": "",
