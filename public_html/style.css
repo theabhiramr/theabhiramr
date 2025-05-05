@@ -37,6 +37,7 @@
     }
     .heading {
       flex: 1 1 auto;
+      content: center;
     }
     body {
         font-size: 24px;
@@ -44,6 +45,29 @@
     h1 {
         font-size: 2.986rem;
     }
+}
+
+.topnav{
+    overflow: hidden;
+}
+
+.topnav a {
+    float: right;
+    color: whitesmoke;
+    text-align: center;
+    font-family: 'Geist Mono', monospace;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover {
+    background-color: whitesmoke;
+    color:#282828;
+}
+
+.topnav.a.active {
+    background-color: #0cc0df;
+    color: whitesmoke;
 }
 
 h1, h2, h3 {
@@ -63,25 +87,25 @@ body {
 }
 
 a:link {
-    color: teal;
+    color: #0cc0df;
     background-color: transparent;
     text-decoration: none;
 }
   
 a:visited {
-    color: salmon;
+    color: #ff5757;
     background-color: transparent;
     text-decoration: none;
 }
   
 a:hover {
-    color: teal;
+    color: #0cc0df;
     background-color: transparent;
     text-decoration: underline;
 }
   
 a:active {
-    color: salmon;
+    color: #ff5757;
     background-color: transparent;
     text-decoration: underline;
 }
