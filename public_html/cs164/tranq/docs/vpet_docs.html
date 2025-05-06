@@ -2,28 +2,33 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
         <title>Virtual Pet - Documentation</title>
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="stylesheet" href="/style.css">
 </head>
 
-<body style="background-color:mediumseagreen;">
-    <h1 style="font-family:courier; background-color:dodgerblue; color:white;">
+<body>
+    <h1>
         Virtual Pet Project - Aria
     </h1>
 
     <center><img src="images/aria.jpg" style="width: 425px; height:567px;"></center>
 
-    <p style="font-family:arial;">
+    <p>
         This is my virtual pet Aria (based on my actual dog, Aria). She has several different moods that change based on how you interact with her.
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>States (Moods):</b>
     </h2>
 
     <center><img src="images/vp_state_diagram.png" style="width: 400px; height:300px;"></center>
 
 
-    <p style="font-family:arial;">
+    <p>
         <ul>
             <li>Excited (0)</li>
             <li>Playful (1)</li>
@@ -42,11 +47,11 @@
         </ul>
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Inputs:</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         There are many different ways that you can interact with her, but be careful about what she wants, because you DO NOT 
         want to activate her Menace mood!
         <ul>
@@ -58,11 +63,11 @@
         </ul>
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Excited (0):</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         When you first see her, she will obviously be quite excited to see you. You can either play with her, pet her, chase her
         or feed her. You shouldn't put her to bed though, as it would be quite rude to make someone who is excited to see you 
         sleep. If you play with her, she will eventually get exhausted and be calm. However, if you pet her or feed her, she will
@@ -70,52 +75,52 @@
         fed. But by all means, do not ignore her because she will be a menace! 
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Playful (1):</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         One thing that Aria loves is to play. So obviously, if you play with her or chase her, she will be happy, but she will 
         eventually get exhausted and become hungry. If you simply pet her, she will be happy, but it is not enough to satisfy 
         her playful mood. If you feed her, she will go back to being excited (she does get very distracted). Once again, you 
         do not want to put her to bed or ignore her, because she will be menacing.
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Hungry (2):</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         It is really quite simple. Feed her, or she will become a menace. If you ignore her or do anything else, you have 
         sealed your fate. 
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Calm (3):</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         Aria becomes calm when she starts feeling tired, so the best course of action here is to just put her to bed. If you 
         play with her, pet her or feed her, she won't react because she has had enough fun playing with you. However, it 
         would be quite rude to chase her in this state. She will eventually become sleepy, however and she can sleep 
         anywhere (one of the few times she doesn't mind being ignored).
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Sleepy (4):</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         This is when she is done playing or being chased and just wants to sleep. She doesn't mind if you pet her, but if you 
         annoy her too much, she will become a menace. However, if you try to put her to bed again, or feed her, then she will 
         become excited again. If you do nothing after a while, she will become excited again.
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Menace (5-9):</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         This is the one mood that you do not want Aria to be in. Based on what action triggered this mode, there's only a few ways to get her out of this mode.
         <ul>
             <li>From Excited (5)
@@ -159,11 +164,11 @@
         </ul>
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>Timers:</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         As mentioned before, if Aria is inactive, she can either become a menace, sleepy or excited. Here are the specific times that affect her:
         <ul>
             <li>Excited (0) - Becomes menace (5) after 30 seconds of inactivity</li>
@@ -176,11 +181,11 @@
         Every time you do an action, these timers reset.
     </p>
 
-    <h2 style="font-family:arial;">
+    <h2>
         <b>State Table:</b>
     </h2>
 
-    <p style="font-family:arial;">
+    <p>
         You can also use this handy state table to find out how to prevent her from being a menace (or make her if you are sadistic enough).
     </p>
 

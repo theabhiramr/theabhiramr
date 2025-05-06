@@ -115,6 +115,26 @@ body {
     margin: 16px;
 }
 
+#bio::after {
+    content: "_";
+    animation: blink 250ms linear infinite alternate;
+}
+
+@-webkit-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@-moz-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
 a:link {
     color: #008080;
     background-color: transparent;
