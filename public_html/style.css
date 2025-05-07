@@ -92,8 +92,13 @@ h1, h2, h3{
     margin: 12px;
 }
 
+h1 {
+    font-size: 4em;
+}
+
 p{
     font-family: "Geist Mono", monospace;
+    font-size: .875em;
     margin: 12px;
 }
 
@@ -113,11 +118,12 @@ body {
 
 #about {
     margin: 16px;
+    font-size: 2em;
 }
 
 #bio::after {
     content: "_";
-    animation: blink 250ms linear infinite alternate;
+    animation: blink 500ms linear infinite alternate;
 }
 
 @-webkit-keyframes blink{
