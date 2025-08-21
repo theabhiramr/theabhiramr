@@ -66,3 +66,171 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.header {
+    position: sticky;
+    top: 0;
+    text-align: center;
+    font-family:'Poppins', sans-serif;
+    font-style: normal;
+    background-color: #282828;
+    /* box-shadow: 0 4px 2px -2px gray */;
+    z-index: 1000;
+}
+
+.spacer {
+    display: none
+}
+
+@media  screen and (min-width: 700px) {
+    header {
+        display: flex;
+    }
+    .header {
+        position: sticky;
+        text-align: center;
+        font-family:'Poppins', sans-serif;
+        background-color: #282828;
+        /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); */
+    }
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+    .spacer {
+      display: block;
+      width: 20px;
+      flex: 0 0 auto;
+    }
+    .heading {
+      flex: 1 1 auto;
+      content: center;
+    }
+    body {
+        font-size: 24px;
+    }
+    h1 {
+        font-size: 2.986rem;
+    }
+}
+
+.topnav{
+    overflow: hidden;
+    align-content: center;
+    height: 75px;
+}
+
+.nav-link {
+    /* float: left; */
+    color: #008080;
+    text-align: center;
+    font-family: 'Geist Mono', monospace;
+    padding: 20px 0px;
+    margin: 0px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.75;
+}
+.nav-link:hover {
+    opacity: 1;
+  }
+  
+.nav-link::before {
+    transition: 500ms;
+    height: 4px;
+    content: "";
+    position: absolute;
+    background-color: #008080;
+  }
+  
+.nav-link-ltr::before {
+    width: 0%;
+    bottom: 15px;
+  }
+  
+  .nav-link-ltr:hover::before {
+    width: 100%;
+  }
+  
+h1, h2, h3{
+    font-family: 'Poppins', sans-serif;
+    margin: 12px;
+}
+
+h1 {
+    font-size: 3.5em;
+}
+
+p{
+    font-family: "Geist Mono", monospace;
+    font-size: .875em;
+    margin: 12px;
+}
+
+
+body {
+    background-color:#282828; 
+    color:whitesmoke;
+    font-family: "Geist Mono", monospace;
+    font-style: normal;
+    padding: auto;
+    margin: 0;
+}
+
+.profile-pic {
+    border-radius: 100%;
+}
+
+#about {
+    margin: 16px;
+    font-size: 2em;
+}
+
+#bio::after {
+    content: "_";
+    animation: blink 500ms linear infinite alternate;
+}
+
+@-webkit-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@-moz-keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes blink{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+a:link {
+    color: #008080;
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:visited {
+    color: #de8472;
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:hover {
+    color: #de8472;
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:active {
+    color: #de8472;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
