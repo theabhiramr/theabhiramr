@@ -42,7 +42,7 @@
                 Engineering. (because it's awesome!) I interned at <a href="https://evbuddy.net" target="_blank">EVBuddy</a> and 
                 <a href="https://epiqsolutions.com" target="_blank">Epiq Solutions</a>. My goal is to start my own company in AI/ML
                 research and make the world a better place with it. My hobbies include learning new languages, working out and 
-                travelling. I hope you like my website!</p>
+                travelling. I hope you like my website! </p>
         </section>
         <section id="projects">
         <h2>
@@ -124,9 +124,11 @@
         </section>
         </footer> 
         <script type="text/javascript">
-            window.onload = function() {var typer = document.getElementById("bio");
-            var writer = setupTypewriter(typer);
-            writer.type()};
+            window.onkeyup(event) = function() {
+                var typer = document.getElementById("bio");
+                var writer = setupTypewriter(typer);
+                writer.type()
+            };
         </script> 
     </body>
 </html>
