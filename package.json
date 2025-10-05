@@ -11,6 +11,7 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.14",
     "@tailwindcss/vite": "^4.1.14",
     "firebase": "^12.1.0",
     "react": "^19.1.1",
