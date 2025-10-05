@@ -6,6 +6,12 @@ import tailwindcss from 'tailwindcss'
 export default defineConfig({
   plugins: [
     react(), 
-    tailwindcss()
   ],
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss(), // It goes here instead
+      ],
+    },
+  },
 })
