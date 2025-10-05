@@ -1,4 +1,114 @@
 @import "tailwindcss";
+/* Geist Mono */
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geist Mono', monospace;
+    src: url('/fonts/GeistMono-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+/* Outfit */
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Outfit', sans-serif;
+    src: url('/fonts/Outfit-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
 
 .header {
     position: sticky;
