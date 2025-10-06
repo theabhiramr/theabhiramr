@@ -1,278 +1,113 @@
 @import "tailwindcss";
-/* Geist Mono */
-@font-face {
-    font-family: 'Geist Mono', monospace;
-    src: url('/fonts/GeistMono-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
+
+@theme {
+    --color-background: #f0f0f0;
+    --color-content: #202020;
+    --color-primary: #008080;
+    --color-secondary: #de8472;
+    
+    /* Fixed: Match the exact font-family names from @font-face */
+    --font-family-geist-mono: "Geist Mono", monospace;
+    --font-family-outfit: "Outfit", sans-serif;
 }
-@font-face {
-    font-family: 'Geist Mono', monospace;
-    src: url('/fonts/GeistMono-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer theme {
+    .dark {
+        --color-background: #202020;
+        --color-content: #f0f0f0;
+        --color-primary: #008080;
+        --color-secondary: #de8472;
+    }
 }
+
+/* Your @font-face declarations are correct! */
 @font-face {
-    font-family: 'Geist Mono', monospace;
-    src: url('/fonts/GeistMono-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Geist Mono', monospace;
+    font-family: 'Geist Mono';
     src: url('/fonts/GeistMono-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
+
 @font-face {
-    font-family: 'Geist Mono', monospace;
-    src: url('/fonts/GeistMono-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Geist Mono', monospace;
-    src: url('/fonts/GeistMono-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Geist Mono', monospace;
+    font-family: 'Geist Mono';
     src: url('/fonts/GeistMono-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
+
 @font-face {
-    font-family: 'Geist Mono', monospace;
-    src: url('/fonts/GeistMono-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Geist Mono', monospace;
-    src: url('/fonts/GeistMono-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
-}
-/* Outfit */
-@font-face {
-    font-family: 'Outfit', sans-serif;
-    src: url('/fonts/Outfit-Thin.ttf') format('truetype');
-    font-weight: 100;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Outfit', sans-serif;
-    src: url('/fonts/Outfit-ExtraLight.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Outfit', sans-serif;
-    src: url('/fonts/Outfit-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit';
     src: url('/fonts/Outfit-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
+
 @font-face {
-    font-family: 'Outfit', sans-serif;
-    src: url('/fonts/Outfit-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Outfit', sans-serif;
-    src: url('/fonts/Outfit-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit';
     src: url('/fonts/Outfit-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
-}
-@font-face {
-    font-family: 'Outfit', sans-serif;
-    src: url('/fonts/Outfit-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Outfit', sans-serif;
-    src: url('/fonts/Outfit-Black.ttf') format('truetype');
-    font-weight: 900;
-    font-style: normal;
+    font-display: swap;
 }
 
-.header {
-    position: sticky;
-    top: 0;
-    text-align: center;
-    font-family:'Poppins', sans-serif;
-    font-style: normal;
-    background-color: #282828;
-    /* box-shadow: 0 4px 2px -2px gray */;
-    z-index: 1000;
-}
-
-.spacer {
-    display: none
-}
-
-@media  screen and (min-width: 700px) {
-    header {
-        display: flex;
+/* Explicitly define the font classes for Tailwind v4 */
+@layer utilities {
+    .font-geist-mono {
+        font-family: 'Geist Mono', monospace;
     }
-    .header {
-        position: sticky;
-        text-align: center;
-        font-family:'Poppins', sans-serif;
-        background-color: #282828;
-        /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); */
-    }
-    .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5px;
-    }
-    .spacer {
-      display: block;
-      width: 20px;
-      flex: 0 0 auto;
-    }
-    .heading {
-      flex: 1 1 auto;
-      content: center;
-    }
-    body {
-        font-size: 24px;
-    }
-    h1 {
-        font-size: 2.986rem;
+    
+    .font-outfit {
+        font-family: 'Outfit', sans-serif;
     }
 }
 
-.topnav{
-    overflow: hidden;
-    align-content: center;
-    height: 75px;
+/* Test classes */
+/* .font-test {
+    font-family: 'Geist Mono', monospace !important;
+    background: red !important;
 }
 
-.nav-link {
-    /* float: left; */
-    color: #008080;
-    text-align: center;
-    font-family: 'Geist Mono', monospace;
-    padding: 20px 0px;
-    margin: 0px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    display: inline-block;
-    position: relative;
-    opacity: 0.75;
+.font-test-outfit {
+    font-family: 'Outfit', sans-serif !important;
+    background: blue !important;
+} */
+
+/* Custom animations and effects Tailwind doesn't handle */
+#bio::after {
+    content: "_";
+    animation: blink 500ms linear infinite alternate;
 }
-.nav-link:hover {
-    opacity: 1;
-  }
-  
+
+@keyframes blink{
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+/* Custom hover effects */
 .nav-link::before {
     transition: 500ms;
     height: 4px;
     content: "";
     position: absolute;
     background-color: #008080;
-  }
-  
+}
+
 .nav-link-ltr::before {
     width: 0%;
     bottom: 15px;
-  }
-  
-  .nav-link-ltr:hover::before {
+}
+
+.nav-link-ltr:hover::before {
     width: 100%;
-  }
-  
-h1, h2, h3{
-    font-family: 'Poppins', sans-serif;
-    margin: 12px;
 }
 
-h1 {
-    font-size: 3.5em;
-}
-
-p{
-    font-family: "Geist Mono", monospace;
-    font-size: .875em;
-    margin: 12px;
-}
-
-
-body {
-    background-color:#282828; 
-    color:whitesmoke;
-    font-family: "Geist Mono", monospace;
-    font-style: normal;
-    padding: auto;
-    margin: 0;
-}
-
-.profile-pic {
-    border-radius: 100%;
-}
-
-#about {
-    margin: 16px;
-    font-size: 2em;
-}
-
-#bio::after {
-    content: "_";
-    animation: blink 500ms linear infinite alternate;
-}
-
-@-webkit-keyframes blink{
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
-
-@-moz-keyframes blink{
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
-
-@keyframes blink{
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
-
-a:link {
-    color: #008080;
-    background-color: transparent;
-    text-decoration: none;
-}
-  
-a:visited {
-    color: #de8472;
-    background-color: transparent;
-    text-decoration: none;
-}
-  
-a:hover {
-    color: #de8472;
-    background-color: transparent;
-    text-decoration: none;
-}
-  
-a:active {
-    color: #de8472;
-    background-color: transparent;
-    text-decoration: underline;
-}
+/* Link states (optional - Tailwind can handle these too) */
+a:link { color: #008080; text-decoration: none; }
+a:visited { color: #de8472; text-decoration: none; }
+a:hover { color: #de8472; text-decoration: none; }
+a:active { color: #de8472; text-decoration: underline; }
