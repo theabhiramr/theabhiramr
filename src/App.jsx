@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MoonIcon } from '@heroicons/react/24/outline'
 import { SunIcon } from '@heroicons/react/24/outline'
+import { logoSvg, profileJpeg } from './assets'
 
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false)
-  const savedMode = localStorage.getItem('darkMode')
-  if (savedMode && (savedMode === 'true') !== darkMode) {
-    setDarkMode(savedMode === 'true')
-  }
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkMode')
+    return savedMode ? JSON.parse(savedMode) : false
+  })
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode))
+  }, [darkMode])
 
   return (
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
@@ -17,7 +20,8 @@ function App() {
         <header className="sticky top-0 bg-background shadow-md z-50">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             <div className="flex items-center">
-              <img src="/images/logo.svg" alt="Logo" className="w-12 h-12 mr-4" />
+              <img 
+                src={logoSvg} alt="Logo" className="w-12 h-12 mr-4" />
               <h1 className="text-2xl font-outfit font-bold">Abhi Ramachandran</h1>
             </div>
             <nav className="hidden md:flex space-x-6">
@@ -44,8 +48,8 @@ function App() {
           {/* Hero Section */}
           <section id="about" className="text-center mb-16">
             <img 
-              src="/images/30271627.jpeg" 
-              alt="Abhiram Ramachandran" 
+              src={profileJpeg}
+              alt="Abhiram Ramachandran"
               className="w-48 h-48 rounded-full mx-auto mb-6 object-cover"
             />
             <h2 className="text-4xl font-outfit font-bold mb-4">Hello! I'm Abhi</h2>
