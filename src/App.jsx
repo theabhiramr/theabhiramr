@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { MoonIcon } from '@heroicons/react/24/outline'
 import { SunIcon } from '@heroicons/react/24/outline'
+import { Navbar } from './components'
 import { logoSvg, profileJpeg } from './assets'
 
 
@@ -14,34 +16,11 @@ function App() {
   }, [darkMode])
 
   return (
+    <Router>
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <div className="bg-background text-content min-h-screen transition-colors duration-300">
-        {/* Header */}
-        <header className="sticky top-0 bg-background shadow-md z-50">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div className="flex items-center">
-              <img 
-                src={logoSvg} alt="Logo" className="w-12 h-12 mr-4" />
-              <h1 className="text-2xl font-outfit font-bold">Abhi Ramachandran</h1>
-            </div>
-            <nav className="hidden md:flex space-x-6">
-              <a href="#about" className="text-primary hover:text-secondary transition-colors font-geist-mono">About</a>
-              <a href="#projects" className="text-primary hover:text-secondary transition-colors font-geist-mono">Projects</a>
-              <a href="#work" className="text-primary hover:text-secondary transition-colors font-geist-mono">Work</a>
-              <a href="#contact" className="text-primary hover:text-secondary transition-colors font-geist-mono">Contact</a>
-            </nav>
-            <button 
-              onClick={() => setDarkMode(!darkMode)}
-              className=" text-content px-4 py-2 rounded hover:bg-content hover:text-background transition-colors duration-300"
-            >
-              {darkMode ? (
-                  <SunIcon className="w-5 h-5" />
-                ) : (
-                  <MoonIcon className="w-5 h-5" />
-                )}
-            </button>
-          </div>
-        </header>
+        {/* Navbar */}
+        <Navbar darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} />
 
         {/* Main Content */}
         <main className="container mx-auto px-4 py-8">
@@ -142,9 +121,8 @@ function App() {
         </footer> 
       </div>
     </div>
-  )
+    </Router>
+  );
 }
 
-
-
-export default App
+export default App;

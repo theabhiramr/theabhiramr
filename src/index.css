@@ -2,7 +2,7 @@
 
 @theme {
     --color-background: #f0f0f0;
-    --color-content: #202020;
+    --color-content: #000000;
     --color-primary: #008080;
     --color-secondary: #de8472;
     
@@ -15,7 +15,7 @@
 
 @layer theme {
     .dark {
-        --color-background: #202020;
+        --color-background: #000000;
         --color-content: #f0f0f0;
         --color-primary: #008080;
         --color-secondary: #de8472;
