@@ -9,7 +9,7 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            setIsScrolled(scrollTop > 0); // Appears after scrolling 50px
+            setIsScrolled(scrollTop > 0);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -31,19 +31,19 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
                     <h1 className="hidden md:block text-2xl font-outfit font-bold ml-4">Abhi Ramachandran</h1>
                 </div>
 
-                {/* Navigation Links - moved inside the flex container */}
-                <nav className="hidden md:flex space-x-6">
-                    <NavLink to="/about" className={navLinkClasses}>About</NavLink>
-                    <NavLink to="/projects" className={navLinkClasses}>Projects</NavLink>
-                    <NavLink to="/work" className={navLinkClasses}>Work</NavLink>
-                    <NavLink to="/contact" className={navLinkClasses}>Contact</NavLink>
-                </nav>
-
                 {/* Theme Controls */}
                 <div className="flex items-center space-x-2">
+                    {/* Navigation Links */}
+                    <nav className="hidden md:flex space-x-6 mr-6">
+                        <NavLink to="/about" className={navLinkClasses}>About</NavLink>
+                        <NavLink to="/projects" className={navLinkClasses}>Projects</NavLink>
+                        <NavLink to="/work" className={navLinkClasses}>Work</NavLink>
+                        <NavLink to="/contact" className={navLinkClasses}>Contact</NavLink>
+                    </nav>
+                    
                     <button 
                         onClick={toggleDarkMode}
-                        className="text-content px-4 py-2 rounded hover:bg-content hover:text-background transition-colors duration-300"
+                        className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 dark:hover:text-white transition-colors duration-300"
                         title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
                     >
                         {darkMode ? (
@@ -52,9 +52,8 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
                             <MoonIcon className="w-5 h-5" />
                         )}
                     </button>
-                    
                 </div>
-            </div> {/* This closing div was in the wrong place before */}
+            </div>
         </header>
     );
 }

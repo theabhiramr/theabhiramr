@@ -64,14 +64,25 @@
 }
 
 /* Custom animations and effects */
-#bio::after {
+.typing-cursor::after {
     content: "_";
-    animation: blink 500ms linear infinite alternate;
+    color: var(--color-content);
 }
 
-@keyframes blink{
-    0%{opacity: 0;}
-    100%{opacity: 1;}
+/* Blinking animation when idle */
+.typing-blink::after {
+    animation: blink 800ms step-end infinite;
+}
+
+/* Solid cursor when typing (no animation) */
+.typing-pause::after {
+    opacity: 1;
+    animation: none;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 @layer components {
