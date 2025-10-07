@@ -8,12 +8,33 @@ import { logoSvg, profileJpeg } from './assets'
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem('darkMode')
-    return savedMode ? JSON.parse(savedMode) : false
-  })
-  useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(darkMode))
-  }, [darkMode])
+        const savedMode = localStorage.getItem('darkMode');
+        if (savedMode !== null) {
+            return JSON.parse(savedMode);
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    });
+
+    // Track if user has manually set a preference
+    const [hasManualPreference, setHasManualPreference] = useState(() => {
+        return localStorage.getItem('darkMode') !== null;
+    });
+
+    // Listen for system theme changes
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        const handleSystemThemeChange = (e) => {
+            // Only update if user hasn't manually set a preference
+            if (!hasManualPreference) {
+                setDarkMode(e.matches);
+            }
+        };
+
+        mediaQuery.addEventListener('change', handleSystemThemeChange);
+        return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
+    }, [hasManualPreference]);
+
 
   return (
     <Router>
