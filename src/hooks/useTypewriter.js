@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export const useTypewriter = (text, speed = 50, startDelay = 1000) => {
+export const useTypewriter = (htmlText, typeSpeed = 50, startDelay = 1000) => {
     const [displayText, setDisplayText] = useState('');
-    const [currentIndex, setCurrentIndex] = useState(0);
     const [isTyping, setIsTyping] = useState(false);
     const [isComplete, setIsComplete] = useState(false);
 
     useEffect(() => {
-        // Start typing after the delay
         const delayTimeout = setTimeout(() => {
             setIsTyping(true);
         }, startDelay);
@@ -16,24 +14,86 @@ export const useTypewriter = (text, speed = 50, startDelay = 1000) => {
     }, [startDelay]);
 
     useEffect(() => {
-        if (isTyping && currentIndex < text.length) {
-            const prevChar =  currentIndex > 0 ? text[currentIndex - 1] : '';
-            let typeSpeed = speed;
+        if (!isTyping) return;
 
-            if (prevChar === '.' || prevChar === '!' || prevChar === '?') {
-                typeSpeed = 400; // 800ms pause after sentences
+        let cursorPosition = 0;
+        let tag = "";
+        let writingTag = false;
+        let tagOpen = false;
+        let tempTypeSpeed = 0;
+        let currentHTML = "";
+        let currentTagElement = null;
+
+        const type = () => {
+            if (writingTag === true) {
+                tag += htmlText[cursorPosition];
             }
 
-            const timeout = setTimeout(() => {
-                setDisplayText(prev => prev + text[currentIndex]);
-                setCurrentIndex(prev => prev + 1);
-            }, typeSpeed);
+            if (htmlText[cursorPosition] === "<") {
+                tempTypeSpeed = 0;
+                if (tagOpen) {
+                    tagOpen = false;
+                    writingTag = true;
+                } else {
+                    tag = "";
+                    tagOpen = true;
+                    writingTag = true;
+                    tag += htmlText[cursorPosition];
+                }
+            }
 
-            return () => clearTimeout(timeout);
-        } else if (isTyping && currentIndex >= text.length) {
-            setIsComplete(true);
-        }
-    }, [currentIndex, text, speed, isTyping]);
+            if (!writingTag && tagOpen) {
+                tag += htmlText[cursorPosition];
+            }
 
-    return { displayText, isTyping: isTyping && currentIndex < text.length, isComplete };
+            if (!writingTag && !tagOpen) {
+                if (htmlText[cursorPosition] === " ") {
+                    tempTypeSpeed = 0;
+                } else {
+                    // Add sentence delay
+                    const prevChar = cursorPosition > 0 ? htmlText[cursorPosition - 1] : '';
+                    if (prevChar === '.' || prevChar === '!' || prevChar === '?') {
+                        tempTypeSpeed = 1000; // 800ms pause after sentences
+                    } else {
+                        tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+                    }
+                }
+                currentHTML += htmlText[cursorPosition];
+            }
+
+            if (writingTag === true && htmlText[cursorPosition] === ">") {
+                tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+                writingTag = false;
+                if (tagOpen) {
+                    // Opening tag - add the complete tag to HTML
+                    currentHTML += tag;
+                    tagOpen = false;
+                } else {
+                    // Closing tag
+                    currentHTML += tag;
+                }
+                tag = "";
+            }
+
+            // Update React state
+            setDisplayText(currentHTML);
+
+            cursorPosition += 1;
+            if (cursorPosition < htmlText.length) {
+                setTimeout(type, tempTypeSpeed);
+            } else {
+                setIsComplete(true);
+            }
+        };
+
+        // Start typing
+        type();
+
+    }, [htmlText, typeSpeed, isTyping]);
+
+    return { 
+        displayText, 
+        isTyping: isTyping && !isComplete, 
+        isComplete 
+    };
 };

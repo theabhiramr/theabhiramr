@@ -6,12 +6,17 @@ import Projects from './pages/Projects';
 import Work from './pages/Work';
 import Contact from './pages/Contact';
 import { profileJpeg } from './assets';
-import { useTypewriter } from './hooks';
+import { useTypewriter } from './hooks/useTypewriter';
 
 // Home component
 const Home = () => {
-  const bioText = "I'm an honors CS student at Drexel University studying concentrations in AI/ML and Systems Architecture. I'm also minoring in Business Analytics. Most of my work experiences are in Software Development and Artificial Intelligence.";
-  const { displayText, isTyping, isComplete } = useTypewriter(bioText);
+    const bioText = `I'm an honors CS student at <span class="text-secondary">Drexel University</span> 
+    studying concentrations in <span class="text-secondary">AI/ML</span> and 
+    <span class="text-secondary">Systems Architecture</span>. I'm also minoring in 
+    <span class="text-secondary">Business Analytics</span>. Most of my work experiences are in 
+    <span class="text-secondary">Software Development</span> and <span class="text-secondary">Artificial Intelligence</span>.`;
+    
+    const { displayText, isTyping, isComplete } = useTypewriter(bioText, 50, 1000);
 
     return (
         <main className="w-full">
@@ -27,19 +32,14 @@ const Home = () => {
                     
                     {/* Text Content */}
                     <div className="flex-1">
-                        <h2 className="text-4xl font-outfit font-bold mb-4">Hello! I'm Abhi</h2>
+                        <h2 className="text-4xl font-outfit font-bold mb-4">
+                            <span className="text-primary">Hello!</span> I'm Abhi
+                        </h2>
                         <p className="text-lg font-geist-mono leading-relaxed min-h-[120px]">
-                            {displayText}
+                            <span dangerouslySetInnerHTML={{ __html: displayText }} />
                             <span className={`typing-cursor ${isTyping ? 'typing-pause' : 'typing-blink'}`}></span>
                         </p>
                     </div>
-                </div>
-            </section>
-
-            {/* Other sections can follow the same pattern */}
-            <section className="w-full px-4 md:px-8 lg:px-12 py-8">
-                <div className="max-w-6xl">
-                    {/* Future content sections */}
                 </div>
             </section>
         </main>
