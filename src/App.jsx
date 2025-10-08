@@ -10,7 +10,7 @@ import { useTypewriter } from './hooks/useTypewriter';
 
 // Home component
 const Home = () => {
-    const bioText = `I'm an honors CS student at <span class="text-secondary">Drexel University</span> 
+    const bioText = `I'm an honors CS student at <a href="https://www.drexel.edu/cs/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary active:text-primary">Drexel University</a> 
     studying concentrations in <span class="text-secondary">AI/ML</span> and 
     <span class="text-secondary">Systems Architecture</span>. I'm also minoring in 
     <span class="text-secondary">Business Analytics</span>. Most of my work experiences are in 

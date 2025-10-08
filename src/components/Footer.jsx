@@ -6,8 +6,9 @@ export default function Footer() {
     return (
         <footer className="w-full py-2 bg-surface text-muted">
             <div className="w-full px-6 py-4">
+                {/* Social Icons - Left-aligned on all screen sizes */}
                 <div className="flex justify-left space-x-6 mb-6">
-                    <a href="https://www.linkedin.com/in/theabhiramr/" 
+                    <a href="https://linkedin.com/in/theabhiramr/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="text-muted hover:text-primary active:text-secondary transition-colors duration-300">
@@ -36,7 +37,8 @@ export default function Footer() {
                     </a>
                 </div>
                 
-                <div className="flex justify-between items-center text-sm">
+                {/* Text Content - Stacked and left-aligned on mobile, side-by-side on desktop */}
+                <div className="flex flex-col md:flex-row md:justify-between md:items-center text-sm text-left space-y-2 md:space-y-0">
                     <p>© 2025 Abhiram Ramachandran. All rights reserved.</p>
                     <p>Built using 
                         <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary active:text-secondary transition-colors duration-300 mx-2">
