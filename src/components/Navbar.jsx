@@ -43,7 +43,7 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
                     
                     <button 
                         onClick={toggleDarkMode}
-                        className="bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded hover:bg-gray-200 hover:text-black dark:hover:bg-gray-800 dark:hover:text-white transition-colors duration-300"
+                        className="text-black dark:text-white px-4 py-2 rounded hover:bg-muted hover:text-surface transition-colors duration-300"
                         title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
                     >
                         {darkMode ? (

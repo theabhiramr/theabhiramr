@@ -5,7 +5,9 @@
     --color-content: #000000;
     --color-primary: #008080;
     --color-secondary: #de8472;
-    
+    --color-muted: #18181b;
+    --color-surface: #e4e4e7;
+
     --font-family-geist-mono: "Geist Mono", monospace;
     --font-family-outfit: "Outfit", sans-serif;
 }
@@ -18,6 +20,8 @@
         --color-content: #f0f0f0;
         --color-primary: #008080;
         --color-secondary: #de8472;
+        --color-muted: #e4e4e7;
+        --color-surface: #18181b; 
     }
 }
 

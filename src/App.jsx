@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { Navbar, Footer } from './components';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Work from './pages/Work';
@@ -14,14 +14,14 @@ const Home = () => {
     studying concentrations in <span class="text-secondary">AI/ML</span> and 
     <span class="text-secondary">Systems Architecture</span>. I'm also minoring in 
     <span class="text-secondary">Business Analytics</span>. Most of my work experiences are in 
-    <span class="text-secondary">Software Development</span> and <span class="text-secondary">Artificial Intelligence</span>.`;
+    <span class="text-secondary">Software Development</span> and <span class="text-secondary">Artificial Intelligence</span>`;
     
     const { displayText, isTyping, isComplete } = useTypewriter(bioText, 50, 1000);
 
     return (
         <main className="w-full">
             {/* Hero Section - Full Width with Padding */}
-            <section className="w-full px-20 md:px-16 lg:px-32 py-16">
+            <section className="w-full px-20 md:px-4 lg:px-32 py-16">
                 <div className="max-w-6xl flex flex-col md:flex-row items-start gap-8">
                     {/* Profile Image */}
                     <img 
@@ -86,19 +86,23 @@ function App() {
     return (
         <Router>
             <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
-                <div className="bg-background text-content min-h-screen transition-colors duration-300">
+                <div className="bg-background text-content min-h-screen transition-colors duration-300 flex flex-col">
                     <Navbar 
                         darkMode={darkMode}
                         toggleDarkMode={toggleDarkMode}
                     />
 
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/projects" element={<Projects />} />
-                        <Route path="/work" element={<Work />} />
-                        <Route path="/contact" element={<Contact />} />
-                    </Routes>
+                    <main className="flex-1">
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/projects" element={<Projects />} />
+                            <Route path="/work" element={<Work />} />
+                            <Route path="/contact" element={<Contact />} />
+                        </Routes>
+                    </main>
+
+                    <Footer />
                 </div>
             </div>
         </Router>
