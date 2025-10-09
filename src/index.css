@@ -152,6 +152,6 @@
     
     a:active { 
         color: #de8472; 
-        text-decoration: underline; 
+        text-decoration: none; 
     }
 }

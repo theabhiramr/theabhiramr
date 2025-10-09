@@ -40,10 +40,10 @@ export default function Footer() {
                 {/* Text Content - Stacked and left-aligned on mobile, side-by-side on desktop */}
                 <div className="flex flex-col md:flex-row md:justify-between md:items-center text-sm text-left space-y-2 md:space-y-0">
                     <p>© 2025 Abhiram Ramachandran. All rights reserved.</p>
-                    <p>Built using 
+                    <p>Built with
                         <a href="https://reactjs.org/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary active:text-secondary transition-colors duration-300 mx-2">
                             <SiReact className="inline w-4 h-4" />
-                        </a>+ 
+                        </a>+
                         <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary active:text-secondary transition-colors duration-300 mx-2">
                             <SiTailwindcss className="inline w-4 h-4" />
                         </a>
