@@ -19,7 +19,7 @@ const Home = () => {
     const { displayText, isTyping, isComplete } = useTypewriter(bioText, 50, 1000);
 
     return (
-        <main className="w-full">
+        <main className="w-full" onClick={() => setSkipped(true)}>
             {/* Hero Section - Full Width with Padding */}
             <section className="w-full px-20 md:px-4 lg:px-32 py-16">
                 <div className="max-w-6xl flex flex-col md:flex-row items-start gap-8">
@@ -31,7 +31,7 @@ const Home = () => {
                     />
                     
                     {/* Text Content */}
-                    <div className="flex-1">
+                    <div className="flex-1" >
                         <h2 className="text-4xl font-outfit font-bold mb-4">
                             <span className="text-primary">Hello!</span> I'm Abhi
                         </h2>
