@@ -4,7 +4,7 @@ import { SiLeetcode, SiHandshake, SiPerl, SiReact, SiTailwindcss} from 'react-ic
 
 export default function Footer() {
     return (
-        <footer className="w-full py-2 bg-surface text-muted">
+        <footer className="font-geist-mono w-full py-2 bg-surface text-muted">
             <div className="w-full px-6 py-4">
                 {/* Social Icons - Left-aligned on all screen sizes */}
                 <div className="flex justify-left space-x-6 mb-6">
