@@ -5,6 +5,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import Work from './pages/Work';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 import { profileJpeg } from './assets';
 import { useTypewriter } from './hooks/useTypewriter';
 
@@ -210,6 +211,7 @@ function App() {
                             <Route path="/projects" element={<Projects />} />
                             <Route path="/work" element={<Work />} />
                             <Route path="/contact" element={<Contact />} />
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </main>
 
