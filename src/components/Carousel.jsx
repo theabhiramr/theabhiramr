@@ -27,14 +27,7 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
     const [isPlaying, setIsPlaying] = useState(false);  // Track autoplay state
-    const [arrowHovered, setArrowHovered] = useState(false);
-    const [isTouch, setIsTouch] = useState(false);
-
-    useEffect(() => {
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        setIsTouch(isMobile);
-    }, []);
-
+    
     const scrollTo = useCallback((index) => {
         if (emblaApi) emblaApi.scrollTo(index);
     }, [emblaApi]);
@@ -133,28 +126,8 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
     };
 
     return (
-        <section className="w-full py-16">
+        <section className="w-full py-8">  {/* Reduced py-16 to py-8 */}
             <div className="px-6 lg:px-32">
-                <h3 className="text-3xl font-outfit font-bold mb-8 text-left">
-                    My Projects
-                    <Link 
-                        to="/projects" 
-                        className="text-primary hover:text-secondary transition-colors duration-300"
-                        aria-label="Learn more about my projects"
-                        onMouseEnter={() => setArrowHovered(true)}
-                        onMouseLeave={() => setArrowHovered(false)}
-                    >
-                        {isTouch ?
-                            <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
-                        :
-                            (arrowHovered ?
-                                <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
-                            :
-                                <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
-                            )
-                        }
-                    </Link>
-                </h3>
                 <div className="relative">
                     {/* Carousel Container */}
                     <div className="overflow-visible" ref={emblaRef}>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar, Footer, Carousel } from './components';
+import { IoArrowForwardCircleOutline, IoArrowForwardCircle } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Work from './pages/Work';
@@ -27,6 +29,14 @@ const Home = () => {
         const saved = sessionStorage.getItem('homeCarouselVisible');
         return saved ? JSON.parse(saved) : false;
     });
+    const [isTouch, setIsTouch] = useState(false);
+    
+        useEffect(() => {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            setIsTouch(isMobile);
+        }, []);
+        const [arrowHovered, setArrowHovered] = useState(false);
+
     
     const finalText = skipped ? bioText : displayText;
     const finalIsComplete = skipped || isComplete;
@@ -85,6 +95,28 @@ const Home = () => {
             </section>
             {/* Projects Carousel Section - Fades in and slides up */}
             <div className={`transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className="px-6 lg:px-32">
+                <h3 className="text-3xl font-outfit font-bold mb-4 text-left">  {/* Reduced mb-8 to mb-4 */}
+                    My Projects
+                    <Link 
+                        to="/projects" 
+                        className="text-primary hover:text-secondary transition-colors duration-300"
+                        aria-label="Learn more about my projects"
+                        onMouseEnter={() => setArrowHovered(true)}
+                        onMouseLeave={() => setArrowHovered(false)}
+                    >
+                        {isTouch ?
+                            <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
+                        :
+                            (arrowHovered ?
+                                <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
+                            :
+                                <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
+                            )
+                        }
+                    </Link>
+                </h3>
+                </div>
                 <Carousel 
                     items={[
                         {
