@@ -71,10 +71,34 @@ const Home = () => {
             <div className={`transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <ProjectCarousel 
                     items={[
-                        { title: "Project One", description: "Description for project one." },
-                        { title: "Project Two", description: "Description for project two." },
-                        { title: "Project Three", description: "Description for project three." },
-                        { title: "Project Four", description: "Description for project four." }
+                        { 
+                            title: "Portfolio Website", 
+                            dates: "Apr 2024 - Present",
+                            description: "The website you're seeing right now!",
+                            link: void(0),
+                            technologies: [
+                                "JavaScript",
+                                "React",
+                                "Tailwind CSS", 
+                                "Vite",
+                                "Firebase"
+                            ],
+                            githubLink: "https://github.com/theabhiramr/theabhiramr"
+                        },
+                        { 
+                            title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
+                            dates: "Aug 2025 - Present",
+                            link: "https://chinmayajanata.org",
+
+                        },
+                        { 
+                            title: "Project Three", 
+                            description: "Description for project three." 
+                        },
+                        { 
+                            title: "Project Four", 
+                            description: "Description for project four." 
+                        }
                     ]}
                     startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
                 />
