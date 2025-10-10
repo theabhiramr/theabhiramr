@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar, Footer } from './components';
+import { Navbar, Footer, Carousel } from './components';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Work from './pages/Work';
@@ -16,12 +16,37 @@ const Home = () => {
     <span class="text-secondary">Business Analytics</span>. Most of my work experiences are in 
     <span class="text-secondary">Software Development</span> and <span class="text-secondary">Artificial Intelligence</span>`;
     
-    const { displayText, isTyping, isComplete } = useTypewriter(bioText, 50, 1000);
-
+    const { displayText, isTyping, isComplete } = useTypewriter(bioText, 25, 1000);
+    
+    const [skipped, setSkipped] = useState(false);
+    const [carouselVisible, setCarouselVisible] = useState(false);
+    
+    const finalText = skipped ? bioText : displayText;
+    const finalIsComplete = skipped || isComplete;
+    
+    // Handle Enter key to skip animation
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Enter' && !skipped) {
+                setSkipped(true);
+            }
+        };
+        
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [skipped]);
+    
+    // Show carousel after animation or skip
+    useEffect(() => {
+        if (finalIsComplete) {
+            setCarouselVisible(true);
+        }
+    }, [finalIsComplete]);
+    
     return (
         <main className="w-full">
             {/* Hero Section - Full Width with Padding */}
-            <section className="w-full px-20 md:px-4 lg:px-32 py-16">
+            <section className="w-full px-16 md:px-16 lg:px-32 py-8">
                 <div className="max-w-6xl flex flex-col md:flex-row items-start gap-8">
                     {/* Profile Image */}
                     <img 
@@ -36,12 +61,83 @@ const Home = () => {
                             <span className="text-primary">Hello!</span> I'm Abhi
                         </h2>
                         <p className="text-lg font-geist-mono leading-relaxed min-h-[120px]">
-                            <span dangerouslySetInnerHTML={{ __html: displayText }} />
-                            <span className={`typing-cursor ${isTyping ? 'typing-pause' : 'typing-blink'}`}></span>
+                            <span dangerouslySetInnerHTML={{ __html: finalText }} />
+                            <span className={`typing-cursor ${isTyping && !skipped ? 'typing-pause' : 'typing-blink'}`}></span>
                         </p>
                     </div>
                 </div>
             </section>
+            {/* Projects Carousel Section - Fades in and slides up */}
+            <div className={`transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <Carousel 
+                    items={[
+                        {
+                            title: "NFL Prediction Model",
+                            dates: "Oct 2025 - Present",
+                            description: "Stay tuned for updates!"
+                        },
+                        { 
+                            title: "Portfolio Website", 
+                            dates: "Apr 2024 - Present",
+                            description: "The website you're seeing right now!",
+                            link: void(0),
+                            technologies: [
+                                "JavaScript",
+                                "React",
+                                "Tailwind CSS", 
+                                "Vite",
+                                "Firebase"
+                            ],
+                            githubLink: "https://github.com/theabhiramr/theabhiramr"
+                        },
+                        { 
+                            title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
+                            dates: "Aug 2025 - Present",
+                            link: "https://chinmayajanata.org",
+                            technologies: [
+                                "JavaScript",
+                                "React",
+                                "ExpressJS",
+                                "NodeJS",
+                                "Vercel",
+                                "Tamagui"
+                            ],
+                            githubLink: "https://github.com/Project-Janatha/Project-Janatha"
+                        },
+                        { 
+                            title: "Dragon Learn",
+                            dates: "Apr 2024 - Present",
+                            link: void(0),
+                            technologies: [
+                                "TypeScript",
+                                "React",
+                                "NextJS",
+                                "Tailwind CSS",
+                                "Vercel",
+                                "OpenAI API",
+                                "LangChain",
+                                "Manim",
+                            ],
+                            description: "A website that can convert syllabi into interactive modules using LLMs.",
+                            githubLink: "https://github.com/drexelai/dragon-learn"
+                        },
+                        { 
+                            title: "CrashMath", 
+                            description: "A gamified learning platform for college students to make math concepts approachable and fun.",
+                            dates: "Jan 2023 - Jun 2023",
+                            link: "https://crashmath-16dc6.web.app/",
+                            technologies: [
+                                "JavaScript",
+                                "CSS",
+                                "HTML",
+                                "Firebase",
+                                "OpenAI API"
+                            ],
+                        }
+                    ]}
+                    startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
+                />
+            </div>
         </main>
     );
 };

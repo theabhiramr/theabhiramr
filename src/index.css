@@ -90,7 +90,7 @@
 }
 
 @layer components {
-    /* Simplified nav-link with direct colors */
+    /* Navigation links */
     .nav-link {
         position: relative;
         display: inline-block;
@@ -104,7 +104,7 @@
         left: 0;
         width: 0;
         height: 2px;
-        background-color: #de8472; /* Direct color instead of var() */
+        background-color: #de8472;
         transition: width 300ms ease-in-out;
     }
     
@@ -112,21 +112,18 @@
         width: 100%;
     }
 
-    /* Dark mode variant */
     .dark .nav-link::after {
         background-color: #de8472;
     }
 
-    /* Override visited behavior for nav links */
     .nav-link:visited {
-        color: #008080; /* Direct color */
+        color: #008080;
     }
     
     .nav-link:visited:hover {
-        color: #de8472; /* Direct color */
+        color: #de8472;
     }
 
-    /* Active state */
     .nav-link.active::after {
         width: 100%;
         background-color: #008080;
@@ -152,6 +149,18 @@
     
     a:active { 
         color: #de8472; 
-        text-decoration: underline; 
+        text-decoration: none; 
     }
+}
+
+body {
+    overflow-x: hidden !important;
+}
+
+/* Hide scrollbar on the carousel container if needed */
+.overflow-visible {
+    scrollbar-width: none; /* Firefox */
+}
+.overflow-visible::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
 }
