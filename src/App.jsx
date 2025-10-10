@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar, Footer, ProjectCarousel } from './components';
+import { Navbar, Footer, Carousel } from './components';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Work from './pages/Work';
@@ -46,7 +46,7 @@ const Home = () => {
     return (
         <main className="w-full">
             {/* Hero Section - Full Width with Padding */}
-            <section className="w-full px-16 md:px-16 lg:px-32 py-16">
+            <section className="w-full px-16 md:px-16 lg:px-32 py-8">
                 <div className="max-w-6xl flex flex-col md:flex-row items-start gap-8">
                     {/* Profile Image */}
                     <img 
@@ -69,8 +69,13 @@ const Home = () => {
             </section>
             {/* Projects Carousel Section - Fades in and slides up */}
             <div className={`transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <ProjectCarousel 
+                <Carousel 
                     items={[
+                        {
+                            title: "NFL Prediction Model",
+                            dates: "Oct 2025 - Present",
+                            description: "Stay tuned for updates!"
+                        },
                         { 
                             title: "Portfolio Website", 
                             dates: "Apr 2024 - Present",
@@ -89,15 +94,45 @@ const Home = () => {
                             title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
                             dates: "Aug 2025 - Present",
                             link: "https://chinmayajanata.org",
-
+                            technologies: [
+                                "JavaScript",
+                                "React",
+                                "ExpressJS",
+                                "NodeJS",
+                                "Vercel",
+                                "Tamagui"
+                            ],
+                            githubLink: "https://github.com/Project-Janatha/Project-Janatha"
                         },
                         { 
-                            title: "Project Three", 
-                            description: "Description for project three." 
+                            title: "Dragon Learn",
+                            dates: "Apr 2024 - Present",
+                            link: void(0),
+                            technologies: [
+                                "TypeScript",
+                                "React",
+                                "NextJS",
+                                "Tailwind CSS",
+                                "Vercel",
+                                "OpenAI API",
+                                "LangChain",
+                                "Manim",
+                            ],
+                            description: "A website that can convert syllabi into interactive modules using LLMs.",
+                            githubLink: "https://github.com/drexelai/dragon-learn"
                         },
                         { 
-                            title: "Project Four", 
-                            description: "Description for project four." 
+                            title: "CrashMath", 
+                            description: "A gamified learning platform for college students to make math concepts approachable and fun.",
+                            dates: "Jan 2023 - Jun 2023",
+                            link: "https://crashmath-16dc6.web.app/",
+                            technologies: [
+                                "JavaScript",
+                                "CSS",
+                                "HTML",
+                                "Firebase",
+                                "OpenAI API"
+                            ],
                         }
                     ]}
                     startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
