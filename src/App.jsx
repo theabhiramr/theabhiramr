@@ -93,20 +93,6 @@ const Home = () => {
                             description: "Stay tuned for updates!"
                         },
                         { 
-                            title: "Portfolio Website", 
-                            dates: "Apr 2024 - Present",
-                            description: "The website you're seeing right now!",
-                            link: void(0),
-                            technologies: [
-                                "JavaScript",
-                                "React",
-                                "Tailwind CSS", 
-                                "Vite",
-                                "Firebase"
-                            ],
-                            githubLink: "https://github.com/theabhiramr/theabhiramr"
-                        },
-                        { 
                             title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
                             dates: "Aug 2025 - Present",
                             link: "https://chinmayajanata.org",
@@ -121,8 +107,22 @@ const Home = () => {
                             githubLink: "https://github.com/Project-Janatha/Project-Janatha"
                         },
                         { 
+                            title: "Portfolio Website", 
+                            dates: "Apr 2025 - Present",
+                            description: "The website you're seeing right now!",
+                            link: void(0),
+                            technologies: [
+                                "JavaScript",
+                                "React",
+                                "Tailwind CSS", 
+                                "Vite",
+                                "Firebase"
+                            ],
+                            githubLink: "https://github.com/theabhiramr/theabhiramr"
+                        },
+                        { 
                             title: "Dragon Learn",
-                            dates: "Apr 2024 - Present",
+                            dates: "Apr 2025 - Present",
                             link: void(0),
                             technologies: [
                                 "TypeScript",
