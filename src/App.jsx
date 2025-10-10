@@ -18,8 +18,14 @@ const Home = () => {
     
     const { displayText, isTyping, isComplete } = useTypewriter(bioText, 25, 1000);
     
-    const [skipped, setSkipped] = useState(false);
-    const [carouselVisible, setCarouselVisible] = useState(false);
+    const [skipped, setSkipped] = useState(() => {
+        const saved = sessionStorage.getItem('homeSkipped');
+        return saved ? JSON.parse(saved) : false;
+    });
+    const [carouselVisible, setCarouselVisible] = useState(() => {
+        const saved = sessionStorage.getItem('homeCarouselVisible');
+        return saved ? JSON.parse(saved) : false;
+    });
     
     const finalText = skipped ? bioText : displayText;
     const finalIsComplete = skipped || isComplete;
@@ -42,6 +48,15 @@ const Home = () => {
             setCarouselVisible(true);
         }
     }, [finalIsComplete]);
+    
+    // Save state to sessionStorage
+    useEffect(() => {
+        sessionStorage.setItem('homeSkipped', JSON.stringify(skipped));
+    }, [skipped]);
+    
+    useEffect(() => {
+        sessionStorage.setItem('homeCarouselVisible', JSON.stringify(carouselVisible));
+    }, [carouselVisible]);
     
     return (
         <main className="w-full" onClick={() => setSkipped(true)}>
