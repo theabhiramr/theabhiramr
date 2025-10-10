@@ -28,7 +28,12 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
     const [scrollSnaps, setScrollSnaps] = useState([]);
     const [isPlaying, setIsPlaying] = useState(false);  // Track autoplay state
     const [arrowHovered, setArrowHovered] = useState(false);
+    const [isTouch, setIsTouch] = useState(false);
 
+    useEffect(() => {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        setIsTouch(isMobile);
+    }, []);
 
     const scrollTo = useCallback((index) => {
         if (emblaApi) emblaApi.scrollTo(index);
@@ -139,10 +144,14 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
                         onMouseEnter={() => setArrowHovered(true)}
                         onMouseLeave={() => setArrowHovered(false)}
                     >
-                        {arrowHovered ?
+                        {isTouch ?
                             <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
                         :
-                            <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
+                            (arrowHovered ?
+                                <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
+                            :
+                                <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
+                            )
                         }
                     </Link>
                 </h3>
