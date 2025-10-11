@@ -104,6 +104,7 @@ const Home = () => {
                         aria-label="Learn more about my projects"
                         onMouseEnter={() => setArrowHovered(true)}
                         onMouseLeave={() => setArrowHovered(false)}
+                        onClick={(e) => e.stopPropagation()}
                     >
                         {isTouch ?
                             <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
