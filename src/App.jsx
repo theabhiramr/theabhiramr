@@ -221,19 +221,19 @@ const Home = () => {
                     items={[
                         {
                             title: "Software Development Engineering Co-op",
+                            company: "Epiq Solutions",
+                            imageSrc: epiqsolutionsJpeg,
+                            description: "Programmed internal tools to streamline production testing processes, enhancing efficiency and accuracy of SDR devices.",
+                            dates: "Apr 2024 - Sep 2024",
+                            link: "https://epiqsolutions.com",
+                        },
+                        {
+                            title: "Software Development Engineering Co-op",
                             imageSrc: evbuddyJpeg,  // Removed curly braces
                             company: "EV Buddy, Inc.",
                             dates: "Jun 2023 - Sep 2023",
                             description: "Developed a community platform for EV owners featuring a unique, Vehicle-to-Vehicle (V2V) charging system.",
                             link: "https://evbuddy.net",
-                        },
-                        {
-                            title: "Software Development Engineering Co-op",
-                            company: "Epiq Solutions",
-                            imageSrc: epiqsolutionsJpeg,
-                            description: "Programmed internal tools to streamline production testing processes, enhancing efficiency and accuracy of SDR devices.",
-                            dates: "Aug 2025 - Present",
-                            link: "https://epiqsolutions.com",
                         }
                     ]}
                     startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
