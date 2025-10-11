@@ -114,13 +114,11 @@ const Home = () => {
                     My Projects
                     <button
                         onClick={(e)=>{e.stopPropagation(); navigate('/projects')}}
-                        className="group inline-flex items-center self-center text-primary hover:text-secondary transition-colors duration-300 ml-2 leading-none"
+                        className="group relative ml-2 text-primary hover:text-secondary transition-colors duration-300"
                         aria-label="Learn more about my projects"
                     >
-                        <span className="relative w-7 h-7 inline-flex items-center justify-center">
-                            <IoArrowForwardCircleOutline className="absolute inset-0 transition-opacity duration-200 opacity-100 group-hover:opacity-0" size={28}/>
-                            <IoArrowForwardCircle className="absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" size={28}/>
-                        </span>
+                        <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
+                        <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
                     </button>
                 </h3>
                 </div>
@@ -196,24 +194,15 @@ const Home = () => {
             {/* Work Experience Carousel Section - Fades in and slides up */}
             <div className={`transition-all duration-1000 ${workVisibleLocal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="px-6 lg:px-32">
-                <h3 className="text-3xl font-outfit font-bold mb-4 text-left">
+                <h3 className="flex items-center text-3xl font-outfit font-bold mb-4 text-left">
                     My Work Experience
-                    <button 
-                        onClick={(e) => { e.stopPropagation(); navigate('/work-experience'); }}
-                        className="text-primary hover:text-secondary transition-colors duration-300"
-                        aria-label="Learn more about my projects"
-                        onMouseEnter={() => setArrowHovered(true)}
-                        onMouseLeave={() => setArrowHovered(false)}
+                    <button
+                        onClick={(e)=>{e.stopPropagation(); navigate('/work-experience')}}
+                        className="group relative ml-2 text-primary hover:text-secondary transition-colors duration-300"
+                        aria-label="Learn more about my work experience"
                     >
-                        {isTouch ?
-                            <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
-                        :
-                            (arrowHovered ?
-                                <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
-                            :
-                                <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
-                            )
-                        }
+                        <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
+                        <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
                     </button>
                 </h3>
                 </div>
@@ -229,7 +218,7 @@ const Home = () => {
                         },
                         {
                             title: "Software Development Engineering Co-op",
-                            imageSrc: evbuddyJpeg,  // Removed curly braces
+                            imageSrc: evbuddyJpeg,
                             company: "EV Buddy, Inc.",
                             dates: "Jun 2023 - Sep 2023",
                             description: "Developed a community platform for EV owners featuring a unique, Vehicle-to-Vehicle (V2V) charging system.",
