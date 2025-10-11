@@ -70,7 +70,7 @@ const Home = () => {
     }, [carouselVisible]);
     
     return (
-        <main className="w-full" onClick={() => setSkipped(true)}>
+        <main className="w-full" onClick={(e) => { if (e.target === e.currentTarget) setSkipped(true); }}>
             {/* Hero Section - Full Width with Padding */}
             <section className="w-full px-16 md:px-16 lg:px-32 py-8">
                 <div className="max-w-6xl flex flex-col md:flex-row items-start gap-8">

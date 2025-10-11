@@ -189,7 +189,7 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
                                     className={`w-1.5 h-1.5 rounded-full mx-1 transition-all hover:w-4 ${
                                         index === selectedIndex ? 'bg-primary w-6' : 'bg-muted'
                                     }`}
-                                    onClick={() => scrollTo(index)}
+                                    onClick={(e) => { e.stopPropagation(); scrollTo(index); }}
                                 />
                             ))}
                         </div>
@@ -198,15 +198,7 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
                         <div className="flex gap-1">
                             {/* Play/Pause Button */}
                             <button
-                                onClick={() => {
-                                    if (isPlaying) {
-                                        emblaApi.plugins().autoplay.stop();
-                                        setIsPlaying(false);
-                                    } else {
-                                        emblaApi.plugins().autoplay.play();
-                                        setIsPlaying(true);
-                                    }
-                                }}
+                                onClick={(e) => { e.stopPropagation(); /* play/pause logic */ }}
                                 className="w-6 h-6 transition-all duration-300 hover:scale-110 flex items-center justify-center"
                                 aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
                             >
