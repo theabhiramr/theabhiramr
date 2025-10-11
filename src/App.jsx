@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Navbar, Footer, Carousel } from './components';
 import { IoArrowForwardCircleOutline, IoArrowForwardCircle } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,7 @@ import { useTypewriter } from './hooks/useTypewriter';
 
 // Home component
 const Home = () => {
+    const navigate = useNavigate();
     const bioText = `I'm an honors CS student at <a href="https://www.drexel.edu/cs/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary active:text-primary">Drexel University</a> 
     studying concentrations in <span class="text-secondary">AI/ML</span> and 
     <span class="text-secondary">Systems Architecture</span>. I'm also minoring in 
@@ -96,15 +97,14 @@ const Home = () => {
             {/* Projects Carousel Section - Fades in and slides up */}
             <div className={`transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="px-6 lg:px-32">
-                <h3 className="text-3xl font-outfit font-bold mb-4 text-left">  {/* Reduced mb-8 to mb-4 */}
+                <h3 className="text-3xl font-outfit font-bold mb-4 text-left">
                     My Projects
-                    <Link 
-                        to="/projects" 
+                    <button 
+                        onClick={(e) => { e.stopPropagation(); navigate('/projects'); }}
                         className="text-primary hover:text-secondary transition-colors duration-300"
                         aria-label="Learn more about my projects"
                         onMouseEnter={() => setArrowHovered(true)}
                         onMouseLeave={() => setArrowHovered(false)}
-                        onClick={(e) => e.stopPropagation()}
                     >
                         {isTouch ?
                             <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
@@ -115,7 +115,7 @@ const Home = () => {
                                 <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
                             )
                         }
-                    </Link>
+                    </button>
                 </h3>
                 </div>
                 <Carousel 

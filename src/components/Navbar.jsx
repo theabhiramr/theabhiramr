@@ -26,7 +26,7 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
             <div className='w-full px-6 py-4 flex justify-between items-center'>
                 {/* Logo and Name */}
                 <div className="flex items-center">
-                    <NavLink to="/" onClick={() => setIsOpen(false)}>  {/* Close menu on link click */}
+                    <NavLink to="/" onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>  {/* Close menu on link click */}
                         <img src={logoSvg} alt="Logo" className="h-8" />
                     </NavLink>
                     <h1 className="hidden md:block text-2xl font-outfit font-bold ml-4">Abhi Ramachandran</h1>
@@ -36,15 +36,15 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
                 <div className="flex items-center space-x-2">
                     {/* Navigation Links */}
                     <nav className={`flex flex-col md:flex-row absolute md:relative top-full md:top-auto left-0 md:left-auto w-full md:w-auto bg-background md:bg-transparent shadow-md md:shadow-none space-y-4 md:space-y-0 md:space-x-6 p-4 md:p-0 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-y-0'}`}>
-                        <NavLink to="/about" className={navLinkClasses} onClick={() => setIsOpen(false)}>About</NavLink>
-                        <NavLink to="/projects" className={navLinkClasses} onClick={() => setIsOpen(false)}>Projects</NavLink>
-                        <NavLink to="/work" className={navLinkClasses} onClick={() => setIsOpen(false)}>Work</NavLink>
-                        <NavLink to="/contact" className={navLinkClasses} onClick={() => setIsOpen(false)}>Contact</NavLink>
+                        <NavLink to="/about" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>About</NavLink>
+                        <NavLink to="/projects" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>Projects</NavLink>
+                        <NavLink to="/work" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>Work</NavLink>
+                        <NavLink to="/contact" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>Contact</NavLink>
                     </nav>
 
                     {/* Theme Toggle Button */}
                     <button 
-                        onClick={toggleDarkMode}
+                        onClick={(e) => { e.stopPropagation(); toggleDarkMode(); }}
                         className="text-black dark:text-white px-4 py-2 rounded hover:bg-muted hover:text-surface transition-all duration-300"
                         title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
                     >
@@ -57,9 +57,10 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
 
                     {/* Hamburger Menu Button */}
                     <button 
-                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsOpen(!isOpen); }}
+                        onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
                         className="md:hidden text-black dark:text-white px-4 py-2 rounded hover:bg-muted hover:text-surface transition-all duration-300 hover:scale-110"
                         title="Toggle menu"
+                        type="button"
                     >
                         <div className={`hamburger ${isOpen ? 'open' : ''}`}>
                             <span></span>
