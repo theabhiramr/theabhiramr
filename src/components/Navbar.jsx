@@ -58,7 +58,7 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
                     {/* Hamburger Menu Button */}
                     <button 
                         onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
-                        className="md:hidden text-black dark:text-white px-4 py-2 rounded hover:bg-muted hover:text-surface transition-all duration-300 hover:scale-110"
+                        className="md:hidden text-black dark:text-white px-1 py-2 rounded transition-all duration-300 hover:scale-110"
                         title="Toggle menu"
                         type="button"
                     >
