@@ -217,7 +217,7 @@ const Home = () => {
                             link: "https://epiqsolutions.com",
                         },
                         {
-                            title: "Software Development Engineering Co-op",
+                            title: "Software Development Intern",
                             imageSrc: evbuddyJpeg,
                             company: "EV Buddy, Inc.",
                             dates: "Jun 2023 - Sep 2023",
