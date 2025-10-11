@@ -9,7 +9,7 @@ import {TbBrandVite} from 'react-icons/tb';
 import { RiFirebaseFill } from 'react-icons/ri';
 import { MdCss } from 'react-icons/md';
 
-export default function ProjectCarousel({ items, startAutoplay = false }) {
+export default function Carousel({ items, startAutoplay = false }) {
     const [emblaRef, emblaApi] = useEmblaCarousel(
         { 
             loop: true,
@@ -126,56 +126,59 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
     };
 
     return (
-        <section className="w-full py-8">  {/* Reduced py-16 to py-8 */}
+        <section className="w-full py-8">
             <div className="px-6 lg:px-32">
                 <div className="relative">
                     {/* Carousel Container */}
                     <div className="overflow-visible" ref={emblaRef}>
-                        <div className="flex">  {/* Remove gap-8 */}
-                            {items.map((item, index) => (
-                                <div 
-                                    key={index}
-                                    className="flex-[0_0_100%] md:flex-[0_0_80%] min-w-0 mr-8"  // Changed to 80% for more peek
-                                >
-                                    <a 
-                                        href={item.link} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="font-geist-mono flex flex-col bg-surface rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full"
+                        <div className="flex">
+                            {items.map((item, index) => {  // Only use manual image
+                                return (
+                                    <div 
+                                        key={index}
+                                        className="flex-[0_0_100%] md:flex-[0_0_80%] min-w-0 mr-8"
                                     >
-                                        {item.image && (
-                                            <img 
-                                                src={item.image} 
-                                                alt={item.title}
-                                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md"
-                                            />
-                                        )}
-                                        <h3 className="text-lg font-semibold mb-2 text-primary">{item.title}</h3>
-                                        <p className="text-xs uppercase text-secondary mb-4 font-normal">{item.dates}</p>
-                                        {item.description && <p className="text-sm text-muted mb-4 leading-relaxed">{item.description}</p>}
-                                        {item.technologies && (
-                                            <div className="flex flex-wrap gap-2 mb-4">
-                                                {item.technologies.map((tech, techIndex) => (
-                                                    renderTechIcon(tech)
-                                                ))}
-                                            </div>
-                                        )}
-                                        {item.githubLink && (
-                                            <div className="mt-auto text-muted text-sm ">
-                                                See it on 
-                                                <a 
-                                                    href={item.githubLink} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer"
-                                                    className="text-sm text-muted hover:text-primary transition-colors duration-300 ml-1 p-1 inline-block"
-                                                >
-                                                    <SiGithub className="inline" size={16} />
-                                                </a>
-                                            </div>
-                                        )}
-                                    </a>
-                                </div>
-                            ))}
+                                        <a 
+                                            href={item.link} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="font-geist-mono flex flex-col bg-surface rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full"
+                                        >
+                                            {item.imageSrc && (
+                                                <img 
+                                                    src={item.imageSrc} 
+                                                    alt={item.title}
+                                                    className="w-32 h-32 object-contain object-left mb-2 rounded-lg"  // Changed rounded to rounded-lg for more rounding
+                                                />
+                                            )}
+                                            <h3 className="text-lg font-semibold mb-1 text-primary">{item.title}</h3>
+                                            {item.company && <p className="text-md text-secondary mb-2">{item.company}</p>}
+                                            <p className="text-xs uppercase text-secondary mb-4 font-normal">{item.dates}</p>
+                                            {item.description && <p className="text-sm text-muted mb-4 leading-relaxed">{item.description}</p>}
+                                            {item.technologies && (
+                                                <div className="flex flex-wrap gap-2 mb-4">
+                                                    {item.technologies.map((tech, techIndex) => (
+                                                        renderTechIcon(tech)
+                                                    ))}
+                                                </div>
+                                            )}
+                                            {item.githubLink && (
+                                                <div className="mt-auto text-muted text-sm ">
+                                                    See it on 
+                                                    <a 
+                                                        href={item.githubLink} 
+                                                        target="_blank" 
+                                                        rel="noopener noreferrer"
+                                                        className="text-sm text-muted hover:text-primary transition-colors duration-300 ml-1 p-1 inline-block"
+                                                    >
+                                                        <SiGithub className="inline" size={16} />
+                                                    </a>
+                                                </div>
+                                            )}
+                                        </a>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 
@@ -198,7 +201,16 @@ export default function ProjectCarousel({ items, startAutoplay = false }) {
                         <div className="flex gap-1">
                             {/* Play/Pause Button */}
                             <button
-                                onClick={(e) => { e.stopPropagation(); /* play/pause logic */ }}
+                                onClick={(e) => { 
+                                    e.stopPropagation(); 
+                                    if (isPlaying) {
+                                        emblaApi.plugins().autoplay.stop();
+                                        setIsPlaying(false);
+                                    } else {
+                                        emblaApi.plugins().autoplay.play();
+                                        setIsPlaying(true);
+                                    }
+                                }}
                                 className="w-6 h-6 transition-all duration-300 hover:scale-110 flex items-center justify-center"
                                 aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}
                             >

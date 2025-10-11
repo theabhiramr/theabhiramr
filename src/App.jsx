@@ -9,6 +9,8 @@ import Work from './pages/Work';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import { profileJpeg } from './assets';
+import { evbuddyJpeg } from './assets';
+import { epiqsolutionsJpeg } from './assets';
 import { useTypewriter } from './hooks/useTypewriter';
 
 // Home component
@@ -30,6 +32,9 @@ const Home = () => {
         const saved = sessionStorage.getItem('homeCarouselVisible');
         return saved ? JSON.parse(saved) : false;
     });
+    // control per-carousel sequential reveal
+    const [projectsVisibleLocal, setProjectsVisibleLocal] = useState(false);
+    const [workVisibleLocal, setWorkVisibleLocal] = useState(false);
     const [isTouch, setIsTouch] = useState(false);
     
         useEffect(() => {
@@ -54,12 +59,20 @@ const Home = () => {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [skipped]);
     
-    // Show carousel after animation or skip
+    // Show carousel container after animation or skip (existing behaviour)
     useEffect(() => {
         if (finalIsComplete) {
             setCarouselVisible(true);
         }
     }, [finalIsComplete]);
+    
+    // When the main carousel container is shown, reveal the two carousels in succession
+    useEffect(() => {
+        if (!carouselVisible) return;
+        setProjectsVisibleLocal(true); // show projects immediately
+        const t = setTimeout(() => setWorkVisibleLocal(true), 350); // stagger (350ms)
+        return () => clearTimeout(t);
+    }, [carouselVisible]);
     
     // Save state to sessionStorage
     useEffect(() => {
@@ -95,26 +108,19 @@ const Home = () => {
                 </div>
             </section>
             {/* Projects Carousel Section - Fades in and slides up */}
-            <div className={`transition-all duration-1000 ${carouselVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`transition-all duration-1000 ${projectsVisibleLocal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="px-6 lg:px-32">
-                <h3 className="text-3xl font-outfit font-bold mb-4 text-left">
+                <h3 className="flex items-center text-3xl font-outfit font-bold mb-4 text-left">
                     My Projects
-                    <button 
-                        onClick={(e) => { e.stopPropagation(); navigate('/projects'); }}
-                        className="text-primary hover:text-secondary transition-colors duration-300"
+                    <button
+                        onClick={(e)=>{e.stopPropagation(); navigate('/projects')}}
+                        className="group inline-flex items-center self-center text-primary hover:text-secondary transition-colors duration-300 ml-2 leading-none"
                         aria-label="Learn more about my projects"
-                        onMouseEnter={() => setArrowHovered(true)}
-                        onMouseLeave={() => setArrowHovered(false)}
                     >
-                        {isTouch ?
-                            <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
-                        :
-                            (arrowHovered ?
-                                <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
-                            :
-                                <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
-                            )
-                        }
+                        <span className="relative w-7 h-7 inline-flex items-center justify-center">
+                            <IoArrowForwardCircleOutline className="absolute inset-0 transition-opacity duration-200 opacity-100 group-hover:opacity-0" size={28}/>
+                            <IoArrowForwardCircle className="absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" size={28}/>
+                        </span>
                     </button>
                 </h3>
                 </div>
@@ -187,6 +193,52 @@ const Home = () => {
                     startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
                 />
             </div>
+            {/* Work Experience Carousel Section - Fades in and slides up */}
+            <div className={`transition-all duration-1000 ${workVisibleLocal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <div className="px-6 lg:px-32">
+                <h3 className="text-3xl font-outfit font-bold mb-4 text-left">
+                    My Work Experience
+                    <button 
+                        onClick={(e) => { e.stopPropagation(); navigate('/work-experience'); }}
+                        className="text-primary hover:text-secondary transition-colors duration-300"
+                        aria-label="Learn more about my projects"
+                        onMouseEnter={() => setArrowHovered(true)}
+                        onMouseLeave={() => setArrowHovered(false)}
+                    >
+                        {isTouch ?
+                            <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
+                        :
+                            (arrowHovered ?
+                                <IoArrowForwardCircle className="inline-block ml-2 transform transition-transform duration-300 hover:scale-110" size={28} />
+                            :
+                                <IoArrowForwardCircleOutline className="inline-block ml-2 transform transition-transform duration-300" size={28} />
+                            )
+                        }
+                    </button>
+                </h3>
+                </div>
+                <Carousel 
+                    items={[
+                        {
+                            title: "Software Development Engineering Co-op",
+                            imageSrc: evbuddyJpeg,  // Removed curly braces
+                            company: "EV Buddy, Inc.",
+                            dates: "Jun 2023 - Sep 2023",
+                            description: "Developed a community platform for EV owners featuring a unique, Vehicle-to-Vehicle (V2V) charging system.",
+                            link: "https://evbuddy.net",
+                        },
+                        {
+                            title: "Software Development Engineering Co-op",
+                            company: "Epiq Solutions",
+                            imageSrc: epiqsolutionsJpeg,
+                            description: "Programmed internal tools to streamline production testing processes, enhancing efficiency and accuracy of SDR devices.",
+                            dates: "Aug 2025 - Present",
+                            link: "https://epiqsolutions.com",
+                        }
+                    ]}
+                    startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
+                />
+            </div>
         </main>
     );
 };
@@ -242,7 +294,7 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/projects" element={<Projects />} />
-                            <Route path="/work" element={<Work />} />
+                            <Route path="/work-experience" element={<Work />} />
                             <Route path="/contact" element={<Contact />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>

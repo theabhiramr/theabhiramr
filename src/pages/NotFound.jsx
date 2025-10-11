@@ -23,7 +23,7 @@ const NotFound = () => {
                     <span className="text-white">./navpage</span>
                 </div>
                 <div className="text-secondary mb-4">
-                    Website received SIGSEGV, Segmentation fault (core dumped)
+                    Website received signal SIGSEGV, Segmentation fault (core dumped)
                 </div>
                 <div className="text-gray-400 mb-6">
                     Aw shucks! The page you requested has caused a segmentation fault.<br />
