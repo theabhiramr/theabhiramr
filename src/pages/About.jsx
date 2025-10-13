@@ -73,6 +73,7 @@ const About = () => {
   const [visiblePhotos, setVisiblePhotos] = useState(0);
 
   useEffect(() => {
+    document.title = "About";
     window.scrollTo(0, 0);
     let cancelled = false;
     async function run() {
