@@ -5,46 +5,57 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.25
+      staggerChildren: 0.5 // Slower stagger for timeline items
     }
   }
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
 };
 
-function TimelineItem({ item, isLast, isFirst }) {
-  const content = (
-    <div className="flex items-start gap-3">
-      {item.image && (
-        <img src={item.image} alt={item.title || ''} className="w-16 h-16 rounded-lg object-cover flex-shrink-0" />
-      )}
-      <div className="flex-1">
-        {item.title && <h4 className="font-geist-mono text-xl font-bold text-primary leading-5">{item.title}</h4>}
-        {item.subtitle && <h5 className="font-geist-mono text-lg mt-1 text-muted">{item.subtitle}</h5>}
-        {item.location && <div className="font-geist-mono text-sm text-secondary mt-1">{item.location}</div>}
-        {item.dates && <div className="font-geist-mono uppercase text-xs text-secondary mt-1">{item.dates}</div>}
-        {item.minor && <div className="font-geist-mono text-md text-muted mt-2"><span className="font-bold">Minor:</span> {item.minor}</div>}
-        {item.honorsAwards && <div className="font-geist-mono text-md text-muted mt-1"><span className="font-bold">Honors & Awards:</span> {item.honorsAwards}</div>}
-        {item.activities && <div className="font-geist-mono text-md text-muted mt-1"><span className="font-bold">Activities:</span> {item.activities}</div>}
-        {Array.isArray(item.content) ? (
-          <ul className="mt-2 text-muted">
-            {item.content.map((contentItem, index) => (
-              <li key={index}>{contentItem}</li>
-            ))}
-          </ul>
-        ) : (
-          item.content && <div className="mt-2 text-muted">{item.content}</div>
-        )}
-      </div>
-    </div>
-  );
+const bulletListVariants = {
+  hidden: {},
+  visible: (custom) => ({
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: custom * 0.5 // Delay based on timeline item index
+    }
+  })
+};
+
+const bulletItemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeOut' } }
+};
+
+const itemGroupVariants = {
+  hidden: {},
+  visible: (custom = 0) => ({
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: custom * 0.5 // Each item's children are delayed by its index
+    }
+  })
+};
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' } }
+};
+
+function TimelineItem({ item, isLast, isFirst, custom }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <motion.div
+      ref={ref}
       variants={itemVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      custom={custom}
       className="relative flex gap-6 pb-12"
       style={{ paddingTop: isFirst ? 0 : '8px' }}
     >
@@ -68,25 +79,211 @@ function TimelineItem({ item, isLast, isFirst }) {
           rel="noopener noreferrer"
           className="flex-1 hover:bg-surface transition rounded-lg p-2 -m-2"
         >
-          {content}
+          <motion.div
+            variants={itemGroupVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            custom={custom}
+            className="flex flex-col gap-1"
+          >
+            {item.image && (
+              <motion.img
+                src={item.image}
+                alt={item.title || ''}
+                className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mb-2"
+                variants={fadeUpVariant}
+              />
+            )}
+            {item.title && (
+              <motion.h4
+                className="font-geist-mono text-xl font-bold text-primary leading-5"
+                variants={fadeUpVariant}
+              >
+                {item.title}
+              </motion.h4>
+            )}
+            {item.subtitle && (
+              <motion.h5
+                className="font-geist-mono text-lg mt-1 text-muted"
+                variants={fadeUpVariant}
+              >
+                {item.subtitle}
+              </motion.h5>
+            )}
+            {item.location && (
+              <motion.div
+                className="font-geist-mono text-sm text-secondary mt-1"
+                variants={fadeUpVariant}
+              >
+                {item.location}
+              </motion.div>
+            )}
+            {item.dates && (
+              <motion.div
+                className="font-geist-mono uppercase text-xs text-secondary mt-1"
+                variants={fadeUpVariant}
+              >
+                {item.dates}
+              </motion.div>
+            )}
+            {item.minor && (
+              <motion.div
+                className="font-geist-mono text-md text-muted mt-2"
+                variants={fadeUpVariant}
+              >
+                <span className="font-bold">Minor:</span> {item.minor}
+              </motion.div>
+            )}
+            {item.honorsAwards && (
+              <motion.div
+                className="font-geist-mono text-md text-muted mt-1"
+                variants={fadeUpVariant}
+              >
+                <span className="font-bold">Honors & Awards:</span> {item.honorsAwards}
+              </motion.div>
+            )}
+            {item.activities && (
+              <motion.div
+                className="font-geist-mono text-md text-muted mt-1"
+                variants={fadeUpVariant}
+              >
+                <span className="font-bold">Activities:</span> {item.activities}
+              </motion.div>
+            )}
+            {Array.isArray(item.content) ? (
+              <motion.ul
+                className="mt-2 text-muted list-disc pl-5"
+                variants={itemGroupVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                custom={custom}
+              >
+                {item.content.map((contentItem, idx) => (
+                  <motion.li
+                    key={idx}
+                    variants={fadeUpVariant}
+                  >
+                    {contentItem}
+                  </motion.li>
+                ))}
+              </motion.ul>
+            ) : (
+              item.content && (
+                <motion.div className="mt-2 text-muted" variants={fadeUpVariant}>
+                  {item.content}
+                </motion.div>
+              )
+            )}
+          </motion.div>
         </a>
       ) : (
-        <div className="flex-1">{content}</div>
+        <motion.div
+          variants={itemGroupVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          custom={custom}
+          className="flex-1 flex flex-col gap-1"
+        >
+          {item.image && (
+            <motion.img
+              src={item.image}
+              alt={item.title || ''}
+              className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mb-2"
+              variants={fadeUpVariant}
+            />
+          )}
+          {item.title && (
+            <motion.h4
+              className="font-geist-mono text-xl font-bold text-primary leading-5"
+              variants={fadeUpVariant}
+            >
+              {item.title}
+            </motion.h4>
+          )}
+          {item.subtitle && (
+            <motion.h5
+              className="font-geist-mono text-lg mt-1 text-muted"
+              variants={fadeUpVariant}
+            >
+              {item.subtitle}
+            </motion.h5>
+          )}
+          {item.location && (
+            <motion.div
+              className="font-geist-mono text-sm text-secondary mt-1"
+              variants={fadeUpVariant}
+            >
+              {item.location}
+            </motion.div>
+          )}
+          {item.dates && (
+            <motion.div
+              className="font-geist-mono uppercase text-xs text-secondary mt-1"
+              variants={fadeUpVariant}
+            >
+              {item.dates}
+            </motion.div>
+          )}
+          {item.minor && (
+            <motion.div
+              className="font-geist-mono text-md text-muted mt-2"
+              variants={fadeUpVariant}
+            >
+              <span className="font-bold">Minor:</span> {item.minor}
+            </motion.div>
+          )}
+          {item.honorsAwards && (
+            <motion.div
+              className="font-geist-mono text-md text-muted mt-1"
+              variants={fadeUpVariant}
+            >
+              <span className="font-bold">Honors & Awards:</span> {item.honorsAwards}
+            </motion.div>
+          )}
+          {item.activities && (
+            <motion.div
+              className="font-geist-mono text-md text-muted mt-1"
+              variants={fadeUpVariant}
+            >
+              <span className="font-bold">Activities:</span> {item.activities}
+            </motion.div>
+          )}
+          {Array.isArray(item.content) ? (
+            <motion.ul
+              className="mt-2 text-muted list-disc pl-5"
+              variants={itemGroupVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              custom={custom}
+            >
+              {item.content.map((contentItem, idx) => (
+                <motion.li
+                  key={idx}
+                  variants={fadeUpVariant}
+                >
+                  {contentItem}
+                </motion.li>
+              ))}
+            </motion.ul>
+          ) : (
+            item.content && (
+              <motion.div className="mt-2 text-muted" variants={fadeUpVariant}>
+                {item.content}
+              </motion.div>
+            )
+          )}
+        </motion.div>
       )}
     </motion.div>
   );
 }
 
 export default function Timeline({ items = [] }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
     <motion.div
-      ref={ref}
       variants={containerVariants}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      animate="visible"
       className="relative md:pl-14 pl-6"
     >
       {items.map((item, i) => (
@@ -95,6 +292,7 @@ export default function Timeline({ items = [] }) {
           item={item}
           isFirst={i === 0}
           isLast={i === items.length - 1}
+          custom={i}
         />
       ))}
     </motion.div>
