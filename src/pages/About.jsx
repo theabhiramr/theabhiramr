@@ -73,6 +73,7 @@ const About = () => {
   const [visiblePhotos, setVisiblePhotos] = useState(0);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     let cancelled = false;
     async function run() {
       // Paragraphs
