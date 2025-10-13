@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import { Navbar, Footer, Carousel } from './components';
 import { IoArrowForwardCircleOutline, IoArrowForwardCircle } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import WorkExperience from './pages/WorkExperience';
@@ -271,6 +272,19 @@ function App() {
     };
 
     return (
+        <>
+        <Helmet>
+            <title>Abhi Ramachandran</title>
+            <meta name="description" content="Portfolio of Abhiram Ramachandran, Computer Science student at Drexel University." />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="icon" href="/favicon.ico" />
+            <meta property="og:title" content="Abhi Ramachandran" />
+            <meta property="og:description" content="Portfolio of Abhiram Ramachandran, Computer Science student at Drexel University." />
+            <meta property="og:image" content="https://theabhiramr.com/assets/profile.jpg" />
+            <meta property="og:url" content="https://theabhiramr.com/" />
+            <meta name="twitter:card" content="summary_large_image" />
+        </Helmet>
+    //
         <Router>
             <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
                 <div className="bg-background text-content min-h-screen transition-colors duration-300 flex flex-col">
@@ -294,6 +308,7 @@ function App() {
                 </div>
             </div>
         </Router>
+        </>
     );
 }
 
