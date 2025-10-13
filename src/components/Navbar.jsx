@@ -38,7 +38,7 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
                     <nav className={`flex flex-col md:flex-row absolute md:relative top-full md:top-auto left-0 md:left-auto w-full md:w-auto bg-background md:bg-transparent shadow-md md:shadow-none space-y-4 md:space-y-0 md:space-x-6 p-4 md:p-0 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-y-0'}`}>
                         <NavLink to="/about" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>About</NavLink>
                         <NavLink to="/projects" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>Projects</NavLink>
-                        <NavLink to="/work" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>Work</NavLink>
+                        <NavLink to="/work-experience" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>Work</NavLink>
                         <NavLink to="/contact" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>Contact</NavLink>
                     </nav>
 

@@ -5,7 +5,7 @@ import { IoArrowForwardCircleOutline, IoArrowForwardCircle } from 'react-icons/i
 import { Link } from 'react-router-dom';
 import About from './pages/About';
 import Projects from './pages/Projects';
-import Work from './pages/Work';
+import WorkExperience from './pages/WorkExperience';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 import { profileJpeg } from './assets';
@@ -284,7 +284,7 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
                             <Route path="/projects" element={<Projects />} />
-                            <Route path="/work-experience" element={<Work />} />
+                            <Route path="/work-experience" element={<WorkExperience />} />
                             <Route path="/contact" element={<Contact />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>

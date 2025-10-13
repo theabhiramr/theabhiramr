@@ -1,4 +1,4 @@
-const Work = () => {
+const WorkExperience = () => {
     return (
         <div className="p-4">
             <h1 className="font-outfit text-2xl font-bold mb-4">🚧 Coming Soon!</h1>
@@ -7,4 +7,4 @@ const Work = () => {
     );
 }
 
-export default Work;
+export default WorkExperience;
