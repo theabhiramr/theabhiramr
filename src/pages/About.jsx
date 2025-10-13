@@ -111,7 +111,7 @@ const About = () => {
         initial="hidden"
         animate={headerInView ? "visible" : "hidden"}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="font-outfit text-3xl font-bold mb-6 text-content"
+        className="font-outfit text-2xl md:text-3xl font-bold mb-6 text-content"
       >
         About Me
       </motion.h1>
@@ -127,7 +127,7 @@ const About = () => {
             key={i}
             variants={fadeUp}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="font-geist-mono text-xl text-content mb-6"
+            className="font-geist-mono text-base md:text-xl text-content mb-6"
           >
             {text}
           </motion.p>
@@ -144,7 +144,7 @@ const About = () => {
         <motion.p
           variants={fadeUp}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+          className="font-geist-mono text-base md:text-xl font-bold uppercase mb-4 text-primary"
         >
           Education
         </motion.p>
@@ -170,7 +170,7 @@ const About = () => {
         </motion.p>
         <motion.ul
           variants={staggerContainer}
-          className="font-geist-mono text-xl list-disc mb-8 pl-8 text-muted big-bullets"
+          className="font-geist-mono text-lg md:text-xl list-disc mb-8 pl-8 text-muted big-bullets"
         >
           {funFacts.map((fact, i) => (
             <motion.li
