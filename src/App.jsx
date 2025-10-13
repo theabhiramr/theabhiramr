@@ -280,11 +280,10 @@ function App() {
             <link rel="icon" href="/favicon.ico" />
             <meta property="og:title" content="Abhi Ramachandran" />
             <meta property="og:description" content="Portfolio of Abhiram Ramachandran, Computer Science student at Drexel University." />
-            <meta property="og:image" content="https://theabhiramr.com/assets/profile.jpg" />
+            <meta property="og:image" content="https://theabhiramr.com/assets/profile.jpeg" />
             <meta property="og:url" content="https://theabhiramr.com/" />
             <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
-    //
         <Router>
             <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
                 <div className="bg-background text-content min-h-screen transition-colors duration-300 flex flex-col">
