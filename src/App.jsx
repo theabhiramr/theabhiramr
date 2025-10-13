@@ -280,7 +280,7 @@ function App() {
             <link rel="icon" href="/favicon.ico" />
             <meta property="og:title" content="Abhi Ramachandran" />
             <meta property="og:description" content="Portfolio of Abhiram Ramachandran, Computer Science student at Drexel University." />
-            <meta property="og:image" content="https://theabhiramr.com/assets/profile.jpeg" />
+            <meta property="og:image" content={profileJpeg} />
             <meta property="og:url" content="https://theabhiramr.com/" />
             <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
