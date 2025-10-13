@@ -45,7 +45,7 @@ function TimelineItem({ item, isLast, isFirst, show, showLine }) {
 
 export default function Timeline({ items = [], visibleCount = 0 }) {
   return (
-    <div className="relative pl-14">
+    <div className="relative md:pl-14 pl-6">
       {items.map((item, i) => (
         <TimelineItem
           key={i}
