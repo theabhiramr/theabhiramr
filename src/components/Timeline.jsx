@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { renderTechItem } from '../utils';
+import { SiGithub } from 'react-icons/si';
 
 const containerVariants = {
   hidden: {},
@@ -49,7 +51,130 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
-  return (
+  const content = (
+    <motion.div
+      variants={itemGroupVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      custom={custom}
+      className="flex flex-col gap-1"
+    >
+      {item.image && (
+        <motion.img
+          src={item.image}
+          alt={item.title || ''}
+          className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mb-2"
+          variants={fadeUpVariant}
+        />
+      )}
+      {item.title && (
+        <motion.h4
+          className="font-geist-mono text-xl font-bold text-primary leading-5"
+          variants={fadeUpVariant}
+        >
+          {item.title}
+        </motion.h4>
+      )}
+      {item.subtitle && (
+        <motion.h5
+          className="font-geist-mono text-lg mt-1 text-muted"
+          variants={fadeUpVariant}
+        >
+          {item.subtitle}
+        </motion.h5>
+      )}
+      {item.location && (
+        <motion.div
+          className="font-geist-mono text-sm text-secondary mt-1"
+          variants={fadeUpVariant}
+        >
+          {item.location}
+        </motion.div>
+      )}
+      {item.dates && (
+        <motion.div
+          className="font-geist-mono uppercase text-xs text-secondary mt-1"
+          variants={fadeUpVariant}
+        >
+          {item.dates}
+        </motion.div>
+      )}
+      {item.technologies && (
+        <motion.div
+          className="flex flex-wrap gap-2 mb-4"
+          variants={fadeUpVariant}
+        >
+          {item.technologies.map((tech, techIndex) => renderTechItem(tech))}
+        </motion.div>
+      )}
+      {item.minor && (
+        <motion.div
+          className="font-geist-mono text-md text-muted mt-2"
+          variants={fadeUpVariant}
+        >
+          <span className="font-bold">Minor:</span> {item.minor}
+        </motion.div>
+      )}
+      {item.honorsAwards && (
+        <motion.div
+          className="font-geist-mono text-md text-muted mt-1"
+          variants={fadeUpVariant}
+        >
+          <span className="font-bold">Honors & Awards:</span> {item.honorsAwards}
+        </motion.div>
+      )}
+      {item.activities && (
+        <motion.div
+          className="font-geist-mono text-md text-muted mt-1"
+          variants={fadeUpVariant}
+        >
+          <span className="font-bold">Activities:</span> {item.activities}
+        </motion.div>
+      )}
+      {Array.isArray(item.content) ? (
+        <motion.ul
+          className="mt-2 text-muted list-disc pl-5"
+          variants={itemGroupVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          custom={custom}
+        >
+          {item.content.map((contentItem, idx) => (
+            <motion.li
+              key={idx}
+              variants={fadeUpVariant}
+            >
+              {contentItem}
+            </motion.li>
+          ))}
+        </motion.ul>
+      ) : (
+        item.content && (
+          <motion.div className="mt-2 text-muted" variants={fadeUpVariant}>
+            {item.content}
+          </motion.div>
+        )
+      )}
+      {item.githubLink && (
+        <motion.div
+          variants={fadeUpVariant} 
+          className="mt-auto text-muted text-sm "
+        >
+          See it on
+          <a
+            href={item.githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted hover:text-primary transition-colors duration-300 ml-1 p-1 inline-block"
+          >
+            <SiGithub className="inline" size={16} />
+          </a>
+        </motion.div>
+      )}
+    </motion.div>
+  );
+
+  const timelineItem = (
     <motion.div
       ref={ref}
       variants={itemVariants}
@@ -71,211 +196,22 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
           />
         )}
       </div>
-      {/* Wrap content in a link if item.link exists */}
-      {item.link ? (
-        <a
-          href={item.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 hover:bg-surface transition rounded-lg p-2 -m-2"
-        >
-          <motion.div
-            variants={itemGroupVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            custom={custom}
-            className="flex flex-col gap-1"
-          >
-            {item.image && (
-              <motion.img
-                src={item.image}
-                alt={item.title || ''}
-                className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mb-2"
-                variants={fadeUpVariant}
-              />
-            )}
-            {item.title && (
-              <motion.h4
-                className="font-geist-mono text-xl font-bold text-primary leading-5"
-                variants={fadeUpVariant}
-              >
-                {item.title}
-              </motion.h4>
-            )}
-            {item.subtitle && (
-              <motion.h5
-                className="font-geist-mono text-lg mt-1 text-muted"
-                variants={fadeUpVariant}
-              >
-                {item.subtitle}
-              </motion.h5>
-            )}
-            {item.location && (
-              <motion.div
-                className="font-geist-mono text-sm text-secondary mt-1"
-                variants={fadeUpVariant}
-              >
-                {item.location}
-              </motion.div>
-            )}
-            {item.dates && (
-              <motion.div
-                className="font-geist-mono uppercase text-xs text-secondary mt-1"
-                variants={fadeUpVariant}
-              >
-                {item.dates}
-              </motion.div>
-            )}
-            {item.minor && (
-              <motion.div
-                className="font-geist-mono text-md text-muted mt-2"
-                variants={fadeUpVariant}
-              >
-                <span className="font-bold">Minor:</span> {item.minor}
-              </motion.div>
-            )}
-            {item.honorsAwards && (
-              <motion.div
-                className="font-geist-mono text-md text-muted mt-1"
-                variants={fadeUpVariant}
-              >
-                <span className="font-bold">Honors & Awards:</span> {item.honorsAwards}
-              </motion.div>
-            )}
-            {item.activities && (
-              <motion.div
-                className="font-geist-mono text-md text-muted mt-1"
-                variants={fadeUpVariant}
-              >
-                <span className="font-bold">Activities:</span> {item.activities}
-              </motion.div>
-            )}
-            {Array.isArray(item.content) ? (
-              <motion.ul
-                className="mt-2 text-muted list-disc pl-5"
-                variants={itemGroupVariants}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
-                custom={custom}
-              >
-                {item.content.map((contentItem, idx) => (
-                  <motion.li
-                    key={idx}
-                    variants={fadeUpVariant}
-                  >
-                    {contentItem}
-                  </motion.li>
-                ))}
-              </motion.ul>
-            ) : (
-              item.content && (
-                <motion.div className="mt-2 text-muted" variants={fadeUpVariant}>
-                  {item.content}
-                </motion.div>
-              )
-            )}
-          </motion.div>
-        </a>
-      ) : (
-        <motion.div
-          variants={itemGroupVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          custom={custom}
-          className="flex-1 flex flex-col gap-1"
-        >
-          {item.image && (
-            <motion.img
-              src={item.image}
-              alt={item.title || ''}
-              className="w-16 h-16 rounded-lg object-cover flex-shrink-0 mb-2"
-              variants={fadeUpVariant}
-            />
-          )}
-          {item.title && (
-            <motion.h4
-              className="font-geist-mono text-xl font-bold text-primary leading-5"
-              variants={fadeUpVariant}
-            >
-              {item.title}
-            </motion.h4>
-          )}
-          {item.subtitle && (
-            <motion.h5
-              className="font-geist-mono text-lg mt-1 text-muted"
-              variants={fadeUpVariant}
-            >
-              {item.subtitle}
-            </motion.h5>
-          )}
-          {item.location && (
-            <motion.div
-              className="font-geist-mono text-sm text-secondary mt-1"
-              variants={fadeUpVariant}
-            >
-              {item.location}
-            </motion.div>
-          )}
-          {item.dates && (
-            <motion.div
-              className="font-geist-mono uppercase text-xs text-secondary mt-1"
-              variants={fadeUpVariant}
-            >
-              {item.dates}
-            </motion.div>
-          )}
-          {item.minor && (
-            <motion.div
-              className="font-geist-mono text-md text-muted mt-2"
-              variants={fadeUpVariant}
-            >
-              <span className="font-bold">Minor:</span> {item.minor}
-            </motion.div>
-          )}
-          {item.honorsAwards && (
-            <motion.div
-              className="font-geist-mono text-md text-muted mt-1"
-              variants={fadeUpVariant}
-            >
-              <span className="font-bold">Honors & Awards:</span> {item.honorsAwards}
-            </motion.div>
-          )}
-          {item.activities && (
-            <motion.div
-              className="font-geist-mono text-md text-muted mt-1"
-              variants={fadeUpVariant}
-            >
-              <span className="font-bold">Activities:</span> {item.activities}
-            </motion.div>
-          )}
-          {Array.isArray(item.content) ? (
-            <motion.ul
-              className="mt-2 text-muted list-disc pl-5"
-              variants={itemGroupVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              custom={custom}
-            >
-              {item.content.map((contentItem, idx) => (
-                <motion.li
-                  key={idx}
-                  variants={fadeUpVariant}
-                >
-                  {contentItem}
-                </motion.li>
-              ))}
-            </motion.ul>
-          ) : (
-            item.content && (
-              <motion.div className="mt-2 text-muted" variants={fadeUpVariant}>
-                {item.content}
-              </motion.div>
-            )
-          )}
-        </motion.div>
-      )}
+      <div className="flex-1">
+        {content}
+      </div>
     </motion.div>
   );
+
+  return item.link ? (
+    <a
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block hover:bg-surface transition rounded-lg p-2 -m-2"
+    >
+      {timelineItem}
+    </a>
+  ) : timelineItem;
 }
 
 export default function Timeline({ items = [] }) {

@@ -13,11 +13,21 @@ const Projects = () => {
                             "A personal portfolio website built with React and Tailwind CSS to showcase my projects and skills.",
                             "Features a responsive design, dark mode, and smooth animations.",
                             "Deployed using Vercel for fast and reliable hosting."
-                        ]
-                    , link: "https://theabhiramr.com"},
+                        ],
+                        technologies: [
+                                    "JavaScript",
+                                    "React",
+                                    "Tailwind CSS", 
+                                    "Vite",
+                                    "Firebase"
+                                ],
+                                githubLink: "https://github.com/theabhiramr/theabhiramr"
+                    , 
+                    link: "https://theabhiramr.com"},
                     {title: "AI Chatbot", dates: "2022 - 2023", content: [
                             "Developed an AI-powered chatbot using Python and TensorFlow to assist users with common inquiries."
-                        ], link: "https://github.com/theabhiramr/ai-chatbot"}
+                        ], 
+                        link: "https://github.com/theabhiramr/ai-chatbot"}
                 ]} 
             />
         </div>

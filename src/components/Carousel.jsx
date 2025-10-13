@@ -2,12 +2,52 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { SiGithub, SiReact, SiTailwindcss, SiJavascript, SiExpress, SiVercel, SiTypescript, SiOpenai, SiLangchain, SiNextdotjs, SiExpo } from 'react-icons/si';  // Add technology icons
-import { IoArrowForwardCircle, IoArrowForwardCircleOutline } from 'react-icons/io5';
-import { FaNodeJs, FaRegFileCode, FaHtml5 } from 'react-icons/fa6';
-import {TbBrandVite} from 'react-icons/tb';
-import { RiFirebaseFill } from 'react-icons/ri';
-import { MdCss } from 'react-icons/md';
+import { renderTechItem } from '../utils';
+import { SiGithub } from 'react-icons/si';
+
+// Slide component (can be moved to a separate file if needed)
+function CarouselSlide({ item }) {
+  return (
+    <div className="flex-[0_0_100%] md:flex-[0_0_80%] min-w-0 mr-8">
+      <a 
+        href={item.link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="font-geist-mono flex flex-col bg-surface rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full"
+      >
+        {item.imageSrc && (
+          <img 
+            src={item.imageSrc} 
+            alt={item.title}
+            className="w-32 h-32 object-contain object-left mb-2 rounded-lg"
+          />
+        )}
+        <h3 className="text-lg font-semibold mb-1 text-primary">{item.title}</h3>
+        {item.company && <p className="text-md text-secondary mb-2">{item.company}</p>}
+        <p className="text-xs uppercase text-secondary mb-4 font-normal">{item.dates}</p>
+        {item.description && <p className="text-sm text-muted mb-4 leading-relaxed">{item.description}</p>}
+        {item.technologies && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {item.technologies.map((tech, techIndex) => renderTechItem(tech))}
+          </div>
+        )}
+        {item.githubLink && (
+          <div className="mt-auto text-muted text-sm ">
+            See it on 
+            <a 
+              href={item.githubLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-muted hover:text-primary transition-colors duration-300 ml-1 p-1 inline-block"
+            >
+              <SiGithub className="inline" size={16} />
+            </a>
+          </div>
+        )}
+      </a>
+    </div>
+  );
+}
 
 export default function Carousel({ items, startAutoplay = false }) {
     const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -84,101 +124,14 @@ export default function Carousel({ items, startAutoplay = false }) {
     // Pagination dots: one per unique slide
     const dots = Array.from({ length: items.length }, (_, i) => i);
 
-    // Function to render technology icons with names
-    const renderTechIcon = (techString) => {
-        const baseClass = "px-3 py-1 bg-primary hover:bg-secondary transition-colors duration-300 text-gray-200 rounded-full text-[10px] uppercase shadow-sm inline-flex items-center font-normal";
-        switch (techString) {
-            case "React":
-                return <a href='https://reactjs.org/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiReact size={12} className="mr-2" /> React</a>;
-            case "Tailwind CSS":
-                return <a href='https://tailwindcss.com/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiTailwindcss size={12} className="mr-2" /> Tailwind CSS</a>;
-            case "JavaScript":
-                return <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript' target='_blank' rel='noopener noreferrer' className={baseClass}><SiJavascript size={12} className="mr-2" /> JavaScript</a>;
-            case "Vite":
-                return <a href='https://vitejs.dev/' target='_blank' rel='noopener noreferrer' className={baseClass}><TbBrandVite size={12} className="mr-2" /> Vite</a>;
-            case "Firebase":
-                return <a href='https://firebase.google.com/' target='_blank' rel='noopener noreferrer' className={baseClass}><RiFirebaseFill size={12} className="mr-2" /> Firebase</a>;
-            case "ExpressJS":
-                return <a href='https://expressjs.com/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiExpress size={12} className="mr-2" /> ExpressJS</a>;
-            case "NodeJS":
-                return <a href='https://nodejs.org/' target='_blank' rel='noopener noreferrer' className={baseClass}><FaNodeJs size={12} className="mr-2" /> NodeJS</a>;
-            case "Vercel":
-                return <a href='https://vercel.com/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiVercel size={12} className="mr-2" /> Vercel</a>;
-            case "Tamagui":
-                return <a href='https://tamagui.dev/' target='_blank' rel='noopener noreferrer' className={baseClass}><FaRegFileCode size={12} className="mr-2" /> Tamagui</a>;
-            case "TypeScript":
-                return <a href='https://www.typescriptlang.org/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiTypescript size={12} className="mr-2" /> TypeScript</a>;
-            case "OpenAI API":
-                return <a href='https://openai.com/api/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiOpenai size={12} className="mr-2" /> OpenAI API</a>;
-            case "LangChain":
-                return <a href='https://python.langchain.com/en/latest/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiLangchain size={12} className="mr-2" /> LangChain</a>;
-            case "Manim":
-                return <a href='https://www.manim.community/' target='_blank' rel='noopener noreferrer' className={baseClass}><FaRegFileCode size={12} className="mr-2" /> Manim</a>;
-            case "NextJS":
-                return <a href='https://nextjs.org/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiNextdotjs size={12} className="mr-2" /> NextJS</a>;
-            case "CSS":
-                return <a href='https://developer.mozilla.org/en-US/docs/Web/CSS' target='_blank' rel='noopener noreferrer' className={baseClass}><MdCss size={12} className="mr-2" /> CSS</a>;
-            case "HTML":
-                return <a href='https://developer.mozilla.org/en-US/docs/Web/HTML' target='_blank' rel='noopener noreferrer' className={baseClass}><FaHtml5 size={12} className="mr-2" /> HTML</a>;
-            case "Expo":
-                return <a href='https://expo.dev/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiExpo size={12} className="mr-2" /> Expo</a>;
-                default:
-                return <span className={baseClass}><FaRegFileCode size={12} className="mr-1" /> {techString}</span>;  // Fallback to text
-        }
-    };
-
     return (  
         <div className="relative">
             {/* Carousel Container */}
             <div className="overflow-visible" ref={emblaRef}>
                 <div className="flex justify-start">
-                    {items.map((item, index) => {  // Only use manual image
-                        return (
-                            <div 
-                                key={index}
-                                className="flex-[0_0_100%] md:flex-[0_0_80%] min-w-0 mr-8"
-                            >
-                                <a 
-                                    href={item.link} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="font-geist-mono flex flex-col bg-surface rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer h-full"
-                                >
-                                    {item.imageSrc && (
-                                        <img 
-                                            src={item.imageSrc} 
-                                            alt={item.title}
-                                            className="w-32 h-32 object-contain object-left mb-2 rounded-lg"  // Changed rounded to rounded-lg for more rounding
-                                        />
-                                    )}
-                                    <h3 className="text-lg font-semibold mb-1 text-primary">{item.title}</h3>
-                                    {item.company && <p className="text-md text-secondary mb-2">{item.company}</p>}
-                                    <p className="text-xs uppercase text-secondary mb-4 font-normal">{item.dates}</p>
-                                    {item.description && <p className="text-sm text-muted mb-4 leading-relaxed">{item.description}</p>}
-                                    {item.technologies && (
-                                        <div className="flex flex-wrap gap-2 mb-4">
-                                            {item.technologies.map((tech, techIndex) => (
-                                                renderTechIcon(tech)
-                                            ))}
-                                        </div>
-                                    )}
-                                    {item.githubLink && (
-                                        <div className="mt-auto text-muted text-sm ">
-                                            See it on 
-                                            <a 
-                                                href={item.githubLink} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer"
-                                                className="text-sm text-muted hover:text-primary transition-colors duration-300 ml-1 p-1 inline-block"
-                                            >
-                                                <SiGithub className="inline" size={16} />
-                                            </a>
-                                        </div>
-                                    )}
-                                </a>
-                            </div>
-                        );
-                    })}
+                    {items.map((item, index) => (
+                        <CarouselSlide key={index} item={item} />
+                    ))}
                 </div>
             </div>
 
