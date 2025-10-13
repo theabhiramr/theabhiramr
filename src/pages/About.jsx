@@ -127,7 +127,7 @@ const About = () => {
       {paragraphs.map((text, i) => (
         <p
           key={i}
-          className={`font-geist-mono text-content mb-6 transition-all duration-500 transform ${
+          className={`font-geist-mono text-xl text-content mb-6 transition-all duration-500 transform ${
             visibleParagraphs > i ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
           }`}
         >
