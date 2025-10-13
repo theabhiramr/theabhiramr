@@ -9,3 +9,5 @@ This is my personal website. I decided to create a website to better understand 
 - Firebase
 
 [theabhiramr.com](https://theabhiramr.com)
+
+DISCLAIMER: This website was partially written using code generated from Github Copilot (including Gemini, Claude and ChatGPT)
