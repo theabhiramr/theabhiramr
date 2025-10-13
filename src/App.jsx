@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Navbar, Footer, Carousel } from './components';
 import { IoArrowForwardCircleOutline, IoArrowForwardCircle } from 'react-icons/io5';
@@ -13,6 +13,13 @@ import { profileJpeg } from './assets';
 import { evbuddyJpeg } from './assets';
 import { epiqsolutionsJpeg } from './assets';
 import { useTypewriter } from './hooks/useTypewriter';
+import { motion, useInView } from 'framer-motion';
+
+// Fade up animation variant
+const fadeUp = {
+    hidden: { opacity: 0, y: 0 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
 
 // Home component
 const Home = () => {
@@ -38,13 +45,12 @@ const Home = () => {
     const [workVisibleLocal, setWorkVisibleLocal] = useState(false);
     const [isTouch, setIsTouch] = useState(false);
     
-        useEffect(() => {
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            setIsTouch(isMobile);
-        }, []);
-        const [arrowHovered, setArrowHovered] = useState(false);
+    useEffect(() => {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        setIsTouch(isMobile);
+    }, []);
+    const [arrowHovered, setArrowHovered] = useState(false);
 
-    
     const finalText = skipped ? bioText : displayText;
     const finalIsComplete = skipped || isComplete;
     
@@ -83,7 +89,18 @@ const Home = () => {
     useEffect(() => {
         sessionStorage.setItem('homeCarouselVisible', JSON.stringify(carouselVisible));
     }, [carouselVisible]);
-    
+
+    // InView refs for headings and carousels
+    const projectsHeadingRef = useRef(null);
+    const projectsCarouselRef = useRef(null);
+    const workHeadingRef = useRef(null);
+    const workCarouselRef = useRef(null);
+
+    const projectsHeadingInView = useInView(projectsHeadingRef, { once: true, margin: "-100px" });
+    const projectsCarouselInView = useInView(projectsCarouselRef, { once: true, margin: "-100px" });
+    const workHeadingInView = useInView(workHeadingRef, { once: true, margin: "-100px" });
+    const workCarouselInView = useInView(workCarouselRef, { once: true, margin: "-100px" });
+
     return (
         <main className="w-full" onClick={() => setSkipped(true)}>
             {/* Hero Section - Full Width with Padding */}
@@ -108,10 +125,15 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            {/* Projects Carousel Section - Fades in and slides up */}
-            <div className={`transition-all duration-1000 ${projectsVisibleLocal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <div className="px-6 lg:px-32">
-                <h3 className="flex items-center text-3xl font-outfit font-bold mb-4 text-left">
+            {/* Projects Carousel Section */}
+            <div className="px-6 lg:px-32">
+                <motion.h3
+                    ref={projectsHeadingRef}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate={projectsHeadingInView ? "visible" : "hidden"}
+                    className="flex items-center text-3xl font-outfit font-bold mb-4 text-left"
+                >
                     My Projects
                     <button
                         onClick={(e)=>{e.stopPropagation(); navigate('/projects')}}
@@ -121,82 +143,93 @@ const Home = () => {
                         <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
                         <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
                     </button>
-                </h3>
-                </div>
-                <Carousel 
-                    items={[
-                        {
-                            title: "NFL Prediction Model",
-                            dates: "Oct 2025 - Present",
-                            description: "Stay tuned for updates!"
-                        },
-                        { 
-                            title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
-                            dates: "Aug 2025 - Present",
-                            link: "https://chinmayajanata.org",
-                            technologies: [
-                                "JavaScript",
-                                "React",
-                                "ExpressJS",
-                                "Expo",
-                                "NodeJS",
-                                "Vercel",
-                                "Tamagui"
-                            ],
-                            githubLink: "https://github.com/Project-Janatha/Project-Janatha"
-                        },
-                        { 
-                            title: "Portfolio Website", 
-                            dates: "Apr 2025 - Present",
-                            description: "The website you're seeing right now!",
-                            link: void(0),
-                            technologies: [
-                                "JavaScript",
-                                "React",
-                                "Tailwind CSS", 
-                                "Vite",
-                                "Firebase"
-                            ],
-                            githubLink: "https://github.com/theabhiramr/theabhiramr"
-                        },
-                        { 
-                            title: "Dragon Learn",
-                            dates: "Apr 2025 - Present",
-                            link: void(0),
-                            technologies: [
-                                "TypeScript",
-                                "React",
-                                "NextJS",
-                                "Tailwind CSS",
-                                "Vercel",
-                                "OpenAI API",
-                                "LangChain",
-                                "Manim",
-                            ],
-                            description: "A website that can convert syllabi into interactive modules using LLMs.",
-                            githubLink: "https://github.com/drexelai/dragon-learn"
-                        },
-                        { 
-                            title: "CrashMath", 
-                            description: "A gamified learning platform for college students to make math concepts approachable and fun.",
-                            dates: "Jan 2023 - Jun 2023",
-                            link: "https://crashmath-16dc6.web.app/",
-                            technologies: [
-                                "JavaScript",
-                                "CSS",
-                                "HTML",
-                                "Firebase",
-                                "OpenAI API"
-                            ],
-                        }
-                    ]}
-                    startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
-                />
+                </motion.h3>
+                <motion.div
+                    ref={projectsCarouselRef}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate={projectsCarouselInView ? "visible" : "hidden"}
+                >
+                    <Carousel 
+                        items={[
+                            {
+                                title: "NFL Prediction Model",
+                                dates: "Oct 2025 - Present",
+                                description: "Stay tuned for updates!"
+                            },
+                            { 
+                                title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
+                                dates: "Aug 2025 - Present",
+                                link: "https://chinmayajanata.org",
+                                technologies: [
+                                    "JavaScript",
+                                    "React",
+                                    "ExpressJS",
+                                    "Expo",
+                                    "NodeJS",
+                                    "Vercel",
+                                    "Tamagui"
+                                ],
+                                githubLink: "https://github.com/Project-Janatha/Project-Janatha"
+                            },
+                            { 
+                                title: "Portfolio Website", 
+                                dates: "Apr 2025 - Present",
+                                description: "The website you're seeing right now!",
+                                link: void(0),
+                                technologies: [
+                                    "JavaScript",
+                                    "React",
+                                    "Tailwind CSS", 
+                                    "Vite",
+                                    "Firebase"
+                                ],
+                                githubLink: "https://github.com/theabhiramr/theabhiramr"
+                            },
+                            { 
+                                title: "Dragon Learn",
+                                dates: "Apr 2025 - Present",
+                                link: void(0),
+                                technologies: [
+                                    "TypeScript",
+                                    "React",
+                                    "NextJS",
+                                    "Tailwind CSS",
+                                    "Vercel",
+                                    "OpenAI API",
+                                    "LangChain",
+                                    "Manim",
+                                ],
+                                description: "A website that can convert syllabi into interactive modules using LLMs.",
+                                githubLink: "https://github.com/drexelai/dragon-learn"
+                            },
+                            { 
+                                title: "CrashMath", 
+                                description: "A gamified learning platform for college students to make math concepts approachable and fun.",
+                                dates: "Jan 2023 - Jun 2023",
+                                link: "https://crashmath-16dc6.web.app/",
+                                technologies: [
+                                    "JavaScript",
+                                    "CSS",
+                                    "HTML",
+                                    "Firebase",
+                                    "OpenAI API"
+                                ],
+                            }
+                        ]}
+                        startAutoplay={finalIsComplete}
+                    />
+                </motion.div>
             </div>
-            {/* Work Experience Carousel Section - Fades in and slides up */}
-            <div className={`transition-all duration-1000 ${workVisibleLocal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                <div className="px-6 lg:px-32">
-                <h3 className="flex items-center text-3xl font-outfit font-bold mb-4 text-left">
+            {/* Work Experience Carousel Section */}
+            <div className="px-6 lg:px-32 py-16">
+                <motion.h3
+                    ref={workHeadingRef}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate={workHeadingInView ? "visible" : "hidden"}
+                    className="flex items-center text-3xl font-outfit font-bold mb-4 text-left"
+                >
                     My Work Experience
                     <button
                         onClick={(e)=>{e.stopPropagation(); navigate('/work-experience')}}
@@ -206,29 +239,35 @@ const Home = () => {
                         <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
                         <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
                     </button>
-                </h3>
-                </div>
-                <Carousel 
-                    items={[
-                        {
-                            title: "Software Development Engineering Co-op",
-                            company: "Epiq Solutions",
-                            imageSrc: epiqsolutionsJpeg,
-                            description: "Programmed internal tools to streamline production testing processes, enhancing efficiency and accuracy of SDR devices.",
-                            dates: "Apr 2024 - Sep 2024",
-                            link: "https://epiqsolutions.com",
-                        },
-                        {
-                            title: "Software Development Intern",
-                            imageSrc: evbuddyJpeg,
-                            company: "EV Buddy, Inc.",
-                            dates: "Jun 2023 - Sep 2023",
-                            description: "Developed a community platform for EV owners featuring a unique, Vehicle-to-Vehicle (V2V) charging system.",
-                            link: "https://evbuddy.net",
-                        }
-                    ]}
-                    startAutoplay={finalIsComplete}  // Start autoplay after animation or skip
-                />
+                </motion.h3>
+                <motion.div
+                    ref={workCarouselRef}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate={workCarouselInView ? "visible" : "hidden"}
+                >
+                    <Carousel 
+                        items={[
+                            {
+                                title: "Software Development Engineering Co-op",
+                                company: "Epiq Solutions",
+                                imageSrc: epiqsolutionsJpeg,
+                                description: "Programmed internal tools to streamline production testing processes, enhancing efficiency and accuracy of SDR devices.",
+                                dates: "Apr 2024 - Sep 2024",
+                                link: "https://epiqsolutions.com",
+                            },
+                            {
+                                title: "Software Development Intern",
+                                imageSrc: evbuddyJpeg,
+                                company: "EV Buddy, Inc.",
+                                dates: "Jun 2023 - Sep 2023",
+                                description: "Developed a community platform for EV owners featuring a unique, Vehicle-to-Vehicle (V2V) charging system.",
+                                link: "https://evbuddy.net",
+                            }
+                        ]}
+                        startAutoplay={finalIsComplete}
+                    />
+                </motion.div>
             </div>
         </main>
     );
@@ -280,7 +319,7 @@ function App() {
             <link rel="icon" href="/favicon.ico" />
             <meta property="og:title" content="Abhi Ramachandran" />
             <meta property="og:description" content="Portfolio of Abhiram Ramachandran, Computer Science student at Drexel University." />
-            <meta property="og:image" content={profileJpeg} />
+            <meta property="og:image" content="https://theabhiramr.com/og-image.jpg" />
             <meta property="og:url" content="https://theabhiramr.com/" />
             <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
