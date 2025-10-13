@@ -137,6 +137,7 @@ const Home = () => {
                                 "JavaScript",
                                 "React",
                                 "ExpressJS",
+                                "Expo",
                                 "NodeJS",
                                 "Vercel",
                                 "Tamagui"

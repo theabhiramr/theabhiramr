@@ -193,3 +193,18 @@ body {
   top: 10px;
   transform: rotate(-45deg);
 }
+
+.big-bullets {
+  list-style-position: outside;
+  padding-left: 2.2rem; /* adjust for bullet size */
+  margin-left: 0;
+}
+.big-bullets li {
+  position: relative;
+  margin-bottom: 1.2rem;
+  /* Remove flex/gap for default block flow */
+}
+.big-bullets li::marker {
+  font-size: 1.5em; /* large but not overwhelming */
+  color: var(--color-secondary);
+}

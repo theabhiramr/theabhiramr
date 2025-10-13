@@ -33,7 +33,7 @@ export default function Navbar({ darkMode, toggleDarkMode, resetToSystemTheme })
                 </div>
 
                 {/* Navigation Links and Theme Toggle */}
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-4">
                     {/* Navigation Links */}
                     <nav className={`flex flex-col md:flex-row absolute md:relative top-full md:top-auto left-0 md:left-auto w-full md:w-auto bg-background md:bg-transparent shadow-md md:shadow-none space-y-4 md:space-y-0 md:space-x-6 p-4 md:p-0 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-y-0'}`}>
                         <NavLink to="/about" className={navLinkClasses} onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}>About</NavLink>

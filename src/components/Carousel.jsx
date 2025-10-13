@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { SiGithub, SiReact, SiTailwindcss, SiJavascript, SiExpress, SiVercel, SiTypescript, SiOpenai, SiLangchain, SiNextdotjs } from 'react-icons/si';  // Add technology icons
+import { SiGithub, SiReact, SiTailwindcss, SiJavascript, SiExpress, SiVercel, SiTypescript, SiOpenai, SiLangchain, SiNextdotjs, SiExpo } from 'react-icons/si';  // Add technology icons
 import { IoArrowForwardCircle, IoArrowForwardCircleOutline } from 'react-icons/io5';
 import { FaNodeJs, FaRegFileCode, FaHtml5 } from 'react-icons/fa6';
 import {TbBrandVite} from 'react-icons/tb';
@@ -120,7 +120,9 @@ export default function Carousel({ items, startAutoplay = false }) {
                 return <a href='https://developer.mozilla.org/en-US/docs/Web/CSS' target='_blank' rel='noopener noreferrer' className={baseClass}><MdCss size={12} className="mr-2" /> CSS</a>;
             case "HTML":
                 return <a href='https://developer.mozilla.org/en-US/docs/Web/HTML' target='_blank' rel='noopener noreferrer' className={baseClass}><FaHtml5 size={12} className="mr-2" /> HTML</a>;
-            default:
+            case "Expo":
+                return <a href='https://expo.dev/' target='_blank' rel='noopener noreferrer' className={baseClass}><SiExpo size={12} className="mr-2" /> Expo</a>;
+                default:
                 return <span className={baseClass}><FaRegFileCode size={12} className="mr-1" /> {techString}</span>;  // Fallback to text
         }
     };
