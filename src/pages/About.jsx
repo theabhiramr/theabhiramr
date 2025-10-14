@@ -220,7 +220,7 @@ const About = () => {
               variants={fadeUp}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              {renderTechItem(lang, 16, 14)}
+              {renderTechItem(lang, 'md', 14)}
             </motion.div>
           ))}
         </motion.div>
@@ -249,7 +249,7 @@ const About = () => {
               variants={fadeUp}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              {renderTechItem(lang, 16, 14)}
+              {renderTechItem(lang, 'md', 14)}
             </motion.div>
           ))}
         </motion.div>
@@ -279,7 +279,7 @@ const About = () => {
               variants={fadeUp}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <span className='font-geist-mono px-3 py-1 bg-primary text-gray-200 rounded-full text-[16px] uppercase shadow-sm inline-flex items-center font-normal'>
+              <span className='font-geist-mono px-3 py-1 bg-primary text-gray-200 rounded-full text-md uppercase shadow-sm inline-flex items-center font-normal'>
                 {skill}
               </span>
             </motion.div>

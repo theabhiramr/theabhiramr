@@ -22,7 +22,7 @@ import { VscVscode } from 'react-icons/vsc';
 
 
 
-export const renderTechItem = (techString, textSize = 10, iconSize = 12) => {
+export const renderTechItem = (techString, textSize = "xs", iconSize = 12) => {
   const techLinks = {
     'React': { url: 'https://reactjs.org/', icon: <SiReact size={iconSize} className="mr-2" />, label: 'React' },
     'Tailwind CSS': { url: 'https://tailwindcss.com/', icon: <SiTailwindcss size={iconSize} className="mr-2" />, label: 'Tailwind CSS' },
@@ -58,7 +58,7 @@ export const renderTechItem = (techString, textSize = 10, iconSize = 12) => {
     'Jupyter': { url: 'https://jupyter.org/', icon: <SiJupyter size={iconSize} className="mr-2" />, label: 'Jupyter' },
   };
 
-  const baseClass = `font-geist-mono px-3 py-1 bg-primary hover:bg-secondary transition-colors duration-300 text-gray-200 rounded-full text-[${textSize}px] uppercase shadow-sm inline-flex items-center font-normal`;
+  const baseClass = `font-geist-mono px-3 py-1 bg-primary hover:bg-secondary transition-colors duration-300 text-gray-200 rounded-full text-${textSize} uppercase shadow-sm inline-flex items-center font-normal`;
 
   const tech = techLinks[techString];
   if (tech) {

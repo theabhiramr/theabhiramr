@@ -107,6 +107,20 @@ export default function Carousel({ items, startAutoplay = false }) {
     }, [startAutoplay, emblaApi]);
 
     useEffect(() => {
+        if (!emblaApi) return;
+
+        const handlePointerUp = () => {
+            setIsPlaying(true);
+        };
+
+        emblaApi.on('pointerUp', handlePointerUp);
+
+        return () => {
+            emblaApi.off('pointerUp', handlePointerUp);
+        };
+    }, [emblaApi]);
+
+    useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'ArrowRight') {
                 e.preventDefault();
