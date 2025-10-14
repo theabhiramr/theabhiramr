@@ -149,7 +149,8 @@ const Home = () => {
                                             "React",
                                             "Tailwind CSS", 
                                             "Vite",
-                                            "Firebase"
+                                            "Firebase",
+                                            "Cloudflare"
                                         ],
                                         githubLink: "https://github.com/theabhiramr/theabhiramr"
                                     },

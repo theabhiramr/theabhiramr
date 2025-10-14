@@ -101,7 +101,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
       )}
       {item.technologies && (
         <motion.div
-          className="flex flex-wrap gap-2 mb-4"
+          className="flex flex-wrap gap-2 mb-4 mt-4"
           variants={fadeUpVariant}
         >
           {item.technologies.map((tech, techIndex) => renderTechItem(tech))}
@@ -133,7 +133,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
       )}
       {Array.isArray(item.content) ? (
         <motion.ul
-          className="mt-2 text-muted list-disc pl-5"
+          className="mt-2 font-geist-mono text-content list-disc big-bullets pl-5"
           variants={itemGroupVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -155,10 +155,18 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
           </motion.div>
         )
       )}
+      {item.additional && (
+        <motion.p 
+          variants={fadeUpVariant}
+          className="mt-2 text-secondary font-geist-mono text-sm"
+        >
+          {item.additional}
+        </motion.p>
+      )}
       {item.githubLink && (
         <motion.div
           variants={fadeUpVariant} 
-          className="mt-auto text-muted text-sm "
+          className="mt-4 font-geist-mono text-muted text-sm "
         >
           See it on
           <a
@@ -171,6 +179,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
           </a>
         </motion.div>
       )}
+      
     </motion.div>
   );
 

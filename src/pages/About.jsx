@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import Timeline from "../components/Timeline";
+import { Timeline } from "../components";
+import { renderTechItem } from "../utils";
 import { drexelJpeg, hhsPng, upfPng, aboutPic1Jpg, aboutPic2Jpg, aboutPic3Jpg } from "../assets";
 import { motion, useInView } from "framer-motion";
 
@@ -39,6 +40,47 @@ const timelineItems = [
     image: hhsPng,
     link: "https://www.ewrsd.org/o/hhs"
   }
+];
+
+const programmingLanguages = [
+  "Python",
+  "C",
+  "C++",
+  "Java",
+  "C#",
+  "Makefile",
+  "JavaScript",
+  "TypeScript",
+  "Assembly",
+  "R"
+];
+
+const toolsFrameworks = [
+  "VS Code",
+  "IntelliJ",
+  "PyCharm",
+  "Git",
+  "React",
+  "NextJS",
+  "Tailwind CSS",
+  "Expo",
+  "Firebase",
+  "LangChain",
+  "OpenAI API",
+  "PyTorch",
+  "Jupyter"
+];
+
+const skills = [
+  'Object-Oriented Programming',
+  'Data Structures & Algorithms',
+  'Machine Learning',
+  'Full Stack Development',
+  'Test Driven Development',
+  'Embedded Systems',
+  'Version Control',
+  'Agile',
+  'Kanban'
 ];
 
 const funFacts = [
@@ -152,6 +194,97 @@ const About = () => {
           items={timelineItems}
           visibleCount={timelineItems.length}
         />
+      </motion.div>
+      
+      <motion.div
+        ref={funFactsRef}
+        variants={staggerContainer}
+        initial="hidden"
+        animate={funFactsInView ? "visible" : "hidden"}
+        className="mt-8 mb-16"
+      >
+        <motion.p
+          variants={fadeUp}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+        >
+          Programming Languages
+        </motion.p>
+        <motion.div
+          className="flex flex-wrap gap-2 mt-8 ml-8"
+          variants={staggerContainer}
+        >
+          {programmingLanguages.map((lang, i) => (
+            <motion.div
+              key={lang}
+              variants={fadeUp}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              {renderTechItem(lang, 16, 14)}
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+      <motion.div
+        ref={funFactsRef}
+        variants={staggerContainer}
+        initial="hidden"
+        animate={funFactsInView ? "visible" : "hidden"}
+        className="mt-8 mb-16"
+      >
+        <motion.p
+          variants={fadeUp}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+        >
+          Tools & Frameworks
+        </motion.p>
+        <motion.div
+          className="flex flex-wrap gap-2 mt-8 ml-8"
+          variants={staggerContainer}
+        >
+          {toolsFrameworks.map((lang, i) => (
+            <motion.div
+              key={lang}
+              variants={fadeUp}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              {renderTechItem(lang, 16, 14)}
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        ref={funFactsRef}
+        variants={staggerContainer}
+        initial="hidden"
+        animate={funFactsInView ? "visible" : "hidden"}
+        className="mt-8 mb-16"
+      >
+        <motion.p
+          variants={fadeUp}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+        >
+          Skills
+        </motion.p>
+        <motion.div
+          className="flex flex-wrap gap-2 mt-8 ml-8"
+          variants={staggerContainer}
+        >
+          {skills.map((skill, i) => (
+            <motion.div
+              key={skill}
+              variants={fadeUp}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <span className='font-geist-mono px-3 py-1 bg-primary text-gray-200 rounded-full text-[16px] uppercase shadow-sm inline-flex items-center font-normal'>
+                {skill}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
       </motion.div>
 
       <motion.div
