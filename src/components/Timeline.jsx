@@ -36,8 +36,8 @@ const itemGroupVariants = {
   hidden: {},
   visible: (custom = 0) => ({
     transition: {
-      staggerChildren: 0.18,
-      delayChildren: custom * 0.5 // Each item's children are delayed by its index
+      staggerChildren: 0.15,
+      delayChildren: custom * 0.2 // delay for the whole item group
     }
   })
 };
@@ -100,20 +100,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
         </motion.div>
       )}
       {item.technologies && (
-        <motion.div
-          className="flex flex-wrap gap-2 mb-4 mt-4"
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                delayChildren: custom * 0.5, // delay until previous info loads (adjust as needed)
-                staggerChildren: 0.15
-              }
-            }
-          }}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
+        <div className="flex flex-wrap gap-2 mb-4 mt-4">
           {item.technologies.map((tech, techIndex) => (
             <motion.div
               key={tech}
@@ -123,7 +110,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
               {renderTechItem(tech)}
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       )}
       {item.minor && (
         <motion.div
@@ -156,7 +143,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
             hidden: {},
             visible: {
               transition: {
-                delayChildren: (custom + 1) * 0.5, // Wait for previous info and tech icons
+                delayChildren: (custom + 1) * 0.2, // Wait for previous info and tech icons
                 staggerChildren: 0.18
               }
             }

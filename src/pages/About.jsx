@@ -125,6 +125,20 @@ const staggerContainer = {
   }
 };
 
+const photoStagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18 // adjust for smoother stagger
+    }
+  }
+};
+
+const photoFade = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
+};
+
 const About = () => {
   useEffect(() => {
     document.title = "Abhi Ramachandran | About";
@@ -135,6 +149,9 @@ const About = () => {
   const headerRef = useRef(null);
   const paragraphsRef = useRef(null);
   const timelineRef = useRef(null);
+  const languagesRef = useRef(null);
+  const toolsRef = useRef(null);
+  const skillsRef = useRef(null);
   const funFactsRef = useRef(null);
   const photosRef = useRef(null);
 
@@ -142,8 +159,13 @@ const About = () => {
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
   const paragraphsInView = useInView(paragraphsRef, { once: true, margin: "-100px" });
   const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
+  const languagesInView = useInView(languagesRef, { once: true, margin: "-100px" });
+  const toolsInView = useInView(toolsRef, { once: true, margin: "-100px" });
+  const skillsInView = useInView(skillsRef, { once: true, margin: "-100px" });
   const funFactsInView = useInView(funFactsRef, { once: true, margin: "-100px" });
   const photosInView = useInView(photosRef, { once: true, margin: "-100px" });
+
+  const funFactsAnimationTime = funFacts.length * 0.1;
 
   return (
     <div className="px-6 lg:px-32 py-6">
@@ -194,10 +216,10 @@ const About = () => {
       </motion.div>
       
       <motion.div
-        ref={funFactsRef}
+        ref={languagesRef}
         variants={staggerContainer}
         initial="hidden"
-        animate={funFactsInView ? "visible" : "hidden"}
+        animate={languagesInView ? "visible" : "hidden"}
         className="mt-8 mb-16"
       >
         <motion.p
@@ -223,10 +245,10 @@ const About = () => {
         </motion.div>
       </motion.div>
       <motion.div
-        ref={funFactsRef}
+        ref={toolsRef}
         variants={staggerContainer}
         initial="hidden"
-        animate={funFactsInView ? "visible" : "hidden"}
+        animate={toolsInView ? "visible" : "hidden"}
         className="mt-8 mb-16"
       >
         <motion.p
@@ -253,10 +275,10 @@ const About = () => {
       </motion.div>
 
       <motion.div
-        ref={funFactsRef}
+        ref={skillsRef}
         variants={staggerContainer}
         initial="hidden"
-        animate={funFactsInView ? "visible" : "hidden"}
+        animate={skillsInView ? "visible" : "hidden"}
         className="mt-8 mb-16"
       >
         <motion.p
@@ -317,14 +339,22 @@ const About = () => {
 
       <motion.div
         ref={photosRef}
-        variants={staggerContainer}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              delayChildren: funFactsAnimationTime,
+              staggerChildren: 0.18
+            }
+          }
+        }}
         initial="hidden"
         animate={photosInView ? "visible" : "hidden"}
         className="mt-8"
       >
         <motion.p
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          variants={photoFade}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="font-geist-mono text-xl uppercase font-bold mb-4 text-primary"
         >
           Photos
@@ -333,9 +363,8 @@ const About = () => {
           {photos.map((photo, i) => (
             <motion.div
               key={i}
-              variants={fadeUp}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className=""
+              variants={photoFade}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <img
                 src={photo.src}
