@@ -41,7 +41,7 @@ const NotFound = () => {
                 <div className="mt-4 text-left">
                     <a 
                         href="/" 
-                        className="text-sm inline-block px-4 py-2 bg-primary text-white rounded hover:bg-secondary transition-colors"
+                        className="font-geist-mono text-sm inline-block px-4 py-2 border-2 border-dashed border-gray-200 text-gray-200 hover:bg-gray-200 hover:text-slate-900 hover:border-0 active:scale-95 transition-colors"
                     >
                         cd /
                     </a>

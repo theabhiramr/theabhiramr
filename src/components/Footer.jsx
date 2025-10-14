@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 import { SiLeetcode, SiHandshake, SiPerl, SiReact, SiTailwindcss} from 'react-icons/si';
 
 export default function Footer() {
@@ -34,6 +35,12 @@ export default function Footer() {
                     rel="noopener noreferrer" 
                     className="text-muted hover:text-primary active:text-secondary transition-colors duration-300">
                         <SiHandshake className="w-6 h-6" />
+                    </a>
+                    <a href="mailto:ramachandran.abhiram@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted hover:text-primary active:text-secondary transition-colors duration-300">
+                        <MdEmail className="w-6 h-6" />
                     </a>
                 </div>
                 
