@@ -49,7 +49,7 @@ const fadeUpVariant = {
 
 function TimelineItem({ item, isLast, isFirst, custom }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-20px" });
 
   const content = (
     <motion.div
@@ -102,9 +102,27 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
       {item.technologies && (
         <motion.div
           className="flex flex-wrap gap-2 mb-4 mt-4"
-          variants={fadeUpVariant}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                delayChildren: custom * 0.5, // delay until previous info loads (adjust as needed)
+                staggerChildren: 0.15
+              }
+            }
+          }}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
         >
-          {item.technologies.map((tech, techIndex) => renderTechItem(tech))}
+          {item.technologies.map((tech, techIndex) => (
+            <motion.div
+              key={tech}
+              variants={fadeUpVariant}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              {renderTechItem(tech)}
+            </motion.div>
+          ))}
         </motion.div>
       )}
       {item.minor && (
@@ -134,7 +152,15 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
       {Array.isArray(item.content) ? (
         <motion.ul
           className="mt-2 font-geist-mono text-content list-disc big-bullets pl-5"
-          variants={itemGroupVariants}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                delayChildren: (custom + 1) * 0.5, // Wait for previous info and tech icons
+                staggerChildren: 0.18
+              }
+            }
+          }}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           custom={custom}
@@ -229,7 +255,7 @@ export default function Timeline({ items = [] }) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="relative md:pl-14 pl-6"
+      className="relative"
     >
       {items.map((item, i) => (
         <TimelineItem

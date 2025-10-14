@@ -27,6 +27,10 @@ const fadeUp = {
 };
 
 const Home = () => {
+    useEffect(() => {
+        document.title = "Abhi Ramachandran";
+        window.scrollTo(0, 0);
+      }, []);
     const navigate = useNavigate();
     const bioText = `I'm an honors CS student at <a href="https://www.drexel.edu/cs/" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-primary active:text-primary">Drexel University</a> 
     studying concentrations in <span class="text-secondary">AI/ML</span> and 

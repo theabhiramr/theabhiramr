@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const NotFound = () => {
+    useEffect(() => {
+            document.title = "ERR Segmentation Fault";
+            window.scrollTo(0, 0);
+          }, []);
     return (
         <div className="min-h-screen w-full bg-gray-900 text-white flex flex-col">
             <style>

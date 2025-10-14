@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 
 const Projects = () => {
     useEffect(() => {
-        document.title = "Projects";
+        document.title = "Abhi Ramachandran | Projects";
         window.scrollTo(0, 0);
       }, []);
     return (
-        <div className="p-4">
-            <h1 className="font-outfit text-2xl font-bold mb-4">Projects</h1>
+        <div className="px-6 lg:px-32 py-6">
+            <h1 className="font-outfit text-3xl font-bold mb-8">Projects</h1>
+            <div className="md:pl-8 pl-6 py-4">
             <Timeline 
                 items={[
                     {
@@ -21,19 +22,29 @@ const Projects = () => {
                     {
                         title: "Project Janata", 
                         subtitle: "Chinmaya Mission West",
-                        dates: "Aug 2024 - Present", 
+                        dates: "Aug 2025 - Present", 
                         content: [
                             "Spearhead development of a location based social media platform for Chinmaya Yuva Kendra (CHYK), the youth wing of Chinmaya Mission with 1000+ members, using React Native and Tamagui to allow users to discover, connect with, and serve their community.",
                             "Develop a persistent and secure frontend application utilizing Expo, which can integrate with an ExpressJS backend, contributing to 45% of the Minimum Viable Product (MVP)",
                             "Integrate features such as community forum, location services, and event management to enhance user engagement and foster a sense of community among members",
                             "Implement Agile methodologies to follow an industry standard development practices on a 2 week sprint timelines and execute on 25+ user stories to ensure fast and flexible development"
                         ], 
-                        
-                        link: "https://github.com/theabhiramr/ai-chatbot"
+                         technologies: [
+                            "JavaScript",
+                            "React",
+                            "ExpressJS",
+                            "Expo",
+                            "NodeJS",
+                            "Vercel",
+                            "Tamagui"
+                        ],
+                        additional: "This app is still in development and the backend needs to be hosted, so stay tuned for release this winter!",
+                        link: "https://chinmayajanata.org",
+                        githubLink: "https://github.com/Project-Janatha/Project-Janatha"
                     },
                     {
                         title: "Portfolio Website", 
-                        dates: "Apr 2024 - Present",
+                        dates: "Apr 2025 - Present",
                         content: [
                             "Develop and maintain an interactive and user-friendly portfolio website using React and Tailwind CSS to become a more experienced developer.",
                             "Create a responsive design, dark mode, and smooth animations using React hooks and external libraries to showcase the extent of what can be created with modern web development tools.",
@@ -48,10 +59,53 @@ const Projects = () => {
                             "Cloudflare"
                         ],
                         githubLink: "https://github.com/theabhiramr/theabhiramr",
-                        link: void(0)
+                        link: "https://theabhiramr.com/"
+                    },
+                    {
+                        title: "Dragon Learn",
+                        subtitle: "Drexel AI",
+                        dates: "Apr 2025 - Present",
+                        content: [
+                            "Develop AI-powered learning platform that can convert Drexel syllabi into structured modules with curated content, via LangChain, to assist students with studying",
+                            "Program with NextJS (React) and TypeScript to provide application programming interface (API) support for content generation",
+                            "Implement Manim library functionality to provide interactive animations and generate videos to explain mathematical concepts"
+                        ],
+                        technologies: [
+                            "TypeScript",
+                            "React",
+                            "NextJS",
+                            "Tailwind CSS",
+                            "Vercel",
+                            "OpenAI API",
+                            "LangChain",
+                            "Manim",
+                        ],
+                        additional: "This project has unfortunately been shelved, but will likely resume this semester.",
+                        githubLink: "https://github.com/drexelai/dragon-learn",
+                        link: "https://theabhiramr.com/"
+                    },
+                    {
+                        title: "CrashMath",
+                        subtitle: "College of Computing & Informatics, Drexel University",
+                        dates: "Jan 2023 - Jun 2023",
+                        content: [
+                            "Led the creation of a gamified calculus learning platform powered by generative AI trained on 200+ exam questions to provide feedback and track performance",
+                            "Wrote over 1000 lines of code in HTML, CSS and JavaScript to provide a smooth and approachable user interface to enable stronger learning, contributing to 40% of the MVP",
+                            "Coordinated efforts with a multifunctional team to execute on over 25 user stories across a 5-sprint timeline to deliver on 500+ action items for the MVP"
+                        ],
+                        technologies: [
+                            "JavaScript",
+                            "CSS",
+                            "HTML",
+                            "Firebase",
+                            "OpenAI API"
+                        ],
+                        additional: "Due to Firebase restrictions, the backend is unfortunately no longer working, however the frontend is functional.",
+                        link: "https://crashmath-16dc6.web.app/"
                     },
                 ]} 
             />
+            </div>
         </div>
     );
 }

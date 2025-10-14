@@ -127,7 +127,7 @@ const staggerContainer = {
 
 const About = () => {
   useEffect(() => {
-    document.title = "About";
+    document.title = "Abhi Ramachandran | About";
     window.scrollTo(0, 0);
   }, []);
 
@@ -147,16 +147,11 @@ const About = () => {
 
   return (
     <div className="px-6 lg:px-32 py-6">
-      <motion.h1
-        ref={headerRef}
-        variants={fadeUp}
-        initial="hidden"
-        animate={headerInView ? "visible" : "hidden"}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+      <h1
         className="font-outfit text-2xl md:text-3xl font-bold mb-6 text-content"
       >
         About Me
-      </motion.h1>
+      </h1>
 
       <motion.div
         ref={paragraphsRef}
@@ -190,10 +185,12 @@ const About = () => {
         >
           Education
         </motion.p>
+        <div className="md:pl-14 pl-6">
         <Timeline
           items={timelineItems}
           visibleCount={timelineItems.length}
         />
+        </div>
       </motion.div>
       
       <motion.div
