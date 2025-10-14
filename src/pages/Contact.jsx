@@ -30,47 +30,18 @@ const Contact = () => {
     const contactRef = useRef(null);
     const contactInView = useInView(contactRef, { once: true, margin: "-80px" });
 
-    // Form state for custom validation and error animation
-    const [showError, setShowError] = useState(false);
-    const [formSubmitted, setFormSubmitted] = useState(false);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [company, setCompany] = useState("");
-    const [message, setMessage] = useState("");
-    const [captchaValue, setCaptchaValue] = useState(null);
     const [pdfError, setPdfError] = useState(false);
-    const emailValid = /\S+@\S+\.\S+/.test(email);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setFormSubmitted(true);
-
-        if (!firstName || !lastName || !email || !message || !emailValid || !captchaValue) {
-            setShowError(true);
-        } else {
-            setShowError(false);
-            // Process form data (e.g., send to Formspree or EmailJS)
-            // Reset form fields and validation state
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setCompany("");
-            setMessage("");
-            setFormSubmitted(false);
-        }
-    };
+    const [captchaValue, setCaptchaValue] = useState(null);
 
     return (
         <div className="px-6 lg:px-32 py-6">
             {/* Resume Section */}
             <motion.h1 variants={fadeUp} className="font-outfit text-2xl font-bold mb-4">
-                    My Resume
-                </motion.h1>
-                <motion.p variants={fadeUp} className="font-geist-mono text-sm mb-6 text-muted">
-                    In case you don't want to look through this complicated website
-                </motion.p>
-            
+                My Resume
+            </motion.h1>
+            <motion.p variants={fadeUp} className="font-geist-mono text-sm mb-6 text-muted">
+                In case you don't want to look through this complicated website
+            </motion.p>
             <motion.div
                 ref={resumeRef}
                 variants={staggerContainer}
@@ -78,7 +49,6 @@ const Contact = () => {
                 animate={resumeInView ? "visible" : "hidden"}
                 className="mx-auto mb-8 pl-8"
             >
-                
                 <div className="flex gap-4 mb-6">
                     <motion.a
                         variants={fadeUp}
@@ -146,8 +116,8 @@ const Contact = () => {
                     variants={staggerContainer}
                     className="flex flex-col gap-4 items-start"
                     autoComplete="off"
-                    noValidate
-                    onSubmit={handleSubmit}
+                    action="https://formspree.io/f/YOUR_FORM_ID"
+                    method="POST"
                 >
                     {/* Name fields in a flex row */}
                     <motion.div variants={fadeUp} className="flex gap-4 w-full">
@@ -160,9 +130,7 @@ const Contact = () => {
                                 name="firstName"
                                 type="text"
                                 required
-                                value={firstName}
-                                onChange={e => setFirstName(e.target.value)}
-                                className={`font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full ${formSubmitted && !firstName ? "border-secondary" : ""}`}
+                                className="font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full"
                             />
                         </div>
                         <div className="w-full flex flex-col">
@@ -174,9 +142,7 @@ const Contact = () => {
                                 name="lastName"
                                 type="text"
                                 required
-                                value={lastName}
-                                onChange={e => setLastName(e.target.value)}
-                                className={`font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full ${formSubmitted && !lastName ? "border-secondary" : ""}`}
+                                className="font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full"
                             />
                         </div>
                     </motion.div>
@@ -189,8 +155,6 @@ const Contact = () => {
                             id="company"
                             name="company"
                             variants={fadeUp}
-                            value={company}
-                            onChange={e => setCompany(e.target.value)}
                             className='font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full'
                         />
                     </motion.div>
@@ -204,9 +168,7 @@ const Contact = () => {
                             variants={fadeUp}
                             type="email"
                             required
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            className={`font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full ${formSubmitted && (!email || !emailValid) ? "border-secondary" : ""}`}
+                            className="font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full"
                         />
                     </motion.div>
                     <motion.div variants={fadeUp} className="flex flex-col w-full">
@@ -219,9 +181,7 @@ const Contact = () => {
                             variants={fadeUp}
                             required
                             rows={5}
-                            value={message}
-                            onChange={e => setMessage(e.target.value)}
-                            className={`font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full ${formSubmitted && !message ? "border-secondary" : ""}`}
+                            className="font-geist-mono text-sm p-2 border-2 border-dashed border-muted focus:border-primary focus:border-solid focus:outline-none w-full"
                         />
                     </motion.div>
                     <motion.p variants={fadeUp} className="font-geist-mono text-xs text-muted">
@@ -238,25 +198,16 @@ const Contact = () => {
                             Send Message
                         </motion.button>
                     </div>
+                    <motion.div variants={fadeUp} className="mt-4">
+                        <div style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}>
+                            <ReCAPTCHA
+                                sitekey="6Lehg-orAAAAAEHDX3BVvyjWTvA3TtwnGGijrzWw"
+                                onChange={value => setCaptchaValue(value)}
+                                size="small"
+                            />
+                        </div>
+                    </motion.div>
                 </motion.form>
-                <motion.div variants={fadeUp} className="mt-4">
-                    <div style={{ transform: "scale(0.85)", transformOrigin: "0 0" }}>
-                        <ReCAPTCHA
-                            sitekey="6Lehg-orAAAAAEHDX3BVvyjWTvA3TtwnGGijrzWw"
-                            onChange={value => setCaptchaValue(value)}
-                            size="small"
-                        />
-                    </div>
-                </motion.div>
-                {showError && (
-                    <motion.p
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="font-geist-mono text-sm text-secondary mt-2"
-                    >
-                        Please fill out all fields correctly before submitting.
-                    </motion.p>
-                )}
             </motion.div>
         </div>
     );
