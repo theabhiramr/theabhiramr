@@ -16,14 +16,14 @@ const parentStagger = {
     hidden: {},
     visible: {
         transition: {
-            staggerChildren: 1
+            staggerChildren: 0.2
         }
     }
 };
 
 const fadeUp = {
     hidden: { opacity: 0, y: -8 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
 };
 
 const Home = () => {
@@ -38,7 +38,7 @@ const Home = () => {
     <span class="text-secondary">Business Analytics</span>. Most of my work experiences are in 
     <span class="text-secondary">Software Development</span> and <span class="text-secondary">Artificial Intelligence</span>`;
 
-    const { displayText, isTyping, isComplete } = useTypewriter(bioText, 25, 1000);
+    const { displayText, isTyping, isComplete } = useTypewriter(bioText, 15, 500);
 
     const [skipped, setSkipped] = useState(() => {
         const saved = sessionStorage.getItem('homeSkipped');
