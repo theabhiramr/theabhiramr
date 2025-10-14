@@ -30,15 +30,18 @@ export const useTypewriter = (htmlText, typeSpeed = 50, startDelay = 1000) => {
             }
 
             if (htmlText[cursorPosition] === "<") {
-                tempTypeSpeed = 0;
-                if (tagOpen) {
-                    tagOpen = false;
-                    writingTag = true;
-                } else {
-                    tag = "";
-                    tagOpen = true;
-                    writingTag = true;
-                    tag += htmlText[cursorPosition];
+                // Instantly add the whole tag
+                let tagEnd = htmlText.indexOf(">", cursorPosition);
+                if (tagEnd !== -1) {
+                    currentHTML += htmlText.slice(cursorPosition, tagEnd + 1);
+                    cursorPosition = tagEnd + 1;
+                    setDisplayText(currentHTML);
+                    if (cursorPosition < htmlText.length) {
+                        setTimeout(type, tempTypeSpeed);
+                    } else {
+                        setIsComplete(true);
+                    }
+                    return;
                 }
             }
 
@@ -52,10 +55,13 @@ export const useTypewriter = (htmlText, typeSpeed = 50, startDelay = 1000) => {
                 } else {
                     // Add sentence delay
                     const prevChar = cursorPosition > 0 ? htmlText[cursorPosition - 1] : '';
-                    if (prevChar === '.' || prevChar === '!' || prevChar === '?') {
+                    if (
+                        (prevChar === '.' || prevChar === '!' || prevChar === '?') &&
+                        htmlText[cursorPosition] === " "
+                    ) {
                         tempTypeSpeed = 1000; // 800ms pause after sentences
                     } else {
-                        tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+                        tempTypeSpeed = typeSpeed + Math.random() * 30;
                     }
                 }
                 currentHTML += htmlText[cursorPosition];

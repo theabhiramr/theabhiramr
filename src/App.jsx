@@ -9,6 +9,7 @@ import Projects from './pages/Projects';
 import WorkExperience from './pages/WorkExperience';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
+import Secret from './pages/Secret';
 import { profileJpeg, evbuddyJpeg, epiqsolutionsJpeg } from './assets';
 import { IoArrowForwardCircleOutline, IoArrowForwardCircle } from 'react-icons/io5';
 
@@ -38,7 +39,7 @@ const Home = () => {
     <span class="text-secondary">Business Analytics</span>. Most of my work experiences are in 
     <span class="text-secondary">Software Development</span> and <span class="text-secondary">Artificial Intelligence</span>`;
 
-    const { displayText, isTyping, isComplete } = useTypewriter(bioText, 15, 500);
+    const { displayText, isTyping, isComplete } = useTypewriter(bioText, 50, 500);
 
     const [skipped, setSkipped] = useState(() => {
         const saved = sessionStorage.getItem('homeSkipped');
@@ -291,6 +292,7 @@ function App() {
                             <Route path="/projects" element={<Projects />} />
                             <Route path="/work-experience" element={<WorkExperience />} />
                             <Route path="/contact" element={<Contact />} />
+                            <Route path="/cs164" element={<Secret />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </main>

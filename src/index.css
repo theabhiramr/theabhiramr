@@ -74,6 +74,13 @@
     color: var(--color-primary);
 }
 
+.tree-cursor::after {
+    content: "█";
+    color: var(--color-primary);
+}
+
+
+
 /* Blinking animation when idle */
 .typing-blink::after {
     animation: blink 800ms step-end infinite;
