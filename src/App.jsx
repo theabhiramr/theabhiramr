@@ -66,12 +66,9 @@ const Home = () => {
     const projectsSectionRef = useRef(null);
     const workSectionRef = useRef(null);
 
-    // Use inView for parent sections - use amount threshold instead of margin
+    // Use inView for parent sections
     const projectsSectionInView = useInView(projectsSectionRef, { once: true, amount: 0.1 });
     const workSectionInView = useInView(workSectionRef, { once: true, amount: 0.1 });
-
-    // Track when projects section animation completes
-    const [projectsAnimationComplete, setProjectsAnimationComplete] = useState(false);
 
     return (
         <main className="w-full" onClick={() => {
@@ -98,151 +95,146 @@ const Home = () => {
             </section>
             {/* Projects Carousel Section */}
             <div className="px-6 lg:px-32">
-                {finalIsComplete && (
-                    <motion.div
-                        ref={projectsSectionRef}
-                        variants={parentStagger}
-                        initial="hidden"
-                        animate="visible"
-                        onAnimationComplete={() => setProjectsAnimationComplete(true)}
-                    >
-                        <motion.h3
-                            variants={fadeUp}
-                            className="flex items-center text-3xl font-outfit font-bold mb-8 text-left"
+                <motion.div
+                    ref={projectsSectionRef}
+                    initial="hidden"
+                    animate={finalIsComplete && projectsSectionInView ? "visible" : "hidden"}
+                    variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                    }}
+                >
+                    <h3 className="flex items-center text-3xl font-outfit font-bold mb-8 text-left">
+                        My Projects
+                        <button
+                            onClick={(e)=>{e.stopPropagation(); navigate('/projects')}}
+                            className="group relative ml-2 text-primary hover:text-secondary transition-colors duration-300"
+                            aria-label="Learn more about my projects"
                         >
-                            My Projects
-                            <button
-                                onClick={(e)=>{e.stopPropagation(); navigate('/projects')}}
-                                className="group relative ml-2 text-primary hover:text-secondary transition-colors duration-300"
-                                aria-label="Learn more about my projects"
-                            >
-                                <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
-                                <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
-                            </button>
-                        </motion.h3>
-                        <motion.div variants={fadeUp}>
-                            <Carousel 
-                                items={[
-                                    {
-                                        title: "NFL Prediction Model",
-                                        dates: "Oct 2025 - Present",
-                                        description: "Stay tuned for updates!"
-                                    },
-                                    { 
-                                        title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
-                                        dates: "Aug 2025 - Present",
-                                        link: "https://chinmayajanata.org",
-                                        technologies: [
-                                            "JavaScript",
-                                            "React",
-                                            "ExpressJS",
-                                            "Expo",
-                                            "NodeJS",
-                                            "Vercel",
-                                            "Tamagui"
-                                        ],
-                                        githubLink: "https://github.com/Project-Janatha/Project-Janatha"
-                                    },
-                                    { 
-                                        title: "Portfolio Website", 
-                                        dates: "Apr 2025 - Present",
-                                        description: "The website you're seeing right now!",
-                                        link: void(0),
-                                        technologies: [
-                                            "JavaScript",
-                                            "React",
-                                            "Tailwind CSS", 
-                                            "Vite",
-                                            "Firebase",
-                                            "Cloudflare"
-                                        ],
-                                        githubLink: "https://github.com/theabhiramr/theabhiramr"
-                                    },
-                                    { 
-                                        title: "Dragon Learn",
-                                        dates: "Apr 2025 - Present",
-                                        link: void(0),
-                                        technologies: [
-                                            "TypeScript",
-                                            "React",
-                                            "NextJS",
-                                            "Tailwind CSS",
-                                            "Vercel",
-                                            "OpenAI API",
-                                            "LangChain",
-                                            "Manim",
-                                        ],
-                                        description: "A website that can convert syllabi into interactive modules using LLMs.",
-                                        githubLink: "https://github.com/drexelai/dragon-learn"
-                                    },
-                                    { 
-                                        title: "CrashMath", 
-                                        description: "A gamified learning platform for college students to make math concepts approachable and fun.",
-                                        dates: "Jan 2023 - Jun 2023",
-                                        link: "https://crashmath-16dc6.web.app/",
-                                        technologies: [
-                                            "JavaScript",
-                                            "CSS",
-                                            "HTML",
-                                            "Firebase",
-                                            "OpenAI API"
-                                        ],
-                                    }
-                                ]}
-                                startAutoplay={finalIsComplete}
-                            />
-                        </motion.div>
-                    </motion.div>
-                )}
+                            <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
+                            <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
+                        </button>
+                    </h3>
+                    <div>
+                        <Carousel 
+                            items={[
+                                {
+                                    title: "NFL Prediction Model",
+                                    dates: "Oct 2025 - Present",
+                                    description: "Stay tuned for updates!"
+                                },
+                                { 
+                                    title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",
+                                    dates: "Aug 2025 - Present",
+                                    link: "https://chinmayajanata.org",
+                                    technologies: [
+                                        "JavaScript",
+                                        "React",
+                                        "ExpressJS",
+                                        "Expo",
+                                        "NodeJS",
+                                        "Vercel",
+                                        "Tamagui"
+                                    ],
+                                    githubLink: "https://github.com/Project-Janatha/Project-Janatha"
+                                },
+                                { 
+                                    title: "Portfolio Website", 
+                                    dates: "Apr 2025 - Present",
+                                    description: "The website you're seeing right now!",
+                                    link: void(0),
+                                    technologies: [
+                                        "JavaScript",
+                                        "React",
+                                        "Tailwind CSS", 
+                                        "Vite",
+                                        "Firebase",
+                                        "Cloudflare"
+                                    ],
+                                    githubLink: "https://github.com/theabhiramr/theabhiramr"
+                                },
+                                { 
+                                    title: "Dragon Learn",
+                                    dates: "Apr 2025 - Present",
+                                    link: void(0),
+                                    technologies: [
+                                        "TypeScript",
+                                        "React",
+                                        "NextJS",
+                                        "Tailwind CSS",
+                                        "Vercel",
+                                        "OpenAI API",
+                                        "LangChain",
+                                        "Manim",
+                                    ],
+                                    description: "A website that can convert syllabi into interactive modules using LLMs.",
+                                    githubLink: "https://github.com/drexelai/dragon-learn"
+                                },
+                                { 
+                                    title: "CrashMath", 
+                                    description: "A gamified learning platform for college students to make math concepts approachable and fun.",
+                                    dates: "Jan 2023 - Jun 2023",
+                                    link: "https://crashmath-16dc6.web.app/",
+                                    technologies: [
+                                        "JavaScript",
+                                        "CSS",
+                                        "HTML",
+                                        "Firebase",
+                                        "OpenAI API"
+                                    ],
+                                }
+                            ]}
+                            startAutoplay={finalIsComplete}
+                        />
+                    </div>
+                </motion.div>
             </div>
             {/* Work Experience Carousel Section */}
             <div className="px-6 lg:px-32 py-16">
-                {projectsAnimationComplete && (
-                    <motion.div
-                        ref={workSectionRef}
-                        variants={parentStagger}
-                        initial="hidden"
-                        animate="visible"
-                    >
-                        <motion.h3
-                            variants={fadeUp}
-                            className="flex items-center text-3xl font-outfit font-bold mb-4 text-left"
+                <motion.div
+                    ref={workSectionRef}
+                    initial="hidden"
+                    animate={finalIsComplete && workSectionInView ? "visible" : "hidden"}
+                    variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                    }}
+                >
+                    <h3 className="flex items-center text-3xl font-outfit font-bold mb-4 text-left">
+                        My Work Experience
+                        <button
+                            onClick={(e)=>{e.stopPropagation(); navigate('/work-experience')}}
+                            className="group relative ml-2 text-primary hover:text-secondary transition-colors duration-300"
+                            aria-label="Learn more about my work experience"
                         >
-                            My Work Experience
-                            <button
-                                onClick={(e)=>{e.stopPropagation(); navigate('/work-experience')}}
-                                className="group relative ml-2 text-primary hover:text-secondary transition-colors duration-300"
-                                aria-label="Learn more about my work experience"
-                            >
-                                <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
-                                <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
-                            </button>
-                        </motion.h3>
-                        <motion.div variants={fadeUp}>
-                            <Carousel 
-                                items={[
-                                    {
-                                        title: "Software Development Engineering Co-op",
-                                        company: "Epiq Solutions",
-                                        imageSrc: epiqsolutionsJpeg,
-                                        description: "Programmed internal tools to streamline production testing processes, enhancing efficiency and accuracy of SDR devices.",
-                                        dates: "Apr 2024 - Sep 2024",
-                                        link: "https://epiqsolutions.com",
-                                    },
-                                    {
-                                        title: "Software Development Intern",
-                                        imageSrc: evbuddyJpeg,
-                                        company: "EV Buddy, Inc.",
-                                        dates: "Jun 2023 - Sep 2023",
-                                        description: "Developed a community platform for EV owners featuring a unique, Vehicle-to-Vehicle (V2V) charging system.",
-                                        link: "https://evbuddy.net",
-                                    }
-                                ]}
-                                startAutoplay={finalIsComplete}
-                            />
-                        </motion.div>
-                    </motion.div>
-                )}
+                            <IoArrowForwardCircleOutline className="w-7 h-7 transition-opacity duration-200 group-hover:opacity-0" />
+                            <IoArrowForwardCircle className="w-7 h-7 absolute inset-0 transition-opacity duration-200 opacity-0 group-hover:opacity-100" />
+                        </button>
+                    </h3>
+                    <div>
+                        <Carousel 
+                            items={[
+                                {
+                                    title: "Software Development Engineering Co-op",
+                                    company: "Epiq Solutions",
+                                    imageSrc: epiqsolutionsJpeg,
+                                    description: "Programmed internal tools to streamline production testing processes, enhancing efficiency and accuracy of SDR devices.",
+                                    dates: "Apr 2024 - Sep 2024",
+                                    link: "https://epiqsolutions.com",
+                                },
+                                {
+                                    title: "Software Development Intern",
+                                    imageSrc: evbuddyJpeg,
+                                    company: "EV Buddy, Inc.",
+                                    dates: "Jun 2023 - Sep 2023",
+                                    description: "Developed a community platform for EV owners featuring a unique, Vehicle-to-Vehicle (V2V) charging system.",
+                                    link: "https://evbuddy.net",
+                                }
+                            ]}
+                            startAutoplay={finalIsComplete}
+                        />
+                    </div>
+                </motion.div>
             </div>
         </main>
     );
