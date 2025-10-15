@@ -279,13 +279,14 @@ function App() {
             <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
         <Router>
-            <div className={`min-h-screen overflow-x-hidden ${darkMode ? 'dark' : ''}`}>
+           
+            <div className={`min-h-screen ${darkMode ? 'dark' : ''} relative`}>
                 <div className="bg-background text-content min-h-screen transition-colors duration-300 flex flex-col">
-                    <Navbar 
+                     <Navbar 
                         darkMode={darkMode}
                         toggleDarkMode={toggleDarkMode}
                     />
-                    <main className="flex-1">
+                    <main className="flex-1 overflow-x-hidden">
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/about" element={<About />} />
