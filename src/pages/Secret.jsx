@@ -88,7 +88,7 @@ const Secret = () => {
                     <span className="text-white">:</span>
                     <span className="text-blue-400">~</span>
                     <span className="text-white">$ </span>
-                    <span className="text-white">cd cs164 && tree *.html</span>
+                    <span className="text-white">cd cs164 && tree -P '*.html'</span>
                 </div>
                 <pre className="pl-4 select-text" dangerouslySetInnerHTML={{ __html: finalText }} />
                 { finalIsComplete && <div className="mt-6 text-green-600">
