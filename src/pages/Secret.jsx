@@ -35,7 +35,7 @@ function buildTreeHTML(tree, prefix = "", isLast = true) {
         }
         lines.push(prefix + connector + name);
         if (item.children) {
-            const subPrefix = prefix + (last ? "    " : "│   ") + " ".repeat(4);
+            const subPrefix = prefix + (last ? "    " : "│   ") + " ".repeat(1);
             lines = lines.concat(buildTreeHTML(item.children, subPrefix, last));
         }
     });
@@ -95,7 +95,7 @@ const Secret = () => {
                     <div className="text-primary mb-4">
                         abhi<span className="text-secondary">@</span>portfolio
                         <span className="text-white">:</span>
-                        <span className="text-blue-400">~</span>
+                        <span className="text-blue-400">~/cs164</span>
                         <span className="text-white">$ </span>
                         <span className="blink">█</span>
                     </div>
