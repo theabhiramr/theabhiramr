@@ -72,7 +72,7 @@ const Home = () => {
     const workSectionInView = useInView(workSectionRef, { once: true, amount: 0.1 });
 
     return (
-        <main className="w-full" onClick={() => {
+        <main className="w-full " onClick={() => {
             if (!skipped) setSkipped(true);
         }}>
             {/* Hero Section */}
@@ -279,7 +279,7 @@ function App() {
             <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
         <Router>
-            <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
+            <div className={`min-h-screen overflow-x-hidden ${darkMode ? 'dark' : ''}`}>
                 <div className="bg-background text-content min-h-screen transition-colors duration-300 flex flex-col">
                     <Navbar 
                         darkMode={darkMode}
