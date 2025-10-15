@@ -20,8 +20,6 @@ const fileTree = [
         { name: "lab8.html", path: "/cs164/tranq/lab8.html" },
         { name: "vpet.html", path: "/cs164/tranq/vpet.html" },
     ]},
-    { name: "project1.html", path: "/cs164/project1.html" },
-    { name: "notes.html", path: "/cs164/notes.html" }
 ];
 
 function buildTreeHTML(tree, prefix = "", isLast = true) {

@@ -47,7 +47,7 @@ const Contact = () => {
                 variants={staggerContainer}
                 initial="hidden"
                 animate={resumeInView ? "visible" : "hidden"}
-                className="mx-auto mb-8 pl-8"
+                className="mx-auto mb-8 md:pl-8"
             >
                 <div className="flex gap-4 mb-6">
                     <motion.a
@@ -110,7 +110,7 @@ const Contact = () => {
                 variants={staggerContainer}
                 initial="hidden"
                 animate={contactInView ? "visible" : "hidden"}
-                className="max-w-xl pl-8 mb-8 items-start"
+                className="max-w-xl md:pl-8 mb-8 items-start"
             >
                 <motion.form
                     variants={staggerContainer}

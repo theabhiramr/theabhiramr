@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <footer className="font-geist-mono w-full py-2 bg-surface text-muted">
             <div className="w-full px-6 py-4">
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-center justify-between text-left space-y-2 md:space-y-0 mb-2">
                     {/* Social Icons - Left */}
                     <div className="flex space-x-6">
                         <a href="https://linkedin.com/in/theabhiramr/" 
@@ -45,7 +45,7 @@ export default function Footer() {
                         </a>
                     </div>
                     {/* Text - Right, lowered but same horizontal position */}
-                    <div className="flex flex-col items-end">
+                    <div className="flex flex-col mb-2 md:mb-0">
                         <div className="text-sm text-muted mt-4 ">
                             <a href="/cs164" className="text-muted hover:text-primary active:text-secondary transition-colors duration-300">
                                 cd /cs164
