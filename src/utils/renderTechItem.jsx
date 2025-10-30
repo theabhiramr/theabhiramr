@@ -56,6 +56,7 @@ export const renderTechItem = (techString, textSize = "xs", iconSize = 12) => {
     'Git': { url: 'https://git-scm.com/', icon: <SiGit size={iconSize} className="mr-2" />, label: 'Git' },
     'PyTorch': { url: 'https://pytorch.org/', icon: <SiPytorch size={iconSize} className="mr-2" />, label: 'PyTorch' },
     'Jupyter': { url: 'https://jupyter.org/', icon: <SiJupyter size={iconSize} className="mr-2" />, label: 'Jupyter' },
+    'Nativewind': { url: 'https://nativewind.dev/', icon: <SiTailwindcss size={iconSize} className="mr-2" />, label: 'Nativewind' },
   };
 
   const baseClass = `font-geist-mono px-3 py-1 bg-primary hover:bg-secondary transition-colors duration-300 text-gray-200 rounded-full text-${textSize} uppercase shadow-sm inline-flex items-center font-normal`;

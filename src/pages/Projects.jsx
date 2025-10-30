@@ -24,8 +24,8 @@ const Projects = () => {
                         subtitle: "Chinmaya Mission West",
                         dates: "Aug 2025 - Present", 
                         content: [
-                            "Spearhead development of a location based social media platform for Chinmaya Yuva Kendra (CHYK), the youth wing of Chinmaya Mission with 1000+ members, using React Native and Tamagui to allow users to discover, connect with, and serve their community.",
-                            "Develop a persistent and secure frontend application utilizing Expo, which can integrate with an ExpressJS backend, contributing to 45% of the Minimum Viable Product (MVP)",
+                            "Architect and lead development of cross-platform social media app to foster better community for Chinmaya Mission's 1000+ member youth wing, Chinmaya Yuva Kendra (CHYK)",
+                            "Develop front-end components utilizing React Native and Nativewind to implement geolocation and social media feed services, contributing to 45% of Minimum Viable Product (MVP)",
                             "Integrate features such as community forum, location services, and event management to enhance user engagement and foster a sense of community among members",
                             "Implement Agile methodologies to follow an industry standard development practices on a 2 week sprint timelines and execute on 25+ user stories to ensure fast and flexible development"
                         ], 
@@ -36,7 +36,7 @@ const Projects = () => {
                             "Expo",
                             "NodeJS",
                             "Vercel",
-                            "Tamagui"
+                            "Nativewind",
                         ],
                         additional: "This app is still in development and the backend needs to be hosted, so stay tuned for release this winter!",
                         link: "https://chinmayajanata.org",

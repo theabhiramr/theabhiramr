@@ -34,10 +34,11 @@ const WorkExperience = () => {
                                         location: "Edison, NJ",
                                         dates: "Jun 2023 - Sep 2023",
                                         content: [
-                                            "Conducted 30+ hours of market research on electric vehicle (EV) charging systems to develop vehicle-to-vehicle charging solution",
-                                            "Programmed sniffer data parsing software in C++ and Python, improving success of prototype by 45%",
-                                            "Used OpenEVSE Arduino embedded system to build a prototype architecture that interface with RS485 and CAN protocols used in EVs",
+                                            "Researched EV charging protocols (CCS, CHAdeMO) and developed technical specifications for vehicle-to-vehicle charging solution, informing prototype architecture",
+                                            "Programmed sniffer data parsing software in C++ and Python to analyze EV charging protocols, improving success of prototype by 45%",
+                                            "Used OpenEVSE Arduino embedded system to build a prototype architecture that interfaced with RS485 and CAN protocols used in EVs",
                                             "Developed user experience (UX) flow for a social app over 50+ Figma design iterations to electric vehicle (EV) owners"
+
                                         ],
                                         link: "https://evbuddy.net",
                                     }
