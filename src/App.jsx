@@ -135,7 +135,7 @@ const Home = () => {
                                         "Expo",
                                         "NodeJS",
                                         "Vercel",
-                                        "Tamagui"
+                                        "Nativewind"
                                     ],
                                     githubLink: "https://github.com/Project-Janatha/Project-Janatha"
                                 },
