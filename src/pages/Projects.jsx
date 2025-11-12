@@ -17,7 +17,24 @@ const Projects = () => {
                         title: "NFL Prediction Model",
                         subtitle: "Drexel AI",
                         dates: "Oct 2025 - Present",
-                        additional: "I just started this project so stay tuned! (Hopefully it will predict that my birds get the two-peat🦅🦅🦅)",
+                        content: [
+                            "Utilize BeautifulSoup and Pandas to scrape and process approximate value data for over 10,000 NFL players from Pro Football Reference, creating a comprehensive dataset for model training",
+                            "Engineer machine learning models in Jupyter using Scikit-learn and XGBoost to predict player performance and approximate value for the upcoming NFL season, achieving a prediction accuracy of over 75%",
+                            "Develop serverless React application using NextJS and Tailwind CSS to provide users with an interactive platform to explore player and team predictions and statistics"
+                        ],
+                        technologies: [
+                            'Jupyter',
+                            'Python',
+                            'Pandas',
+                            'PyTorch',
+                            'Scikit-learn',
+                            'NextJS',
+                            'Tailwind CSS',
+                            'BeautifulSoup',
+                            'XGBoost',
+                        ],
+                        additional: "<a href='https://youtu.be/4ujS__0MQMo?si=xgxWBxWfjvmJGPjO'>Go Birds 🦅🦅🦅</a>",
+                        githubLink: "https://github.com/drexelai/nfl-prediction-team-1"
                     },
                     {
                         title: "Project Janata", 
@@ -80,7 +97,6 @@ const Projects = () => {
                             "LangChain",
                             "Manim",
                         ],
-                        additional: "This project has unfortunately been shelved, but will likely resume this semester.",
                         githubLink: "https://github.com/drexelai/dragon-learn",
                         link: "https://theabhiramr.com/"
                     },

@@ -4,6 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { renderTechItem } from '../utils';
 import { SiGithub } from 'react-icons/si';
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 // Slide component (can be moved to a separate file if needed)
 function CarouselSlide({ item }) {
@@ -33,14 +34,13 @@ function CarouselSlide({ item }) {
         )}
         {item.githubLink && (
           <div className="mt-auto text-muted text-sm ">
-            See it on 
-            <a 
-              href={item.githubLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-sm text-muted hover:text-primary transition-colors duration-300 ml-1 p-1 inline-block"
+            <a
+                href={item.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted hover:text-primary transition-colors duration-300 inline-flex items-center"
             >
-              <SiGithub className="inline" size={16} />
+            See it on <SiGithub className="inline ml-2 align-middle" size={16} />
             </a>
           </div>
         )}
@@ -194,7 +194,24 @@ export default function Carousel({ items, startAutoplay = false }) {
                     ))}
                 </div>
             </div>
-
+            { (items.length >= 3 || selectedIndex !== 0) && (
+            <button
+                onClick={(e) => { e.stopPropagation(); scrollPrev(); }}
+                className="absolute left-2 md:left-0 lg:-left-16 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface/80 hover:bg-surface shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
+                aria-label="Previous slide"
+            >
+                <IoChevronBack className="text-primary" size={20} />
+            </button>
+            )}
+            { (items.length >= 3 || selectedIndex !== dots.length - 1) && (
+            <button
+                onClick={(e) => { e.stopPropagation(); scrollNext(); }}
+                className="absolute right-2 md:right-0 lg:-right-16 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface/80 hover:bg-surface shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
+                aria-label="Next slide"
+            >
+                <IoChevronForward className="text-primary" size={20} />
+            </button>
+            )}
             {/* Navigation and Pagination at Bottom */}
             <div className="flex items-center justify-end mt-8 gap-4">
                 {/* Pagination Dots */}

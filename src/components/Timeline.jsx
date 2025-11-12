@@ -173,7 +173,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
           variants={fadeUpVariant}
           className="mt-2 text-secondary font-geist-mono text-sm"
         >
-          {item.additional}
+          <span dangerouslySetInnerHTML={{ __html: item.additional }} />
         </motion.p>
       )}
       {item.githubLink && (
@@ -181,15 +181,16 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
           variants={fadeUpVariant} 
           className="mt-4 font-geist-mono text-muted text-sm "
         >
-          See it on
+        <div className="mt-auto text-muted text-sm ">
           <a
-            href={item.githubLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted hover:text-primary transition-colors duration-300 ml-1 p-1 inline-block"
+              href={item.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted hover:text-primary transition-colors duration-300 inline-flex items-center"
           >
-            <SiGithub className="inline" size={16} />
+          See it on <SiGithub className="inline ml-2 align-middle" size={16} />
           </a>
+        </div>
         </motion.div>
       )}
       
