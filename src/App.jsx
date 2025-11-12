@@ -122,7 +122,19 @@ const Home = () => {
                                 {
                                     title: "NFL Prediction Model",
                                     dates: "Oct 2025 - Present",
-                                    description: "Stay tuned for updates!"
+                                    description: "An NFL prediction model that predicts team performance",
+                                    link: void(0),
+                                    technologies: [
+                                        'Jupyter',
+                                        'Python',
+                                        'Pandas',
+                                        'PyTorch',
+                                        'NextJS',
+                                        'Tailwind CSS',
+                                        'BeautifulSoup',
+                                        'Scikit-learn',
+                                        'XGBoost',
+                                    ]
                                 },
                                 { 
                                     title: "Project Janata", description: "A web and social platform to connect the youth of Chinmaya Mission.",

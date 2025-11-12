@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { use, useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -134,6 +134,52 @@ export default function Carousel({ items, startAutoplay = false }) {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [scrollPrev, scrollNext]);
+
+    // Add this useEffect after your existing useEffects
+    useEffect(() => {
+        if (!emblaApi) return;
+
+        const emblaNode = emblaApi.rootNode();
+        let isScrolling = false;
+        
+        const handleWheel = (e) => {
+            if (isScrolling) return; // Prevent multiple scrolls
+            
+            const threshold = 50; // Minimum scroll amount to trigger
+            
+            // Only handle horizontal scrolling
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > threshold) {
+                e.preventDefault();
+                isScrolling = true;
+                
+                if (e.deltaX > 0) {
+                    scrollNext();
+                } else {
+                    scrollPrev();
+                }
+                
+                setTimeout(() => { isScrolling = false; }, 100); // Increased timeout
+            } else if (Math.abs(e.deltaY) > threshold) {
+                // Convert vertical scroll to horizontal
+                e.preventDefault();
+                isScrolling = true;
+                
+                if (e.deltaY > 0) {
+                    scrollNext();
+                } else {
+                    scrollPrev();
+                }
+                
+                // setTimeout(() => { isScrolling = false; }, 100); // Increased timeout
+            }
+        };
+
+        emblaNode.addEventListener('wheel', handleWheel, { passive: false });
+
+        return () => {
+            emblaNode.removeEventListener('wheel', handleWheel);
+        };
+    }, [emblaApi, scrollNext, scrollPrev]);
 
     // Pagination dots: one per unique slide
     const dots = Array.from({ length: items.length }, (_, i) => i);

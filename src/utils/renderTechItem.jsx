@@ -10,7 +10,9 @@ import {
   SiPycharm,
   SiGit,
   SiPytorch,
-  SiJupyter, 
+  SiJupyter,
+  SiPandas, 
+  SiScikitlearn
 } from 'react-icons/si';
 import { IoArrowForwardCircle, IoArrowForwardCircleOutline } from 'react-icons/io5';
 import { FaNodeJs, FaRegFileCode, FaHtml5 } from 'react-icons/fa6';
@@ -57,6 +59,10 @@ export const renderTechItem = (techString, textSize = "xs", iconSize = 12) => {
     'PyTorch': { url: 'https://pytorch.org/', icon: <SiPytorch size={iconSize} className="mr-2" />, label: 'PyTorch' },
     'Jupyter': { url: 'https://jupyter.org/', icon: <SiJupyter size={iconSize} className="mr-2" />, label: 'Jupyter' },
     'Nativewind': { url: 'https://nativewind.dev/', icon: <SiTailwindcss size={iconSize} className="mr-2" />, label: 'Nativewind' },
+    'Pandas': { url: 'https://pandas.pydata.org/', icon: <SiPandas size={iconSize} className="mr-2" />, label: 'Pandas' },
+    'BeautifulSoup': { url: 'https://www.crummy.com/software/BeautifulSoup/', icon: '', label: 'BeautifulSoup' },
+    'Scikit-learn': { url: 'https://scikit-learn.org/', icon: <SiScikitlearn size={iconSize} className="mr-2" />, label: 'Scikit-learn' },
+    'XGBoost': { url: 'https://xgboost.ai/', icon:'', label: 'XGBoost' },
   };
 
   const baseClass = `font-geist-mono px-3 py-1 bg-primary hover:bg-secondary transition-colors duration-300 text-gray-200 rounded-full text-${textSize} uppercase shadow-sm inline-flex items-center font-normal`;
