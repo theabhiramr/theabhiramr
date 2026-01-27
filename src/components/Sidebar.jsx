@@ -88,32 +88,6 @@ export default function Sidebar({ activeSection, darkMode, toggleDarkMode }) {
           </ul>
         </nav>
       </div>
-
-      {/* Bottom Section: Socials & Theme */}
-      <footer className="space-y-8">
-        <div className="flex items-center gap-6">
-          <SocialLink
-            href="https://github.com/theabhiramr"
-            icon={<FiGithub size={20} />}
-          />
-          <SocialLink
-            href="https://linkedin.com/in/theabhiramr/"
-            icon={<FiLinkedin size={20} />}
-          />
-          <SocialLink
-            href="mailto:theabhiramr@gmail.com"
-            icon={<FiMail size={20} />}
-          />
-          <div className="bg-border/50 mx-2 h-4 w-px" /> {/* Divider */}
-          <button
-            onClick={toggleDarkMode}
-            className="text-muted hover:text-accent p-1 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {darkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
-          </button>
-        </div>
-      </footer>
     </div>
   );
 

@@ -1,268 +1,194 @@
 import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import TechBadge from "./TechBadge";
 import { SiGithub } from "react-icons/si";
+import { HiMapPin } from "react-icons/hi2";
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.5, // Slower stagger for timeline items
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
-const bulletListVariants = {
-  hidden: {},
-  visible: (custom) => ({
-    transition: {
-      staggerChildren: 0.18,
-      delayChildren: custom * 0.5, // Delay based on timeline item index
-    },
-  }),
-};
-
-const bulletItemVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
-};
-
-const itemGroupVariants = {
-  hidden: {},
-  visible: (custom = 0) => ({
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: custom * 0.2, // delay for the whole item group
-    },
-  }),
-};
-
-const fadeUpVariant = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: "easeOut" },
-  },
-};
-
-function TimelineItem({ item, isLast, isFirst, custom }) {
+function TimelineItem({ item, isLast, index }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-20px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
+
+  const animationProps = shouldReduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 15 },
+        animate: inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 },
+        transition: {
+          duration: 0.5,
+          delay: index * 0.1,
+          ease: [0.21, 1.02, 0.47, 0.98],
+        },
+      };
 
   const content = (
-    <motion.div
-      variants={itemGroupVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      custom={custom}
-      className="flex flex-col gap-1"
-    >
-      {item.image && (
-        <motion.img
-          src={item.image}
-          alt={item.title || ""}
-          className="mb-2 h-16 w-16 flex-shrink-0 rounded-lg object-cover"
-          variants={fadeUpVariant}
-        />
-      )}
-      {item.title && (
-        <motion.h4
-          className="font-geist-mono text-primary text-xl leading-5 font-bold"
-          variants={fadeUpVariant}
-        >
-          {item.title}
-        </motion.h4>
-      )}
-      {item.subtitle && (
-        <motion.h5
-          className="font-geist-mono text-muted mt-1 text-lg"
-          variants={fadeUpVariant}
-        >
-          {item.subtitle}
-        </motion.h5>
-      )}
-      {item.location && (
-        <motion.div
-          className="font-geist-mono text-secondary mt-1 text-sm"
-          variants={fadeUpVariant}
-        >
-          {item.location}
-        </motion.div>
-      )}
-      {item.dates && (
-        <motion.div
-          className="font-geist-mono text-secondary mt-1 text-xs uppercase"
-          variants={fadeUpVariant}
-        >
-          {item.dates}
-        </motion.div>
-      )}
-      {item.technologies && (
-        <div className="mt-4 mb-4 flex flex-wrap gap-2">
-          {item.technologies.map((tech, techIndex) => (
-            <motion.div
-              key={tech}
-              variants={fadeUpVariant}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <TechBadge techString={tech} textSize="xs" />
-            </motion.div>
+    <div className="flex flex-col gap-4">
+      {/* Header Section */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex min-w-0 items-start gap-4">
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.title || ""}
+              className="ring-border bg-surface h-16 w-16 flex-shrink-0 rounded-lg object-cover ring-1 sm:h-16 sm:w-16"
+            />
+          )}
+          <div className="min-w-0">
+            <h3 className="text-content text-sm leading-snug font-semibold tracking-tight sm:text-base">
+              {item.title}
+            </h3>
+            {item.subtitle && (
+              <p className="text-muted mt-0.5 text-xs sm:text-sm">
+                {item.subtitle}
+              </p>
+            )}
+            {item.location && (
+              <div className="text-muted/60 mt-1 flex items-center gap-1 text-[11px] sm:text-xs">
+                <HiMapPin size={12} className="text-content/50" />
+                <span>{item.location}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {item.dates && (
+          /* Date Pill with Transparent Accent Background */
+          <div className="font-geist-mono text-accent bg-accent/10 border-accent/20 w-fit self-start rounded-full border px-3 py-1 text-[10px] whitespace-nowrap uppercase sm:text-[11px]">
+            {item.dates}
+          </div>
+        )}
+      </div>
+
+      {/* Technologies */}
+      {item.technologies && item.technologies.length > 0 && (
+        <div className="flex flex-wrap gap-1.5">
+          {item.technologies.map((tech) => (
+            <TechBadge key={tech} techString={tech} textSize="xs" />
           ))}
         </div>
       )}
-      {item.minor && (
-        <motion.div
-          className="font-geist-mono text-md text-muted mt-2"
-          variants={fadeUpVariant}
-        >
-          <span className="font-bold">Minor:</span> {item.minor}
-        </motion.div>
-      )}
-      {item.honorsAwards && (
-        <motion.div
-          className="font-geist-mono text-md text-muted mt-1"
-          variants={fadeUpVariant}
-        >
-          <span className="font-bold">Honors & Awards:</span>{" "}
-          {item.honorsAwards}
-        </motion.div>
-      )}
-      {item.activities && (
-        <motion.div
-          className="font-geist-mono text-md text-muted mt-1"
-          variants={fadeUpVariant}
-        >
-          <span className="font-bold">Activities:</span> {item.activities}
-        </motion.div>
-      )}
+
+      {/* Content Bullets / Description */}
       {Array.isArray(item.content) ? (
-        <motion.ul
-          className="font-geist-mono text-content big-bullets mt-2 list-disc pl-5"
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                delayChildren: (custom + 1) * 0.2, // Wait for previous info and tech icons
-                staggerChildren: 0.18,
-              },
-            },
-          }}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          custom={custom}
-        >
+        <ul className="text-muted list-none space-y-2.5 pl-0 text-[13px] leading-relaxed sm:text-sm">
           {item.content.map((contentItem, idx) => (
-            <motion.li key={idx} variants={fadeUpVariant}>
-              {contentItem}
-            </motion.li>
+            <li key={idx} className="flex gap-3">
+              <span className="text-content/30 shrink-0">—</span>
+              <span>{contentItem}</span>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
       ) : (
         item.content && (
-          <motion.div className="text-muted mt-2" variants={fadeUpVariant}>
+          <div className="text-muted text-[13px] leading-relaxed sm:text-sm">
             {item.content}
-          </motion.div>
+          </div>
         )
       )}
-      {item.additional && (
-        <motion.p
-          variants={fadeUpVariant}
-          className="text-secondary font-geist-mono mt-2 text-sm"
-        >
-          <span dangerouslySetInnerHTML={{ __html: item.additional }} />
-        </motion.p>
+
+      {/* Restored Portfolio-Specific Fields (Education/Honors) */}
+      {(item.minor || item.honorsAwards || item.activities) && (
+        <div className="border-border/30 space-y-1.5 border-l-2 py-1 pl-4">
+          {item.minor && (
+            <div className="text-muted text-xs">
+              <span className="text-content font-medium">Minor:</span>{" "}
+              {item.minor}
+            </div>
+          )}
+          {item.honorsAwards && (
+            <div className="text-muted text-xs">
+              <span className="text-content font-medium">Honors:</span>{" "}
+              {item.honorsAwards}
+            </div>
+          )}
+          {item.activities && (
+            <div className="text-muted text-xs">
+              <span className="text-content font-medium">Activities:</span>{" "}
+              {item.activities}
+            </div>
+          )}
+        </div>
       )}
-      {item.githubLink && (
-        <motion.div
-          variants={fadeUpVariant}
-          className="font-geist-mono text-muted mt-4 text-sm"
-        >
-          <div className="text-muted mt-auto text-sm">
+
+      {/* Additional Info & GitHub Link */}
+      {(item.additional || item.githubLink) && (
+        <div className="flex flex-wrap items-center gap-4 pt-1">
+          {item.githubLink && (
             <a
               href={item.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted hover:text-primary inline-flex items-center text-sm transition-colors duration-300"
+              className="text-muted hover:text-accent group inline-flex items-center gap-1.5 text-xs transition-colors duration-200"
             >
-              See it on{" "}
-              <SiGithub className="ml-2 inline align-middle" size={16} />
+              <SiGithub
+                size={14}
+                className="transition-transform group-hover:scale-110"
+              />
+              <span>GitHub</span>
             </a>
-          </div>
-        </motion.div>
+          )}
+          {item.additional && (
+            <div className="text-muted text-[11px] sm:text-xs">
+              <span dangerouslySetInnerHTML={{ __html: item.additional }} />
+            </div>
+          )}
+        </div>
       )}
-    </motion.div>
+    </div>
   );
 
-  const timelineItem = (
-    <motion.div
-      ref={ref}
-      variants={itemVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      custom={custom}
-      className="relative flex gap-6 pb-12"
-      style={{ paddingTop: isFirst ? 0 : "8px" }}
-    >
-      <div
-        className="relative"
-        style={{ width: "20px", paddingTop: item.image ? "14px" : "0" }}
-      >
-        <div className="bg-primary border-background z-10 h-5 w-5 flex-shrink-0 rounded-full border-4" />
-        {!isLast && (
-          <motion.div
-            className="bg-secondary absolute left-1/2 w-0.5 -translate-x-1/2"
-            style={{ top: item.image ? "50px" : "28px" }}
-            initial={{ height: "0px" }}
-            animate={{
-              height: item.image
-                ? "calc(100% + 48px - 50px)"
-                : "calc(100% + 48px - 28px)",
-            }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          />
-        )}
+  return (
+    <div ref={ref} className="group relative pb-12 pl-10 last:pb-4 sm:pl-16">
+      {/* Perfect Alignment for Line and Dot */}
+      {!isLast && (
+        <div
+          className="from-border via-border/50 absolute top-[24px] bottom-0 left-[15px] w-[1px] bg-gradient-to-b to-transparent sm:top-[30px] sm:left-[31px]"
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Centered Dot Container */}
+      <div className="absolute top-0 left-0 z-10 flex h-10 w-8 items-center justify-center sm:h-12 sm:w-16">
+        <div className="bg-content ring-background h-2 w-2 rounded-full ring-4 transition-transform group-hover:scale-125" />
       </div>
-      <div className="flex-1">{content}</div>
-    </motion.div>
-  );
 
-  return item.link ? (
-    <a
-      href={item.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="hover:bg-surface -m-2 block rounded-lg p-2 transition"
-    >
-      {timelineItem}
-    </a>
-  ) : (
-    timelineItem
+      <motion.div {...animationProps}>
+        {item.link ? (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group hover:border-border/40 hover:bg-surface/40 -m-3 block rounded-2xl border border-transparent p-3 transition-all duration-300 sm:-m-4 sm:p-4"
+          >
+            {content}
+          </a>
+        ) : (
+          <div className="py-2">{content}</div>
+        )}
+      </motion.div>
+    </div>
   );
 }
 
 export default function Timeline({ items = [] }) {
+  if (!items.length) return null;
+
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="relative"
-    >
-      {items.map((item, i) => (
-        <TimelineItem
-          key={i}
-          item={item}
-          isFirst={i === 0}
-          isLast={i === items.length - 1}
-          custom={i}
-        />
-      ))}
-    </motion.div>
+    <div className="mx-auto max-w-3xl px-6 py-12 sm:px-8">
+      <div
+        role="list"
+        aria-label="Portfolio Timeline"
+        className="flex flex-col"
+      >
+        {items.map((item, i) => (
+          <TimelineItem
+            key={i}
+            index={i}
+            item={item}
+            isLast={i === items.length - 1}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

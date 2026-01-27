@@ -187,212 +187,217 @@ const About = () => {
   const funFactsAnimationTime = funFacts.length * 0.1;
 
   return (
-    <div className="px-6 py-6 lg:px-32">
-      <h1 className="font-outfit text-content mb-6 text-2xl font-bold md:text-3xl">
-        About Me
-      </h1>
+    <div className="px-6 py-12">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="font-outfit text-content mb-8 text-2xl font-bold md:text-3xl">
+          About Me
+        </h1>
 
-      <motion.div
-        ref={paragraphsRef}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={paragraphsInView ? "visible" : "hidden"}
-      >
-        {paragraphs.map((text, i) => (
+        <motion.div
+          ref={paragraphsRef}
+          variants={staggerContainer}
+          initial="hidden"
+          animate={paragraphsInView ? "visible" : "hidden"}
+        >
+          {paragraphs.map((text, i) => (
+            <motion.p
+              key={i}
+              variants={fadeUp}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="font-geist-mono text-content mb-6 text-base md:text-xl"
+            >
+              {text}
+            </motion.p>
+          ))}
+        </motion.div>
+
+        <motion.div
+          ref={timelineRef}
+          variants={staggerContainer}
+          initial="hidden"
+          animate={timelineInView ? "visible" : "hidden"}
+          className="mt-8"
+        >
           <motion.p
-            key={i}
             variants={fadeUp}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="font-geist-mono text-content mb-6 text-base md:text-xl"
+            className="font-geist-mono text-primary mb-4 text-base font-bold uppercase md:text-xl"
           >
-            {text}
+            Education
           </motion.p>
-        ))}
-      </motion.div>
-
-      <motion.div
-        ref={timelineRef}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={timelineInView ? "visible" : "hidden"}
-        className="mt-8"
-      >
-        <motion.p
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-primary mb-4 text-base font-bold uppercase md:text-xl"
-        >
-          Education
-        </motion.p>
-        <div className="pl-6 md:pl-14">
-          <Timeline items={timelineItems} visibleCount={timelineItems.length} />
-        </div>
-      </motion.div>
-
-      <motion.div
-        ref={languagesRef}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={languagesInView ? "visible" : "hidden"}
-        className="mt-8 mb-16"
-      >
-        <motion.p
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
-        >
-          Programming Languages
-        </motion.p>
-        <motion.div
-          className="mt-8 ml-8 flex flex-wrap gap-2"
-          variants={staggerContainer}
-        >
-          {programmingLanguages.map((lang, i) => (
-            <motion.div
-              key={lang}
-              variants={fadeUp}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <TechBadge techString={lang} textSize="md" />
-            </motion.div>
-          ))}
+          <div className="pl-6 md:pl-14">
+            <Timeline
+              items={timelineItems}
+              visibleCount={timelineItems.length}
+            />
+          </div>
         </motion.div>
-      </motion.div>
-      <motion.div
-        ref={toolsRef}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={toolsInView ? "visible" : "hidden"}
-        className="mt-8 mb-16"
-      >
-        <motion.p
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
-        >
-          Tools & Frameworks
-        </motion.p>
+
         <motion.div
-          className="mt-8 ml-8 flex flex-wrap gap-2"
+          ref={languagesRef}
           variants={staggerContainer}
+          initial="hidden"
+          animate={languagesInView ? "visible" : "hidden"}
+          className="mt-8 mb-16"
         >
-          {toolsFrameworks.map((lang, i) => (
-            <motion.div
-              key={lang}
-              variants={fadeUp}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <TechBadge techString={lang} textSize="md" />
-            </motion.div>
-          ))}
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
+          >
+            Programming Languages
+          </motion.p>
+          <motion.div
+            className="mt-8 ml-8 flex flex-wrap gap-2"
+            variants={staggerContainer}
+          >
+            {programmingLanguages.map((lang, i) => (
+              <motion.div
+                key={lang}
+                variants={fadeUp}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <TechBadge techString={lang} textSize="md" />
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        ref={skillsRef}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={skillsInView ? "visible" : "hidden"}
-        className="mt-8 mb-16"
-      >
-        <motion.p
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
-        >
-          Skills
-        </motion.p>
         <motion.div
-          className="mt-8 ml-8 flex flex-wrap gap-2"
+          ref={toolsRef}
           variants={staggerContainer}
+          initial="hidden"
+          animate={toolsInView ? "visible" : "hidden"}
+          className="mt-8 mb-16"
         >
-          {skills.map((skill, i) => (
-            <motion.div
-              key={skill}
-              variants={fadeUp}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <span className="font-geist-mono bg-primary text-md inline-flex items-center rounded-full px-3 py-1 font-normal text-gray-200 uppercase shadow-sm">
-                {skill}
-              </span>
-            </motion.div>
-          ))}
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
+          >
+            Tools & Frameworks
+          </motion.p>
+          <motion.div
+            className="mt-8 ml-8 flex flex-wrap gap-2"
+            variants={staggerContainer}
+          >
+            {toolsFrameworks.map((lang, i) => (
+              <motion.div
+                key={lang}
+                variants={fadeUp}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <TechBadge techString={lang} textSize="md" />
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
 
-      <motion.div
-        ref={funFactsRef}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={funFactsInView ? "visible" : "hidden"}
-        className="mt-8"
-      >
-        <motion.p
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
-        >
-          Fun Facts
-        </motion.p>
-        <motion.ul
+        <motion.div
+          ref={skillsRef}
           variants={staggerContainer}
-          className="font-geist-mono text-muted big-bullets mb-8 list-disc pl-8 text-lg md:text-xl"
+          initial="hidden"
+          animate={skillsInView ? "visible" : "hidden"}
+          className="mt-8 mb-16"
         >
-          {funFacts.map((fact, i) => (
-            <motion.li
-              key={i}
-              variants={fadeUp}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="mb-2"
-            >
-              <span>{fact}</span>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </motion.div>
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
+          >
+            Skills
+          </motion.p>
+          <motion.div
+            className="mt-8 ml-8 flex flex-wrap gap-2"
+            variants={staggerContainer}
+          >
+            {skills.map((skill, i) => (
+              <motion.div
+                key={skill}
+                variants={fadeUp}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <span className="font-geist-mono bg-primary text-md inline-flex items-center rounded-full px-3 py-1 font-normal text-gray-200 uppercase shadow-sm">
+                  {skill}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
 
-      <motion.div
-        ref={photosRef}
-        variants={{
-          hidden: {},
-          visible: {
-            transition: {
-              delayChildren: funFactsAnimationTime,
-              staggerChildren: 0.18,
+        <motion.div
+          ref={funFactsRef}
+          variants={staggerContainer}
+          initial="hidden"
+          animate={funFactsInView ? "visible" : "hidden"}
+          className="mt-8"
+        >
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
+          >
+            Fun Facts
+          </motion.p>
+          <motion.ul
+            variants={staggerContainer}
+            className="font-geist-mono text-muted big-bullets mb-8 list-disc pl-8 text-lg md:text-xl"
+          >
+            {funFacts.map((fact, i) => (
+              <motion.li
+                key={i}
+                variants={fadeUp}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="mb-2"
+              >
+                <span>{fact}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </motion.div>
+
+        <motion.div
+          ref={photosRef}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                delayChildren: funFactsAnimationTime,
+                staggerChildren: 0.18,
+              },
             },
-          },
-        }}
-        initial="hidden"
-        animate={photosInView ? "visible" : "hidden"}
-        className="mt-8"
-      >
-        <motion.p
-          variants={photoFade}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
+          }}
+          initial="hidden"
+          animate={photosInView ? "visible" : "hidden"}
+          className="mt-8"
         >
-          Photos
-        </motion.p>
-        <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
-          {photos.map((photo, i) => (
-            <motion.div
-              key={i}
-              variants={photoFade}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                loading="lazy"
-                className="mb-2 rounded-lg object-cover shadow-md md:h-100 md:w-100"
-              />
-              <p className="font-geist-mono text-muted text-left text-sm">
-                {photo.caption}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+          <motion.p
+            variants={photoFade}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
+          >
+            Photos
+          </motion.p>
+          <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+            {photos.map((photo, i) => (
+              <motion.div
+                key={i}
+                variants={photoFade}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  className="mb-2 rounded-lg object-cover shadow-md md:h-100 md:w-100"
+                />
+                <p className="font-geist-mono text-muted text-left text-sm">
+                  {photo.caption}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };

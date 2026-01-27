@@ -1,176 +1,262 @@
 @import "tailwindcss";
 
-
 @theme {
-    --color-background: #f0f0f0;
-    --color-content: #000000;
-    --color-primary: #008080;
-    --color-secondary: #de8472;
-    --color-muted: #18181b;
-    --color-surface: #e4e4e7;
+  --color-accent: #0ea5e9; /* sky-500 */
+  --color-accent-dark: #0369a1; /* sky-700 */
+  --color-background: #000000;
+  --color-surface: #0a0a0a;
+  --color-content: #ededed;
+  --color-muted: #666666;
+  --color-border: #333333;
 
-    --font-family-geist-mono: "Geist Mono", monospace;
-    --font-family-outfit: "Outfit", sans-serif;
+  --font-family-inter: "Inter", sans-serif;
+  --font-family-geist: "Geist", sans-serif;
+  --font-family-geist-mono: "Geist Mono", monospace;
 }
 
-@variant dark (&:where(.dark, .dark *));
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-@layer theme {
-    .dark {
-        --color-background: #000000;
-        --color-content: #f0f0f0;
-        --color-primary: #008080;
-        --color-secondary: #de8472;
-        --color-muted: #e4e4e7;
-        --color-surface: #18181b; 
-    }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Geist", "Inter", sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-content);
+    overflow-x: hidden;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:active {
+    color: var(--color-accent-dark);
+  }
 }
 
-@font-face {
-    font-family: 'Geist Mono';
-    src: url('/fonts/GeistMono-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
+@layer components {
+  /* Navigation links */
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    transition: color 300ms ease-in-out;
+    color: var(--color-muted);
+  }
 
-@font-face {
-    font-family: 'Geist Mono';
-    src: url('/fonts/GeistMono-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
+  .nav-link:hover {
+    color: var(--color-content);
+  }
 
-@font-face {
-    font-family: 'Outfit';
-    src: url('/fonts/Outfit-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Outfit';
-    src: url('/fonts/Outfit-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+  .nav-link.active {
+    color: var(--color-content);
+  }
 }
 
 @layer utilities {
-    .font-geist-mono {
-        font-family: 'Geist Mono', monospace;
-    }
-    
-    .font-outfit {
-        font-family: 'Outfit', sans-serif;
-    }
+  .font-inter {
+    font-family: "Inter", sans-serif;
+  }
+
+  .font-geist {
+    font-family: "Geist", sans-serif;
+  }
+
+  .font-geist-mono {
+    font-family: "Geist Mono", monospace;
+  }
 }
 
 /* Custom animations and effects */
 .typing-cursor::after {
-    content: "_";
-    color: var(--color-primary);
+  content: "_";
+  color: #0ea5e9;
 }
 
 .tree-cursor::after {
-    content: "█";
-    color: var(--color-primary);
+  content: "█";
+  color: #0ea5e9;
 }
-
-
 
 /* Blinking animation when idle */
 .typing-blink::after {
-    animation: blink 800ms step-end infinite;
+  animation: blink 800ms step-end infinite;
 }
 
 /* Solid cursor when typing (no animation) */
 .typing-pause::after {
-    opacity: 1;
-    animation: none;
+  opacity: 1;
+  animation: none;
 }
 
 @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-}
-
-@layer components {
-    /* Navigation links */
-    .nav-link {
-        position: relative;
-        display: inline-block;
-        transition: color 300ms ease-in-out;
-    }
-    
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: #de8472;
-        transition: width 300ms ease-in-out;
-    }
-    
-    .nav-link:hover::after {
-        width: 100%;
-    }
-
-    .dark .nav-link::after {
-        background-color: #de8472;
-    }
-
-    .nav-link:visited {
-        color: #008080;
-    }
-    
-    .nav-link:visited:hover {
-        color: #de8472;
-    }
-
-    .nav-link.active::after {
-        width: 100%;
-        background-color: #008080;
-    }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Base link styles */
 @layer base {
-    a:link { 
-        color: #008080;
-        text-decoration: none; 
-    }
-    
-    a:visited { 
-        color: #de8472; 
-        text-decoration: none; 
-    }
-    
-    a:hover { 
-        color: #de8472; 
-        text-decoration: none; 
-    }
-    
-    a:active { 
-        color: #de8472; 
-        text-decoration: none; 
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Geist", "Inter", sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-content);
+    overflow-x: hidden;
+  }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:active {
+    color: var(--color-accent-dark);
+  }
 }
 
-body {
+@layer utilities {
+  .font-inter {
+    font-family: "Inter", sans-serif;
+  }
+
+  .font-geist {
+    font-family: "Geist", sans-serif;
+  }
+
+  .font-geist-mono {
+    font-family: "Geist Mono", monospace;
+  }
+}
+
+/* Custom animations and effects */
+.typing-cursor::after {
+  content: "_";
+  color: #0ea5e9;
+}
+
+.tree-cursor::after {
+  content: "█";
+  color: #0ea5e9;
+}
+
+/* Blinking animation when idle */
+.typing-blink::after {
+  animation: blink 800ms step-end infinite;
+}
+
+/* Solid cursor when typing (no animation) */
+.typing-pause::after {
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@layer components {
+  /* Navigation links */
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    transition: color 300ms ease-in-out;
+    color: var(--color-muted);
+  }
+
+  .nav-link:hover {
+    color: var(--color-content);
+  }
+
+  .nav-link.active {
+    color: var(--color-content);
+  }
+}
+
+/* Base link styles */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-content);
     overflow-x: hidden;
+  }
+
+  a:link {
+    color: #1d4ed8;
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: #1d4ed8;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+
+  a:active {
+    color: #1d4ed8;
+    text-decoration: none;
+  }
 }
 
 /* Hide scrollbar on the carousel container if needed */
 .overflow-visible {
-    scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; /* Firefox */
 }
 .overflow-visible::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+  display: none; /* Chrome, Safari */
 }
 
 .hamburger {
@@ -213,6 +299,6 @@ body {
   /* Remove flex/gap for default block flow */
 }
 .big-bullets li::marker {
-  font-size: 1.5em; /* large but not overwhelming */
-  color: var(--color-secondary);
+  font-size: 1.5em;
+  color: #1d4ed8;
 }

@@ -210,7 +210,7 @@ const icons = {
 };
 
 const TechBadge = ({ techString, textSize = "xs" }) => {
-  const baseClass = `font-geist-mono px-3 py-1 bg-primary hover:bg-secondary transition-colors duration-300 text-gray-200 rounded-full text-${textSize} uppercase shadow-sm inline-flex items-center font-normal`;
+  const baseClass = `font-geist-mono px-3 py-1 bg-surface border border-border hover:border-accent transition-colors duration-300 text-content rounded-full text-${textSize} uppercase inline-flex items-center font-normal`;
 
   const tech = icons[techString];
   if (tech) {
