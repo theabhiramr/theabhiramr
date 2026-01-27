@@ -23,18 +23,14 @@ export default function LandingPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const isScrollingRef = useRef(false);
-  const lastUserNavigationRef = useRef(location.pathname);
+  const hasInitializedRef = useRef(false);
 
   useEffect(() => {
-    // Only scroll if this is a user navigation (not from scroll listener)
-    if (
-      location.state?.fromScroll ||
-      lastUserNavigationRef.current === location.pathname
-    ) {
+    // Skip if this is from the scroll listener
+    if (location.state?.fromScroll) {
       return;
     }
 
-    lastUserNavigationRef.current = location.pathname;
     const sectionId = pathToSection[location.pathname] || "home";
     const section = document.getElementById(sectionId);
 
@@ -46,10 +42,11 @@ export default function LandingPage() {
         // Reset flag after scroll completes
         setTimeout(() => {
           isScrollingRef.current = false;
+          hasInitializedRef.current = true;
         }, 1000);
       }, 100);
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.state]);
 
   // Update URL based on scroll position
   useEffect(() => {

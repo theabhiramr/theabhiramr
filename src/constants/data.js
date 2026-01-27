@@ -1,8 +1,17 @@
 import React, { useRef } from "react";
 import { epiqsolutionsJpeg } from "../assets";
 import { evbuddyJpeg } from "../assets";
+import { bmsJpeg } from "../assets";
 
 const workExperience = [
+  {
+    title: "Cloud Developer Co-op",
+    subtitle: "Bristol Myers Squibb",
+    dates: "Upcoming",
+    location: "Princeton, NJ",
+    image: bmsJpeg,
+    link: "https://www.bms.com",
+  },
   {
     title: "Software Development Engineering Co-op",
     subtitle: "Epiq Solutions",
@@ -54,8 +63,6 @@ const projects = [
       "BeautifulSoup",
       "XGBoost",
     ],
-    additional:
-      "<a href='https://youtu.be/4ujS__0MQMo?si=xgxWBxWfjvmJGPjO'>Go Birds 🦅🦅🦅</a>",
     githubLink: "https://github.com/drexelai/nfl-prediction-team-1",
   },
   {
@@ -78,7 +85,7 @@ const projects = [
       "Nativewind",
     ],
     additional:
-      "This app is still in development and the backend needs to be hosted, so stay tuned for release this winter!",
+      "This app is still in development and the backend needs to be hosted, so stay tuned for release this summer!",
     link: "https://chinmayajanata.org",
     githubLink: "https://github.com/Project-Janatha/Project-Janatha",
   },
@@ -134,7 +141,7 @@ const projects = [
     ],
     technologies: ["JavaScript", "CSS", "HTML", "Firebase", "OpenAI API"],
     additional:
-      "Due to Firebase restrictions, the backend is unfortunately no longer working, however the frontend is functional.",
+      "Unfortunately, due to Firebase restrictions, the app is no longer functional.",
     link: "https://crashmath-16dc6.web.app/",
   },
 ];

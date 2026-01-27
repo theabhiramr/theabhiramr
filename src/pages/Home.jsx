@@ -13,9 +13,9 @@ import {
 } from "../assets";
 
 const paragraphs = [
-  "Honors CS at Drexel with a focus on AI/ML and Systems. Recently studied at Universitat Pompeu Fabra in Barcelona—an experience that reshaped how I view global engineering.",
-  "I specialize in bridging the gap between LLMs and practical education (DragonLearn) and building community-driven social platforms (Project Janata).",
-  "From developing V2V charging systems at EV Buddy to streamlining SDR production at Epiq Solutions, I thrive in high-stakes engineering environments.",
+  "I am an Honors CS at Drexel with a focus on AI/ML and Systems. I recently studied at Universitat Pompeu Fabra in Barcelona — an experience that reshaped how I view global software development.",
+  "I have worked on bridging the gap between LLMs and practical education and building community-driven social platforms in my projects. I believe that if there is a better way to do something, I can build it.",
+  "From developing V2V charging systems at EV Buddy to streamlining SDR production at Epiq Solutions, I thrive in high-stakes engineering environments. I hope to continue challenging myself during my upcoming co-op at Bristol Myers Squibb this summer.",
 ];
 
 const timelineItems = [
@@ -79,6 +79,15 @@ const toolsFrameworks = [
   "Jupyter",
 ];
 
+const skills = [
+  "Full Stack Development",
+  "Embedded Systems",
+  "Cloud Computing",
+  "DevOps",
+  "Agile",
+  "Kanban",
+];
+
 const photos = [
   {
     src: aboutPic1Jpg,
@@ -113,7 +122,7 @@ const stagger = {
 const Home = () => {
   const [skipped, setSkipped] = useState(false);
   const bioText =
-    "Computer Science honors student at Drexel University with full-stack development, AI/ML and embedded experience across production systems and user-facing applications. Seeking software engineering internship to build impactful, scalable technologies.";
+    "I want to use my skills to build impactful, scalable technologies.";
   const { displayText, isTyping } = useTypewriter(bioText, 40, 500);
 
   const aboutRef = useRef(null);
@@ -166,7 +175,7 @@ const Home = () => {
             variants={stagger}
             className="flex flex-wrap gap-2 pt-2 lg:gap-4"
           >
-            {["Computer Science", "Business Analytics", "AI/ML"].map((tag) => (
+            {skills.map((tag) => (
               <span
                 key={tag}
                 className="text-muted/50 border-border rounded-full border px-3 py-1 text-[9px] font-bold tracking-widest uppercase lg:text-[10px]"

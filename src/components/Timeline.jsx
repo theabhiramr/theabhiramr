@@ -110,28 +110,26 @@ function TimelineItem({ item, isLast, index }) {
         </div>
       )}
 
-      {/* Additional Info & GitHub Link */}
-      {(item.additional || item.githubLink) && (
-        <div className="flex flex-wrap items-center gap-4 pt-1">
-          {item.githubLink && (
-            <a
-              href={item.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted hover:text-accent group inline-flex items-center gap-1.5 text-xs transition-colors duration-200"
-            >
-              <SiGithub
-                size={14}
-                className="transition-transform group-hover:scale-110"
-              />
-              <span>GitHub</span>
-            </a>
-          )}
-          {item.additional && (
-            <div className="text-muted text-[11px] sm:text-xs">
-              <span dangerouslySetInnerHTML={{ __html: item.additional }} />
-            </div>
-          )}
+      {/* GitHub Link */}
+      {item.githubLink && (
+        <a
+          href={item.githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-muted hover:text-accent group inline-flex w-fit items-center gap-1.5 text-xs transition-colors duration-200"
+        >
+          <SiGithub
+            size={14}
+            className="transition-transform group-hover:scale-110"
+          />
+          <span>GitHub</span>
+        </a>
+      )}
+
+      {/* Additional Info */}
+      {item.additional && (
+        <div className="text-muted text-[11px] sm:text-xs">
+          <span dangerouslySetInnerHTML={{ __html: item.additional }} />
         </div>
       )}
     </div>
