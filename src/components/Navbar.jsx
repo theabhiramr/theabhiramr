@@ -65,7 +65,7 @@ export default function Navbar() {
                       e.preventDefault();
                       handleNavClick(item.path);
                     }}
-                    className="text-content hover:text-accent block w-full text-left text-3xl font-bold tracking-tighter transition-colors touch-manipulation"
+                    className="text-content hover:text-accent block w-full touch-manipulation text-left text-3xl font-bold tracking-tighter transition-colors"
                     style={{ WebkitTapHighlightColor: "transparent" }}
                   >
                     {item.name}
