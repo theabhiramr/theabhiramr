@@ -90,7 +90,7 @@ const projects = [
       "Nativewind",
     ],
     additional:
-      "This app is still in development and the backend needs to be hosted, so stay tuned for release this summer!",
+      "This app is still in development, so stay tuned for release this summer!",
     link: "https://chinmayajanata.org",
     githubLink: "https://github.com/Project-Janatha/Project-Janatha",
   },
