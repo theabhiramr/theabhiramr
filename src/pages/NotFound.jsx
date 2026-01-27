@@ -4,8 +4,8 @@ import { FaArrowRight } from "react-icons/fa6";
 
 const errorText = `
 <span class="text-[#f48771]" style="font-weight: 600;">Website received signal SIGSEGV, Segmentation fault (core dumped)</span><br/>
-<span class="text-[#cccccc]">Aw shucks! The page you requested has caused a segmentation fault.<br/>
-This usually occurs when trying to access invalid memory.<br/>
+<span class="text-[#cccccc]">Aw shucks! The page you requested could not be found.<br/>
+This usually means the URL is incorrect or the page has been moved.<br/> <br/>
 ERRNO 404 Page not found</span>
 `;
 

@@ -80,19 +80,19 @@ export default function Footer() {
                 href="https://reactjs.org/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent transition-colors duration-300 hover:text-[#61DAFB]"
+                className="text-accent/50 hover:text-accent transition-colors duration-300 hover:text-[#61DAFB]"
                 aria-label="React"
               >
-                <SiReact size={16} />
+                <SiReact size={12} />
               </a>
               <a
                 href="https://tailwindcss.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent transition-colors duration-300 hover:text-[#38BDF8]"
+                className="text-accent/50 hover:text-accent transition-colors duration-300 hover:text-[#38BDF8]"
                 aria-label="Tailwind CSS"
               >
-                <SiTailwindcss size={16} />
+                <SiTailwindcss size={12} />
               </a>
             </div>
           </div>
