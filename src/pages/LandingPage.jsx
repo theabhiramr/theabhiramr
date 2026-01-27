@@ -27,7 +27,10 @@ export default function LandingPage() {
 
   useEffect(() => {
     // Only scroll if this is a user navigation (not from scroll listener)
-    if (location.state?.fromScroll || lastUserNavigationRef.current === location.pathname) {
+    if (
+      location.state?.fromScroll ||
+      lastUserNavigationRef.current === location.pathname
+    ) {
       return;
     }
 
