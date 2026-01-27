@@ -84,9 +84,10 @@ const projects = [
       "JavaScript",
       "React",
       "ExpressJS",
+      "AWS DynamoDB",
+      "AWS EC2",
       "Expo",
       "NodeJS",
-      "Vercel",
       "Nativewind",
     ],
     additional:

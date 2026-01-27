@@ -28,7 +28,7 @@ import { FaNodeJs, FaHtml5 } from "react-icons/fa6";
 import { TbBrandCSharp, TbBrandVite } from "react-icons/tb";
 import { RiFirebaseFill } from "react-icons/ri";
 import { MdCss } from "react-icons/md";
-import { FaJava, FaRProject } from "react-icons/fa";
+import { FaAws, FaJava, FaRProject } from "react-icons/fa";
 import { VscVscode } from "react-icons/vsc";
 
 const iconSize = 12;
@@ -207,6 +207,16 @@ const icons = {
     label: "Scikit-learn",
   },
   XGBoost: { url: "https://xgboost.ai/", icon: "", label: "XGBoost" },
+  "AWS DynamoDB": {
+    url: "https://aws.amazon.com/dynamodb/",
+    icon: <FaAws size={iconSize} className="mr-2" />,
+    label: "AWS DynamoDB",
+  },
+  "AWS EC2": {
+    url: "https://aws.amazon.com/ec2/",
+    icon: <FaAws size={iconSize} className="mr-2" />,
+    label: "AWS EC2",
+  },
 };
 
 const TechBadge = ({ techString, textSize = "xs" }) => {
