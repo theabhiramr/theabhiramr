@@ -54,7 +54,7 @@ const Contact = () => {
             variants={staggerContainer}
             className="flex flex-col items-start gap-4"
             autoComplete="off"
-            action="https://formspree.io/f/YOUR_FORM_ID"
+            action="https://formspree.io/f/mgvnrern"
             method="POST"
           >
             {/* Name fields in a flex row */}
