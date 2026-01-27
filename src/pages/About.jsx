@@ -1,6 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { Timeline, TechBadge } from "../components";
-import { drexelJpeg, hhsPng, upfPng, aboutPic1Jpg, aboutPic2Jpg, aboutPic3Jpg } from "../assets";
+import {
+  drexelJpeg,
+  hhsPng,
+  upfPng,
+  aboutPic1Jpg,
+  aboutPic2Jpg,
+  aboutPic3Jpg,
+} from "../assets";
 import { motion, useInView } from "framer-motion";
 
 const paragraphs = [
@@ -16,10 +23,11 @@ const timelineItems = [
     location: "Philadelphia, PA",
     dates: "Sep 2022 - Present",
     minor: "Business Analytics",
-    honorsAwards: "Dean's List (2022), Pennoni Honors Program, A.J. Drexel Scholarship",
+    honorsAwards:
+      "Dean's List (2022), Pennoni Honors Program, A.J. Drexel Scholarship",
     activities: "Drexel Society of Artificial Intelligence",
     image: drexelJpeg,
-    link: "https://drexel.edu/cs"
+    link: "https://drexel.edu/cs",
   },
   {
     title: "Universitat Pompeu Fabra",
@@ -28,7 +36,7 @@ const timelineItems = [
     dates: "Jan 2025 - Mar 2025",
     activities: "Erasmus Student Network",
     image: upfPng,
-    link: "https://www.upf.edu/web/incoming"
+    link: "https://www.upf.edu/web/incoming",
   },
   {
     title: "Hightstown High School",
@@ -37,8 +45,8 @@ const timelineItems = [
     honorsAwards: "Math Honors Society, Honor Roll, AP Capstone Diploma",
     activities: "Robotics, SAATHH, DECA, Track & Field",
     image: hhsPng,
-    link: "https://www.ewrsd.org/o/hhs"
-  }
+    link: "https://www.ewrsd.org/o/hhs",
+  },
 ];
 
 const programmingLanguages = [
@@ -51,7 +59,7 @@ const programmingLanguages = [
   "JavaScript",
   "TypeScript",
   "Assembly",
-  "R"
+  "R",
 ];
 
 const toolsFrameworks = [
@@ -67,19 +75,19 @@ const toolsFrameworks = [
   "LangChain",
   "OpenAI API",
   "PyTorch",
-  "Jupyter"
+  "Jupyter",
 ];
 
 const skills = [
-  'Object-Oriented Programming',
-  'Data Structures & Algorithms',
-  'Machine Learning',
-  'Full Stack Development',
-  'Test Driven Development',
-  'Embedded Systems',
-  'Version Control',
-  'Agile',
-  'Kanban'
+  "Object-Oriented Programming",
+  "Data Structures & Algorithms",
+  "Machine Learning",
+  "Full Stack Development",
+  "Test Driven Development",
+  "Embedded Systems",
+  "Version Control",
+  "Agile",
+  "Kanban",
 ];
 
 const funFacts = [
@@ -88,54 +96,54 @@ const funFacts = [
   "I also enjoy staying physically active, whether it be exercising at the gym, playing basketball, or going on a hike.",
   "I am an avid NFL and College Football watcher. My teams are the Eagles and Rutgers. Yes, I enjoy only pain and suffering.",
   "Since like 5 years ago, I have become interested in comics, especially those from DC in recent years.",
-  "Sichuan food is goated."
+  "Sichuan food is goated.",
 ];
 
 const photos = [
   {
     src: aboutPic1Jpg,
     alt: "Montjuic, Barcelona",
-    caption: "View from Montjuic in Barcelona, Spain"
+    caption: "View from Montjuic in Barcelona, Spain",
   },
   {
     src: aboutPic2Jpg,
     alt: "Amber Fort, India",
-    caption: "View of Amber Fort in Jaipur, Rajasthan, India"
+    caption: "View of Amber Fort in Jaipur, Rajasthan, India",
   },
   {
     src: aboutPic3Jpg,
     alt: "A dog",
-    caption: "My dog, Aria (She want a snuggle)"
-  }
+    caption: "My dog, Aria (She want a snuggle)",
+  },
 ];
 
 // Framer Motion variants
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0 }
+  visible: { opacity: 1, y: 0 },
 };
 
 const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.25
-    }
-  }
+      staggerChildren: 0.25,
+    },
+  },
 };
 
 const photoStagger = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.18 // adjust for smoother stagger
-    }
-  }
+      staggerChildren: 0.18, // adjust for smoother stagger
+    },
+  },
 };
 
 const photoFade = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
 const About = () => {
@@ -156,21 +164,31 @@ const About = () => {
 
   // Use useInView for each section
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
-  const paragraphsInView = useInView(paragraphsRef, { once: true, margin: "-100px" });
-  const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
-  const languagesInView = useInView(languagesRef, { once: true, margin: "-100px" });
+  const paragraphsInView = useInView(paragraphsRef, {
+    once: true,
+    margin: "-100px",
+  });
+  const timelineInView = useInView(timelineRef, {
+    once: true,
+    margin: "-100px",
+  });
+  const languagesInView = useInView(languagesRef, {
+    once: true,
+    margin: "-100px",
+  });
   const toolsInView = useInView(toolsRef, { once: true, margin: "-100px" });
   const skillsInView = useInView(skillsRef, { once: true, margin: "-100px" });
-  const funFactsInView = useInView(funFactsRef, { once: true, margin: "-100px" });
+  const funFactsInView = useInView(funFactsRef, {
+    once: true,
+    margin: "-100px",
+  });
   const photosInView = useInView(photosRef, { once: true, margin: "-100px" });
 
   const funFactsAnimationTime = funFacts.length * 0.1;
 
   return (
-    <div className="px-6 lg:px-32 py-6">
-      <h1
-        className="font-outfit text-2xl md:text-3xl font-bold mb-6 text-content"
-      >
+    <div className="px-6 py-6 lg:px-32">
+      <h1 className="font-outfit text-content mb-6 text-2xl font-bold md:text-3xl">
         About Me
       </h1>
 
@@ -185,7 +203,7 @@ const About = () => {
             key={i}
             variants={fadeUp}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="font-geist-mono text-base md:text-xl text-content mb-6"
+            className="font-geist-mono text-content mb-6 text-base md:text-xl"
           >
             {text}
           </motion.p>
@@ -202,18 +220,15 @@ const About = () => {
         <motion.p
           variants={fadeUp}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-base md:text-xl font-bold uppercase mb-4 text-primary"
+          className="font-geist-mono text-primary mb-4 text-base font-bold uppercase md:text-xl"
         >
           Education
         </motion.p>
-        <div className="md:pl-14 pl-6">
-        <Timeline
-          items={timelineItems}
-          visibleCount={timelineItems.length}
-        />
+        <div className="pl-6 md:pl-14">
+          <Timeline items={timelineItems} visibleCount={timelineItems.length} />
         </div>
       </motion.div>
-      
+
       <motion.div
         ref={languagesRef}
         variants={staggerContainer}
@@ -224,12 +239,12 @@ const About = () => {
         <motion.p
           variants={fadeUp}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
         >
           Programming Languages
         </motion.p>
         <motion.div
-          className="flex flex-wrap gap-2 mt-8 ml-8"
+          className="mt-8 ml-8 flex flex-wrap gap-2"
           variants={staggerContainer}
         >
           {programmingLanguages.map((lang, i) => (
@@ -253,12 +268,12 @@ const About = () => {
         <motion.p
           variants={fadeUp}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
         >
           Tools & Frameworks
         </motion.p>
         <motion.div
-          className="flex flex-wrap gap-2 mt-8 ml-8"
+          className="mt-8 ml-8 flex flex-wrap gap-2"
           variants={staggerContainer}
         >
           {toolsFrameworks.map((lang, i) => (
@@ -283,12 +298,12 @@ const About = () => {
         <motion.p
           variants={fadeUp}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
         >
           Skills
         </motion.p>
         <motion.div
-          className="flex flex-wrap gap-2 mt-8 ml-8"
+          className="mt-8 ml-8 flex flex-wrap gap-2"
           variants={staggerContainer}
         >
           {skills.map((skill, i) => (
@@ -297,7 +312,7 @@ const About = () => {
               variants={fadeUp}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <span className='font-geist-mono px-3 py-1 bg-primary text-gray-200 rounded-full text-md uppercase shadow-sm inline-flex items-center font-normal'>
+              <span className="font-geist-mono bg-primary text-md inline-flex items-center rounded-full px-3 py-1 font-normal text-gray-200 uppercase shadow-sm">
                 {skill}
               </span>
             </motion.div>
@@ -315,13 +330,13 @@ const About = () => {
         <motion.p
           variants={fadeUp}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="font-geist-mono text-xl font-bold uppercase mb-4 text-primary"
+          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
         >
           Fun Facts
         </motion.p>
         <motion.ul
           variants={staggerContainer}
-          className="font-geist-mono text-lg md:text-xl list-disc mb-8 pl-8 text-muted big-bullets"
+          className="font-geist-mono text-muted big-bullets mb-8 list-disc pl-8 text-lg md:text-xl"
         >
           {funFacts.map((fact, i) => (
             <motion.li
@@ -343,9 +358,9 @@ const About = () => {
           visible: {
             transition: {
               delayChildren: funFactsAnimationTime,
-              staggerChildren: 0.18
-            }
-          }
+              staggerChildren: 0.18,
+            },
+          },
         }}
         initial="hidden"
         animate={photosInView ? "visible" : "hidden"}
@@ -354,11 +369,11 @@ const About = () => {
         <motion.p
           variants={photoFade}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="font-geist-mono text-xl uppercase font-bold mb-4 text-primary"
+          className="font-geist-mono text-primary mb-4 text-xl font-bold uppercase"
         >
           Photos
         </motion.p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+        <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {photos.map((photo, i) => (
             <motion.div
               key={i}
@@ -369,9 +384,11 @@ const About = () => {
                 src={photo.src}
                 alt={photo.alt}
                 loading="lazy"
-                className="md:w-100 md:h-100 object-cover rounded-lg shadow-md mb-2"
+                className="mb-2 rounded-lg object-cover shadow-md md:h-100 md:w-100"
               />
-              <p className="font-geist-mono text-left text-sm text-muted">{photo.caption}</p>
+              <p className="font-geist-mono text-muted text-left text-sm">
+                {photo.caption}
+              </p>
             </motion.div>
           ))}
         </div>

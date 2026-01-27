@@ -226,11 +226,7 @@ const TechBadge = ({ techString, textSize = "xs" }) => {
     );
   }
   // Fallback for unknown tech
-  return (
-    <span className={baseClass}>
-      {techString}
-    </span>
-  );
+  return <span className={baseClass}>{techString}</span>;
 };
 
 export default TechBadge;
