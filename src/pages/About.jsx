@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Timeline } from "../components";
-import { renderTechItem } from "../utils";
+import { Timeline, TechBadge } from "../components";
 import { drexelJpeg, hhsPng, upfPng, aboutPic1Jpg, aboutPic2Jpg, aboutPic3Jpg } from "../assets";
 import { motion, useInView } from "framer-motion";
 
@@ -239,7 +238,7 @@ const About = () => {
               variants={fadeUp}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              {renderTechItem(lang, 'md', 14)}
+              <TechBadge techString={lang} textSize="md" />
             </motion.div>
           ))}
         </motion.div>
@@ -268,7 +267,7 @@ const About = () => {
               variants={fadeUp}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              {renderTechItem(lang, 'md', 14)}
+              <TechBadge techString={lang} textSize="md" />
             </motion.div>
           ))}
         </motion.div>

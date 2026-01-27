@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { renderTechItem } from '../utils';
+import TechBadge from './TechBadge';
 import { SiGithub } from 'react-icons/si';
 
 const containerVariants = {
@@ -107,7 +107,7 @@ function TimelineItem({ item, isLast, isFirst, custom }) {
               variants={fadeUpVariant}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              {renderTechItem(tech)}
+              <TechBadge techString={tech} textSize="xs" />
             </motion.div>
           ))}
         </div>
