@@ -13,7 +13,7 @@ import {
 } from "../assets";
 
 const paragraphs = [
-  "I am an Honors CS at Drexel with a focus on AI/ML and Systems. I recently studied at Universitat Pompeu Fabra in Barcelona — an experience that reshaped how I view global software development.",
+  'I am an Honors CS student at <a href="https://drexel.edu/cs" className="text-muted hover:text-accent">Drexel University</a> with a focus on AI/ML and Systems. I recently studied at Universitat Pompeu Fabra in Barcelona — an experience that reshaped how I view global software development.',
   "I have worked on bridging the gap between LLMs and practical education and building community-driven social platforms in my projects. I believe that if there is a better way to do something, I can build it.",
   "From developing V2V charging systems at EV Buddy to streamlining SDR production at Epiq Solutions, I thrive in high-stakes engineering environments. I hope to continue challenging myself during my upcoming co-op at Bristol Myers Squibb this summer.",
 ];
@@ -148,7 +148,7 @@ export default function About() {
               >
                 <img
                   src={profileJpeg}
-                  alt="Abhi"
+                  alt="Abhi Ramachandran"
                   className="border-border h-24 w-24 rounded-2xl border object-cover grayscale-[0.5] transition-all duration-500 hover:grayscale-0 lg:h-36 lg:w-36"
                 />
               </a>
@@ -200,15 +200,76 @@ export default function About() {
             variants={stagger}
             className="space-y-4 lg:space-y-6"
           >
-            {paragraphs.map((text, i) => (
-              <motion.p
-                key={i}
-                variants={fadeUp}
-                className="text-muted font-inter text-[15px] leading-relaxed lg:text-lg"
+            <motion.p
+              variants={fadeUp}
+              className="text-muted font-inter text-[15px] leading-relaxed lg:text-lg"
+            >
+              I am an Honors CS student at{" "}
+              <a
+                href="https://drexel.edu/cs"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-muted hover:text-accent"
               >
-                {text}
-              </motion.p>
-            ))}
+                Drexel University
+              </a>{" "}
+              doing concentrations in AI/ML and Computer Systems. I recently
+              studied at{" "}
+              <a
+                href="https://www.upf.edu/en/"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-muted hover:text-accent"
+              >
+                Universitat Pompeu Fabra
+              </a>{" "}
+              in Barcelona — an experience that reshaped how I view global
+              software development.
+            </motion.p>
+            <motion.p
+              variants={fadeUp}
+              className="text-muted font-inter text-[15px] leading-relaxed lg:text-lg"
+            >
+              I have worked on bridging the gap between LLMs and practical
+              education and building community-driven social platforms in my
+              projects. I believe that if there is a better way to do something,
+              I can build it.
+            </motion.p>
+            <motion.p
+              variants={fadeUp}
+              className="text-muted font-inter text-[15px] leading-relaxed lg:text-lg"
+            >
+              From developing V2V charging systems at{" "}
+              <a
+                href="https://evbuddy.net"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-muted hover:text-accent"
+              >
+                EV Buddy
+              </a>{" "}
+              to streamlining SDR production at{" "}
+              <a
+                href="https://epiqsolutions.com"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-muted hover:text-accent"
+              >
+                Epiq Solutions
+              </a>
+              , I thrive in high-stakes engineering environments. I hope to
+              continue challenging myself during my upcoming co-op at{" "}
+              <a
+                Bristol
+                href="https://www.bms.com"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-muted hover:text-accent"
+              >
+                Bristol Myers Squibb
+              </a>{" "}
+              this summer.
+            </motion.p>
           </motion.div>
 
           {/* Education Mini-Timeline */}

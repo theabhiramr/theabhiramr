@@ -10,6 +10,11 @@ const workExperience = [
     dates: "Upcoming",
     location: "Princeton, NJ",
     image: bmsJpeg,
+    content: [
+      "Collaborate with cross-functional teams to design, develop, and deploy cloud-based solutions that enhance pharmaceutical research and development processes",
+      "Provide support in migrating legacy applications to cloud platforms, ensuring scalability, security, and compliance with industry standards",
+      "Engage in the usage of cutting-edge cloud technologies and services to optimize data management and analytics for improved decision-making",
+    ],
     link: "https://www.bms.com",
   },
   {
