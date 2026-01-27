@@ -33,7 +33,7 @@ export default function Navbar() {
   return (
     <>
       {/* Mobile Top Header */}
-      <div className="bg-background/80 border-border/50 fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b px-6 py-4 backdrop-blur-md lg:hidden">
+      <div className="bg-background/80 border-border/50 fixed top-0 left-0 z-[60] flex w-full items-center justify-between border-b px-6 py-4 backdrop-blur-md lg:hidden">
         <div className="flex items-center gap-3">
           <img
             src={theme === "dark" || theme === "system" ? logoDark : logoLight}
@@ -52,7 +52,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "tween", ease: "easeInOut", duration: 0.4 }}
-            className="bg-background fixed inset-0 z-40 overflow-y-auto lg:hidden"
+            className="bg-background fixed inset-0 z-50 overflow-y-auto lg:hidden"
           >
             <div className="flex h-full flex-col justify-between p-8 pt-20">
               <div className="space-y-8">

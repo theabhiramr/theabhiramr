@@ -12,7 +12,7 @@ const HamburgerMenu = ({ isOpen, toggle }) => {
   return (
     <button
       onClick={toggle}
-      className="hover:bg-content/5 relative z-50 flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300"
+      className="hover:bg-content/5 relative z-[70] flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300"
       aria-label="Toggle Menu"
     >
       <div className="flex h-5 w-5 flex-col items-center justify-center">
