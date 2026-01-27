@@ -30,7 +30,7 @@ const Resume = () => {
           animate="visible"
           className="font-geist mb-4 text-3xl font-bold"
         >
-          My Resume
+          Resume
         </motion.h1>
         <motion.p
           variants={fadeUp}
