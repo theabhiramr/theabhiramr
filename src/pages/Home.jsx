@@ -18,6 +18,85 @@ const paragraphs = [
   "From developing V2V charging systems at EV Buddy to streamlining SDR production at Epiq Solutions, I thrive in high-stakes engineering environments.",
 ];
 
+const timelineItems = [
+  {
+    title: "Drexel University",
+    subtitle: "B.S. in Computer Science",
+    location: "Philadelphia, PA",
+    dates: "Sep 2022 - Present",
+    minor: "Business Analytics",
+    honorsAwards:
+      "Dean's List (2022), Pennoni Honors Program, A.J. Drexel Scholarship",
+    activities: "Drexel Society of Artificial Intelligence",
+    image: drexelJpeg,
+    link: "https://drexel.edu/cs",
+  },
+  {
+    title: "Universitat Pompeu Fabra",
+    subtitle: "International Exchange - Engineering",
+    location: "Barcelona, Spain",
+    dates: "Jan 2025 - Mar 2025",
+    activities: "Erasmus Student Network",
+    image: upfPng,
+    link: "https://www.upf.edu/web/incoming",
+  },
+  {
+    title: "Hightstown High School",
+    location: "Hightstown, NJ",
+    dates: "Sep 2018 - Jun 2022",
+    honorsAwards: "Math Honors Society, Honor Roll, AP Capstone Diploma",
+    activities: "Robotics, SAATHH, DECA, Track & Field",
+    image: hhsPng,
+    link: "https://www.ewrsd.org/o/hhs",
+  },
+];
+
+const programmingLanguages = [
+  "Python",
+  "C",
+  "C++",
+  "Java",
+  "C#",
+  "Makefile",
+  "JavaScript",
+  "TypeScript",
+  "Assembly",
+  "R",
+];
+const toolsFrameworks = [
+  "VS Code",
+  "IntelliJ",
+  "PyCharm",
+  "Git",
+  "React",
+  "NextJS",
+  "Tailwind CSS",
+  "Expo",
+  "Firebase",
+  "LangChain",
+  "OpenAI API",
+  "PyTorch",
+  "Jupyter",
+];
+
+const photos = [
+  {
+    src: aboutPic1Jpg,
+    alt: "Montjuic, Barcelona",
+    caption: "View from Montjuic in Barcelona, Spain",
+  },
+  {
+    src: aboutPic2Jpg,
+    alt: "Amber Fort, India",
+    caption: "View of Amber Fort in Jaipur, Rajasthan, India",
+  },
+  {
+    src: aboutPic3Jpg,
+    alt: "A dog",
+    caption: "My dog, Aria (She want a snuggle)",
+  },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 15 },
   visible: {
@@ -34,40 +113,45 @@ const stagger = {
 const Home = () => {
   const [skipped, setSkipped] = useState(false);
   const bioText =
-    "I build intelligent systems, scalable architectures, and accessible digital experiences.";
-  const { displayText, isTyping, isComplete } = useTypewriter(bioText, 40, 500);
+    "Computer Science honors student at Drexel University with full-stack development, AI/ML and embedded experience across production systems and user-facing applications. Seeking software engineering internship to build impactful, scalable technologies.";
+  const { displayText, isTyping } = useTypewriter(bioText, 40, 500);
 
   const aboutRef = useRef(null);
   const isInView = useInView(aboutRef, { once: true, margin: "-100px" });
 
   const finalText = skipped ? bioText : displayText;
 
+  useEffect(() => {
+    document.title = "Abhi Ramachandran";
+  }, []);
+
   return (
-    <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:py-24">
-      {/* SECTION 1: THE INTEGRATED HERO */}
-      <section className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-20">
-        {/* Left Column: Identity & Hook (40%) */}
-        <div className="sticky top-24 space-y-8 lg:col-span-5">
+    <div className="mx-auto w-full max-w-7xl px-5 py-10 lg:px-8 lg:py-24">
+      <section className="flex flex-col gap-12 lg:grid lg:grid-cols-12 lg:gap-20">
+        {/* LEFT COLUMN: Sticky Identity (Desktop Only) */}
+        <div className="flex flex-col space-y-6 lg:sticky lg:top-24 lg:col-span-5 lg:h-fit">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <div className="relative inline-block">
               <img
                 src={profileJpeg}
                 alt="Abhi"
-                className="border-border h-24 w-24 rounded-2xl border object-cover grayscale-[0.5] transition-all duration-500 hover:grayscale-0"
+                className="border-border h-20 w-20 rounded-2xl border object-cover grayscale-[0.5] transition-all duration-500 hover:grayscale-0 lg:h-24 lg:w-24"
               />
-              <div className="bg-accent border-background absolute -right-2 -bottom-2 h-6 w-6 rounded-full border-4" />
+              <div className="bg-accent border-background absolute -right-1 -bottom-1 h-5 w-5 rounded-full border-[3px] lg:h-6 lg:w-6 lg:border-4" />
             </div>
 
-            <h1 className="text-content mt-8 text-4xl leading-none font-bold tracking-tighter lg:text-5xl">
-              Abhi <br /> <span className="text-muted/40">Ramachandran</span>
+            <h1 className="text-content mt-6 text-3xl leading-tight font-bold tracking-tighter lg:mt-8 lg:text-5xl">
+              Abhi <br className="block lg:block" />
+              <span className="text-muted/40"> Ramachandran</span>
             </h1>
           </motion.div>
 
+          {/* Typewriter Hook */}
           <div
-            className="min-h-[100px] cursor-pointer"
+            className="min-h-[80px] cursor-pointer lg:min-h-[100px]"
             onClick={() => setSkipped(true)}
           >
-            <p className="text-content max-w-sm font-mono text-lg leading-relaxed">
+            <p className="text-content max-w-sm font-mono text-base leading-relaxed lg:text-lg">
               <span className="text-accent font-bold">{">"} </span>
               {finalText}
               <span
@@ -80,13 +164,12 @@ const Home = () => {
             initial="hidden"
             animate="visible"
             variants={stagger}
-            className="flex gap-4 pt-4"
+            className="flex flex-wrap gap-2 pt-2 lg:gap-4"
           >
-            {/* Tech pill summary */}
-            {["AI/ML", "Systems", "React"].map((tag) => (
+            {["Computer Science", "Business Analytics", "AI/ML"].map((tag) => (
               <span
                 key={tag}
-                className="text-muted/50 border-border rounded-full border px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
+                className="text-muted/50 border-border rounded-full border px-3 py-1 text-[9px] font-bold tracking-widest uppercase lg:text-[10px]"
               >
                 {tag}
               </span>
@@ -94,19 +177,19 @@ const Home = () => {
           </motion.div>
         </div>
 
-        {/* Right Column: Narrative & Details (60%) */}
-        <div className="space-y-16 lg:col-span-7" ref={aboutRef}>
+        {/* RIGHT COLUMN: Narrative & Details */}
+        <div className="space-y-12 lg:col-span-7 lg:space-y-16" ref={aboutRef}>
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={stagger}
-            className="space-y-6"
+            className="space-y-4 lg:space-y-6"
           >
             {paragraphs.map((text, i) => (
               <motion.p
                 key={i}
                 variants={fadeUp}
-                className="text-muted font-inter text-base leading-relaxed lg:text-lg"
+                className="text-muted font-inter text-[15px] leading-relaxed lg:text-lg"
               >
                 {text}
               </motion.p>
@@ -119,26 +202,26 @@ const Home = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <h4 className="text-accent mb-8 text-[11px] font-bold tracking-[0.2em] uppercase">
-              Education Path
+            <h4 className="text-accent mb-6 text-[10px] font-bold tracking-[0.2em] uppercase lg:mb-8 lg:text-[11px]">
+              Education
             </h4>
-            <div className="border-border/50 border-l pl-4">
+            <div className="border-border/30 ml-1 border-l pl-4 lg:ml-0 lg:pl-6">
               <Timeline items={timelineItems} />
             </div>
           </motion.div>
 
           {/* Technical Grid */}
-          <div className="grid grid-cols-1 gap-10 pt-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-10 pt-4 sm:grid-cols-2 lg:pt-8">
             <motion.div
               variants={fadeUp}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
-              <h4 className="text-muted/60 mb-4 text-[11px] font-bold tracking-[0.2em] uppercase">
-                Core Stack
+              <h4 className="text-muted/60 mb-4 text-[10px] font-bold tracking-[0.2em] uppercase lg:text-[11px]">
+                Languages
               </h4>
-              <div className="flex flex-wrap gap-2">
-                {programmingLanguages.slice(0, 6).map((lang) => (
+              <div className="flex flex-wrap gap-1.5 lg:gap-2">
+                {programmingLanguages.map((lang) => (
                   <TechBadge key={lang} techString={lang} />
                 ))}
               </div>
@@ -149,42 +232,16 @@ const Home = () => {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
             >
-              <h4 className="text-muted/60 mb-4 text-[11px] font-bold tracking-[0.2em] uppercase">
-                Environment
+              <h4 className="text-muted/60 mb-4 text-[10px] font-bold tracking-[0.2em] uppercase lg:text-[11px]">
+                Tools & Frameworks
               </h4>
-              <div className="flex flex-wrap gap-2">
-                {toolsFrameworks.slice(0, 6).map((tool) => (
+              <div className="flex flex-wrap gap-1.5 lg:gap-2">
+                {toolsFrameworks.map((tool) => (
                   <TechBadge key={tool} techString={tool} />
                 ))}
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: THE VISUAL STORY (Photos) */}
-      <section className="border-border/30 mt-32 border-t pt-16">
-        <h4 className="text-muted/40 mb-12 text-center text-[11px] font-bold tracking-[0.2em] uppercase">
-          Global Perspectives
-        </h4>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {photos.map((photo, i) => (
-            <div
-              key={i}
-              className="group bg-surface border-border relative overflow-hidden rounded-2xl border"
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="aspect-[4/5] object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
-              />
-              <div className="from-background/90 absolute inset-0 flex flex-col justify-end bg-gradient-to-t via-transparent to-transparent p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <p className="text-content font-mono text-xs">
-                  {photo.caption}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
     </div>

@@ -187,7 +187,7 @@ const About = () => {
   const funFactsAnimationTime = funFacts.length * 0.1;
 
   return (
-    <div className="px-6 py-12">
+    <div className="py-12">
       <div className="mx-auto max-w-7xl">
         <h1 className="font-outfit text-content mb-8 text-2xl font-bold md:text-3xl">
           About Me

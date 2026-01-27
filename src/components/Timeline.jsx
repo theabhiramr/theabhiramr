@@ -174,7 +174,7 @@ export default function Timeline({ items = [] }) {
   if (!items.length) return null;
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-12 sm:px-8">
+    <div className="w-full">
       <div
         role="list"
         aria-label="Portfolio Timeline"

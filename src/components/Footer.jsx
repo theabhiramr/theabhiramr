@@ -48,7 +48,7 @@ export default function Footer() {
           {/* Terminal-style Path Link */}
           <div className="group">
             <a
-              href="/cs164"
+              href="/secret"
               className="text-muted group-hover:text-content flex items-center gap-2 font-mono text-[13px] transition-colors duration-300"
             >
               <span className="text-accent/50 group-hover:text-accent">~</span>

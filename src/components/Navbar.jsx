@@ -1,25 +1,43 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  FiSun,
-  FiMoon,
-  FiGithub,
-  FiLinkedin,
-  FiMail,
-  FiMenu,
-  FiX,
-} from "react-icons/fi";
-import { logoSvg } from "../assets"; // Keeping your logo asset
+import logoSvg from "../assets/logo.svg";
+import HamburgerMenu from "./HamburgerMenu";
 
 const navItems = [
-  { name: "About", path: "/about" },
-  { name: "Work", path: "/work-experience" },
-  { name: "Projects", path: "/projects" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", section: "home", path: "/" },
+  { name: "Work", section: "work", path: "/work" },
+  { name: "Projects", section: "projects", path: "/projects" },
+  { name: "Contact", section: "contact", path: "/contact" },
 ];
 
-export default function Sidebar({ activeSection, darkMode, toggleDarkMode }) {
+const SidebarContent = ({ includeLogo = true }) => (
+  <div className="flex h-full flex-col justify-between p-8 lg:p-16">
+    {/* Top Section: Branding */}
+    <div className="space-y-12">
+      <header className="space-y-4">
+        {includeLogo && (
+          <div className="flex items-center gap-4">
+            <img
+              src={logoSvg}
+              alt="Logo"
+              className="h-8 w-8 transition-transform hover:rotate-12"
+            />
+          </div>
+        )}
+      </header>
+    </div>
+  </div>
+);
+
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavClick = (path) => {
+    navigate(path);
+    setIsOpen(false);
+  };
 
   // Close mobile menu on resize
   useEffect(() => {
@@ -28,112 +46,14 @@ export default function Sidebar({ activeSection, darkMode, toggleDarkMode }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const SidebarContent = () => (
-    <div className="flex h-full flex-col justify-between p-8 lg:p-16">
-      {/* Top Section: Branding */}
-      <div className="space-y-12">
-        <header className="space-y-4">
-          <div className="flex items-center gap-4">
-            <img
-              src={logoSvg}
-              alt="Logo"
-              className="h-8 w-8 transition-transform hover:rotate-12"
-            />
-            <h1 className="text-content font-geist text-2xl font-bold tracking-tight">
-              Abhi Ramachandran
-            </h1>
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-content text-lg font-medium">
-              Full Stack Developer
-            </h2>
-            <p className="text-muted max-w-xs text-sm leading-relaxed">
-              Crafting high-performance, accessible digital experiences with a
-              focus on precision and user intent.
-            </p>
-          </div>
-        </header>
-
-        {/* Navigation: Linear/Brittany Chiang Style */}
-        <nav className="hidden lg:block">
-          <ul className="space-y-6">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.name.toLowerCase();
-              return (
-                <li key={item.name}>
-                  <a
-                    href={item.path}
-                    className="group flex items-center py-1 transition-all"
-                  >
-                    <span
-                      className={`mr-4 h-px transition-all duration-500 ease-out ${
-                        isActive
-                          ? "bg-content w-16"
-                          : "bg-muted group-hover:bg-content w-8 group-hover:w-16"
-                      }`}
-                    />
-                    <span
-                      className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors ${
-                        isActive
-                          ? "text-content"
-                          : "text-muted group-hover:text-content"
-                      }`}
-                    >
-                      {item.name}
-                    </span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </div>
-
-      {/* Bottom Section: Socials & Theme */}
-      <footer className="space-y-8">
-        <div className="flex items-center gap-6">
-          <SocialLink
-            href="https://github.com/theabhiramr"
-            icon={<FiGithub size={20} />}
-          />
-          <SocialLink
-            href="https://linkedin.com/in/theabhiramr/"
-            icon={<FiLinkedin size={20} />}
-          />
-          <SocialLink
-            href="mailto:theabhiramr@gmail.com"
-            icon={<FiMail size={20} />}
-          />
-          <div className="bg-border/50 mx-2 h-4 w-px" /> {/* Divider */}
-          <button
-            onClick={toggleDarkMode}
-            className="text-muted hover:text-accent p-1 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {darkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
-          </button>
-        </div>
-      </footer>
-    </div>
-  );
-
   return (
     <>
-      {/* Mobile Top Header (replaces the Navbar) */}
+      {/* Mobile Top Header */}
       <div className="bg-background/80 border-border/50 fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b px-6 py-4 backdrop-blur-md lg:hidden">
         <div className="flex items-center gap-3">
           <img src={logoSvg} alt="Logo" className="h-6" />
-          <span className="font-geist text-content text-sm font-bold tracking-wider uppercase">
-            Abhi Ramachandran
-          </span>
         </div>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-content p-2"
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
+        <HamburgerMenu isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -143,45 +63,28 @@ export default function Sidebar({ activeSection, darkMode, toggleDarkMode }) {
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="bg-background fixed inset-0 z-40 lg:hidden"
+            transition={{ type: "tween", ease: "easeInOut", duration: 0.4 }}
+            className="bg-background fixed inset-0 z-40 overflow-y-auto lg:hidden"
           >
             <div className="h-full pt-20">
               <div className="flex flex-col space-y-8 p-8">
                 {navItems.map((item) => (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className="text-content hover:text-accent text-3xl font-bold tracking-tighter transition-colors"
+                    onClick={() => handleNavClick(item.path)}
+                    className="text-content hover:text-accent text-left text-3xl font-bold tracking-tighter transition-colors"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
                 <div className="border-border/50 border-t pt-8">
-                  <SidebarContent />
+                  <SidebarContent includeLogo={false} />
                 </div>
               </div>
             </div>
           </motion.aside>
         )}
       </AnimatePresence>
-
-      {/* Desktop Sidebar */}
-      <aside className="border-border/10 fixed inset-y-0 left-0 hidden w-[45%] flex-col border-r lg:flex xl:w-[40%]">
-        <SidebarContent />
-      </aside>
     </>
   );
 }
-
-const SocialLink = ({ href, icon }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-muted hover:text-content transition-all hover:-translate-y-1"
-  >
-    {icon}
-  </a>
-);

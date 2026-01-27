@@ -21,7 +21,6 @@ const staggerContainer = {
 const Contact = () => {
   useEffect(() => {
     document.title = "Abhi Ramachandran | Contact";
-    window.scrollTo(0, 0);
   }, []);
 
   const resumeRef = useRef(null);
@@ -34,7 +33,7 @@ const Contact = () => {
   const [captchaValue, setCaptchaValue] = useState(null);
 
   return (
-    <div className="px-6 py-12">
+    <div className="py-12">
       <div className="mx-auto max-w-7xl">
         {/* Resume Section */}
         <motion.h1
