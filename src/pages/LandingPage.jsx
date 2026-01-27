@@ -1,21 +1,24 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Home from "./Home";
+import Home from "./About";
 import WorkExperience from "./WorkExperience";
 import Projects from "./Projects";
+import Resume from "./Resume";
 import Contact from "./Contact";
 
 const pathToSection = {
-  "/": "home",
+  "/": "about",
   "/work": "work",
   "/projects": "projects",
+  "/resume": "resume",
   "/contact": "contact",
 };
 
 const sectionToPath = {
-  home: "/",
+  about: "/",
   work: "/work",
   projects: "/projects",
+  resume: "/resume",
   contact: "/contact",
 };
 
@@ -31,14 +34,35 @@ export default function LandingPage() {
       return;
     }
 
-    const sectionId = pathToSection[location.pathname] || "home";
+    const sectionId = pathToSection[location.pathname] || "about";
     const section = document.getElementById(sectionId);
 
     if (section) {
       isScrollingRef.current = true;
       // Small delay to ensure DOM is ready
       setTimeout(() => {
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        // On mobile, account for navbar height (64px = h-16)
+        const isMobile = window.innerWidth < 1024;
+        const scrollOptions = {
+          behavior: "smooth",
+          block: isMobile ? "start" : "start",
+        };
+
+        if (isMobile) {
+          // Get navbar height and scroll with offset
+          const navbarHeight = 64; // pt-16 = 4rem = 64px
+          const elementPosition =
+            section.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        } else {
+          section.scrollIntoView(scrollOptions);
+        }
+
         // Reset flag after scroll completes
         setTimeout(() => {
           isScrollingRef.current = false;
@@ -53,7 +77,7 @@ export default function LandingPage() {
     const handleScroll = () => {
       if (isScrollingRef.current) return;
 
-      const sections = ["home", "work", "projects", "contact"];
+      const sections = ["about", "work", "projects", "resume", "contact"];
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       for (const sectionId of sections) {
@@ -79,7 +103,7 @@ export default function LandingPage() {
 
   return (
     <div className="px-6 lg:px-12">
-      <div id="home">
+      <div id="about">
         <Home />
       </div>
       <div id="work">
@@ -87,6 +111,9 @@ export default function LandingPage() {
       </div>
       <div id="projects">
         <Projects />
+      </div>
+      <div id="resume">
+        <Resume />
       </div>
       <div id="contact">
         <Contact />

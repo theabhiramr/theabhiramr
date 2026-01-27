@@ -72,7 +72,7 @@ export default function Footer() {
           </p>
 
           <div className="font-inter flex items-center gap-3">
-            <span className="text-[10px] tracking-[0.1em] uppercase opacity-50">
+            <span className="text-[10px] tracking-[0.1em] opacity-50">
               Built with
             </span>
             <div className="text-muted/80 flex items-center gap-4">
@@ -80,7 +80,7 @@ export default function Footer() {
                 href="https://reactjs.org/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors duration-300 hover:text-[#61DAFB]"
+                className="text-accent transition-colors duration-300 hover:text-[#61DAFB]"
                 aria-label="React"
               >
                 <SiReact size={16} />
@@ -89,7 +89,7 @@ export default function Footer() {
                 href="https://tailwindcss.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors duration-300 hover:text-[#38BDF8]"
+                className="text-accent transition-colors duration-300 hover:text-[#38BDF8]"
                 aria-label="Tailwind CSS"
               >
                 <SiTailwindcss size={16} />

@@ -36,7 +36,7 @@ function buildTreeHTML(tree, prefix = "", isLast = true) {
     const connector = last ? "└─── " : "├─── ";
     let name = item.name;
     if (item.path) {
-      name = `<a href="${item.path}" target="_blank" rel="noopener noreferrer" style="color:#6ee7b7;text-decoration:underline;">${item.name}</a>`;
+      name = `<a href="${item.path}" target="_blank" rel="noopener noreferrer" class="tree-link">${item.name}</a>`;
     } else if (item.children) {
       name = `<span style="font-weight:bold;">${item.name}/</span>`;
     }
@@ -89,13 +89,24 @@ const Secret = () => {
                         0%, 50% { opacity: 1; }
                         51%, 100% { opacity: 0; }
                     }
+                    .tree-link {
+                        color: #7ee787;
+                        text-decoration: none;
+                    }
+                    .tree-link:hover {
+                        color: #9effa9;
+                        text-decoration: underline;
+                    }
+                    .tree-link:active {
+                        color: #5dd975;
+                    }
                 `}
       </style>
       <div className="flex h-full w-full flex-col p-6 font-mono">
-        <div className="text-primary mb-4">
-          abhi<span className="text-secondary">@</span>portfolio
+        <div className="mb-4 text-[#7ee787]">
+          abhi<span className="text-[#f85149]">@</span>portfolio
           <span className="text-white">:</span>
-          <span className="text-blue-400">~</span>
+          <span className="text-[#79c0ff]">~</span>
           <span className="text-white">$ </span>
           <span className="text-white">cd cs164 && tree -P '*.html'</span>
         </div>
@@ -104,11 +115,11 @@ const Secret = () => {
           dangerouslySetInnerHTML={{ __html: finalText }}
         />
         {finalIsComplete && (
-          <div className="mt-6 text-green-600">
-            <div className="text-primary mb-4">
-              abhi<span className="text-secondary">@</span>portfolio
+          <div className="mt-6">
+            <div className="mb-4 text-[#7ee787]">
+              abhi<span className="text-[#f85149]">@</span>portfolio
               <span className="text-white">:</span>
-              <span className="text-blue-400">~/cs164</span>
+              <span className="text-[#79c0ff]">~/cs164</span>
               <span className="text-white">$ </span>
               <span className="blink">█</span>
             </div>

@@ -119,7 +119,7 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-const Home = () => {
+export default function About() {
   const [skipped, setSkipped] = useState(false);
   const bioText =
     "I want to use my skills to build impactful, scalable technologies.";
@@ -141,11 +141,17 @@ const Home = () => {
         <div className="flex flex-col space-y-6 lg:sticky lg:top-24 lg:col-span-5 lg:h-fit">
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <div className="relative inline-block">
-              <img
-                src={profileJpeg}
-                alt="Abhi"
-                className="border-border h-20 w-20 rounded-2xl border object-cover grayscale-[0.5] transition-all duration-500 hover:grayscale-0 lg:h-24 lg:w-24"
-              />
+              <a
+                href="https://github.com/theabhiramr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={profileJpeg}
+                  alt="Abhi"
+                  className="border-border h-24 w-24 rounded-2xl border object-cover grayscale-[0.5] transition-all duration-500 hover:grayscale-0 lg:h-36 lg:w-36"
+                />
+              </a>
               <div className="bg-accent border-background absolute -right-1 -bottom-1 h-5 w-5 rounded-full border-[3px] lg:h-6 lg:w-6 lg:border-4" />
             </div>
 
@@ -253,8 +259,11 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery Section */}
+      <section className="mt-16 lg:mt-24">
+        {/* Add photo gallery content here if needed */}
+      </section>
     </div>
   );
-};
-
-export default Home;
+}

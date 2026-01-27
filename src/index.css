@@ -131,105 +131,6 @@
     overflow-x: hidden;
   }
 
-  a {
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  a:active {
-    color: var(--color-accent-dark);
-  }
-}
-
-@layer utilities {
-  .font-inter {
-    font-family: "Inter", sans-serif;
-  }
-
-  .font-geist {
-    font-family: "Geist", sans-serif;
-  }
-
-  .font-geist-mono {
-    font-family: "Geist Mono", monospace;
-  }
-}
-
-/* Custom animations and effects */
-.typing-cursor::after {
-  content: "_";
-  color: #0ea5e9;
-}
-
-.tree-cursor::after {
-  content: "█";
-  color: #0ea5e9;
-}
-
-/* Blinking animation when idle */
-.typing-blink::after {
-  animation: blink 800ms step-end infinite;
-}
-
-/* Solid cursor when typing (no animation) */
-.typing-pause::after {
-  opacity: 1;
-  animation: none;
-}
-
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@layer components {
-  /* Navigation links */
-  .nav-link {
-    position: relative;
-    display: inline-block;
-    transition: color 300ms ease-in-out;
-    color: var(--color-muted);
-  }
-
-  .nav-link:hover {
-    color: var(--color-content);
-  }
-
-  .nav-link.active {
-    color: var(--color-content);
-  }
-}
-
-/* Base link styles */
-@layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: "Inter", sans-serif;
-    background-color: var(--color-background);
-    color: var(--color-content);
-    overflow-x: hidden;
-  }
-
   a:link {
     color: #1d4ed8;
     text-decoration: none;
@@ -301,4 +202,12 @@
 .big-bullets li::marker {
   font-size: 1.5em;
   color: #1d4ed8;
+}
+
+html.light {
+  --color-background: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-content: #1a1a1a;
+  --color-muted: #888888;
+  --color-border: #e5e5e5;
 }

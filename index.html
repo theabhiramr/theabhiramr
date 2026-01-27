@@ -2,9 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" id="favicon" href="/favicon-dark.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Abhi Ramachandran</title>
+    <script>
+      // Set favicon based on color scheme
+      const setFavicon = () => {
+        const favicon = document.getElementById("favicon");
+        const isDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        favicon.href = isDark ? "/favicon-dark.ico" : "/favicon-light.ico";
+      };
+
+      // Set initial favicon
+      setFavicon();
+
+      // Listen for color scheme changes
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", setFavicon);
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
