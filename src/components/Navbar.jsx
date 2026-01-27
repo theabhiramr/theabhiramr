@@ -53,19 +53,25 @@ export default function Navbar() {
             exit={{ x: "-100%" }}
             transition={{ type: "tween", ease: "easeInOut", duration: 0.4 }}
             className="bg-background fixed inset-0 z-50 overflow-y-auto lg:hidden"
+            style={{ pointerEvents: "auto" }}
           >
             <div className="flex h-full flex-col justify-between p-8 pt-20">
-              <div className="space-y-8">
+              <nav className="space-y-8">
                 {navItems.map((item) => (
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item.path)}
-                    className="text-content hover:text-accent block w-full text-left text-3xl font-bold tracking-tighter transition-colors"
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.path);
+                    }}
+                    className="text-content hover:text-accent block w-full text-left text-3xl font-bold tracking-tighter transition-colors touch-manipulation"
+                    style={{ WebkitTapHighlightColor: "transparent" }}
                   >
                     {item.name}
                   </button>
                 ))}
-              </div>
+              </nav>
               <div className="border-border/50 flex border-t pt-8">
                 <ThemeToggle />
               </div>
