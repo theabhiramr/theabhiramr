@@ -137,6 +137,19 @@ const projects = [
     link: "https://theabhiramr.com/",
   },
   {
+    title: "NYT Games Birthday Puzzle",
+    dates: "Jan 2024",
+    content: [
+      "Developed a web-based clone of New York Times Games, using NextJS, Tailwind CSS and Vercel for an interactive birthday gift for my dad",
+      "Implemented responsive design principles to ensure optimal user experience across various devices and screen sizes",
+    ],
+    technologies: ["JavaScript", "React", "NextJS", "Tailwind CSS", "Vercel"],
+    githubLink: "https://github.com/theabhiramr/appa-55-surprise",
+    link: "https://appa-55-surprise.vercel.app/",
+    additional:
+      "This was a fun little app I vibecoded in a day for my dad's 55th birthday. Play the games to see what we got him 👀",
+  },
+  {
     title: "CrashMath",
     subtitle: "College of Computing & Informatics, Drexel University",
     dates: "Jan 2023 - Jun 2023",
