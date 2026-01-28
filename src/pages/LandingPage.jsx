@@ -26,7 +26,13 @@ export default function LandingPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const isScrollingRef = useRef(false);
-  const hasInitializedRef = useRef(false);
+
+  // Disable browser scroll restoration
+  useEffect(() => {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+  }, []);
 
   useEffect(() => {
     // Skip if this is from the scroll listener
@@ -39,49 +45,23 @@ export default function LandingPage() {
 
     if (section) {
       isScrollingRef.current = true;
-      // Small delay to ensure DOM is ready
-      setTimeout(() => {
-        try {
-          // On mobile, account for navbar height (64px = h-16)
-          const isMobile = window.innerWidth < 1024;
 
-          if (isMobile) {
-            // Get navbar height and scroll with offset
-            const navbarHeight = 64; // pt-16 = 4rem = 64px
-            const elementPosition =
-              section.getBoundingClientRect().top + window.pageYOffset;
-            const offsetPosition = elementPosition - navbarHeight;
+      const scrollToSection = () => {
+        const isMobile = window.innerWidth < 1024;
+        const navbarHeight = isMobile ? 64 : 0;
+        const targetY = section.offsetTop - navbarHeight;
 
-            // iOS-friendly scroll - use instant on Firefox iOS to prevent crashes
-            const isFirefox = navigator.userAgent
-              .toLowerCase()
-              .includes("firefox");
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: isFirefox ? "auto" : "smooth",
-            });
-          } else {
-            // Use scrollIntoView for desktop
-            section.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        } catch (e) {
-          // Fallback for Firefox iOS
-          try {
-            section.scrollIntoView();
-          } catch (err) {
-            // Ignore if all scroll methods fail
-          }
-        }
+        window.scrollTo({
+          top: targetY,
+          behavior: "auto",
+        });
 
-        // Reset flag after scroll completes
         setTimeout(() => {
           isScrollingRef.current = false;
-          hasInitializedRef.current = true;
-        }, 1000);
-      }, 100);
+        }, 300);
+      };
+
+      setTimeout(scrollToSection, 50);
     }
   }, [location.pathname, location.state]);
 
@@ -91,19 +71,8 @@ export default function LandingPage() {
       if (isScrollingRef.current) return;
 
       const sections = ["about", "work", "projects", "resume", "contact"];
-
-      // Firefox iOS needs different scroll detection
-      const isFirefox = navigator.userAgent.toLowerCase().includes("firefox");
-      const offset = isFirefox
-        ? window.innerHeight * 0.5
-        : window.innerHeight / 3;
-      const scrollPosition = window.scrollY + offset;
-
-      // Add a minimum scroll threshold to prevent false triggers
-      const minScrollThreshold = 50;
-      if (window.scrollY < minScrollThreshold && location.pathname === "/") {
-        return; // Don't update if we're already on home and barely scrolled
-      }
+      const scrollY = window.scrollY;
+      const viewportMid = scrollY + window.innerHeight / 2;
 
       for (const sectionId of sections) {
         const section = document.getElementById(sectionId);
@@ -111,10 +80,14 @@ export default function LandingPage() {
           const sectionTop = section.offsetTop;
           const sectionBottom = sectionTop + section.offsetHeight;
 
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          if (viewportMid >= sectionTop && viewportMid < sectionBottom) {
             const newPath = sectionToPath[sectionId];
             if (newPath && location.pathname !== newPath) {
+              isScrollingRef.current = true;
               navigate(newPath, { replace: true, state: { fromScroll: true } });
+              setTimeout(() => {
+                isScrollingRef.current = false;
+              }, 100);
             }
             break;
           }
@@ -122,15 +95,8 @@ export default function LandingPage() {
       }
     };
 
-    // Use passive listeners for better iOS performance
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Also listen to touchmove for iOS momentum scrolling
-    window.addEventListener("touchmove", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("touchmove", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [location.pathname, navigate]);
 
   return (
