@@ -39,8 +39,6 @@ const Contact = () => {
         body: JSON.stringify({
           access_key: "b72b35d0-b097-4b33-bba6-c36f198061c2",
           name: `${form.firstName.value} ${form.lastName.value}`,
-          firstName: form.firstName.value,
-          lastName: form.lastName.value,
           company: form.company.value,
           email: form.email.value,
           message: form.message.value,
