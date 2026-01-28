@@ -30,6 +30,41 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Prevent body scroll when menu is open (iOS fix)
+  useEffect(() => {
+    try {
+      if (isOpen) {
+        const scrollY = window.scrollY;
+        document.body.style.overflow = "hidden";
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = "100%";
+      } else {
+        const scrollY = document.body.style.top;
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || "0") * -1);
+        }
+      }
+    } catch (e) {
+      // Ignore errors in Firefox iOS
+    }
+
+    return () => {
+      try {
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+      } catch (e) {
+        // Ignore errors
+      }
+    };
+  }, [isOpen]);
+
   return (
     <>
       {/* Mobile Top Header */}
@@ -61,12 +96,11 @@ export default function Navbar() {
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item.path)}
-                    onTouchEnd={(e) => {
-                      e.preventDefault();
-                      handleNavClick(item.path);
+                    className="text-content hover:text-accent active:text-accent block w-full touch-manipulation text-left text-3xl font-bold tracking-tighter transition-colors"
+                    style={{
+                      WebkitTapHighlightColor: "transparent",
+                      touchAction: "manipulation",
                     }}
-                    className="text-content hover:text-accent block w-full touch-manipulation text-left text-3xl font-bold tracking-tighter transition-colors"
-                    style={{ WebkitTapHighlightColor: "transparent" }}
                   >
                     {item.name}
                   </button>

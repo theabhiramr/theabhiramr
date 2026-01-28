@@ -19,10 +19,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
@@ -30,6 +33,9 @@
     background-color: var(--color-background);
     color: var(--color-content);
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    min-height: 100vh;
   }
 
   a {

@@ -46,11 +46,15 @@ export default function Sidebar({ activeSection }) {
                 <li key={item.name}>
                   <button
                     onClick={() => handleNavClick(item.path)}
-                    className={`text-left text-2xl font-bold tracking-tighter transition-colors ${
+                    className={`touch-manipulation text-left text-2xl font-bold tracking-tighter transition-colors ${
                       isActive
                         ? "text-content"
                         : "text-muted hover:text-content"
                     }`}
+                    style={{
+                      WebkitTapHighlightColor: "transparent",
+                      touchAction: "manipulation",
+                    }}
                   >
                     {item.name}
                   </button>

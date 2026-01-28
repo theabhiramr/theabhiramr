@@ -64,7 +64,7 @@ const Resume = () => {
           >
             <iframe
               src="/resume.pdf"
-              className="font-geist h-[800px] w-full md:h-[1000px]"
+              className="font-geist h-[500px] w-full sm:h-[600px] md:h-[800px] lg:h-[1000px]"
               title="Resume"
               onError={() => setPdfError(true)}
               onLoad={() => setPdfError(false)}

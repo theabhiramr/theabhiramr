@@ -41,26 +41,39 @@ export default function LandingPage() {
       isScrollingRef.current = true;
       // Small delay to ensure DOM is ready
       setTimeout(() => {
-        // On mobile, account for navbar height (64px = h-16)
-        const isMobile = window.innerWidth < 1024;
-        const scrollOptions = {
-          behavior: "smooth",
-          block: isMobile ? "start" : "start",
-        };
+        try {
+          // On mobile, account for navbar height (64px = h-16)
+          const isMobile = window.innerWidth < 1024;
 
-        if (isMobile) {
-          // Get navbar height and scroll with offset
-          const navbarHeight = 64; // pt-16 = 4rem = 64px
-          const elementPosition =
-            section.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - navbarHeight;
+          if (isMobile) {
+            // Get navbar height and scroll with offset
+            const navbarHeight = 64; // pt-16 = 4rem = 64px
+            const elementPosition =
+              section.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - navbarHeight;
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        } else {
-          section.scrollIntoView(scrollOptions);
+            // iOS-friendly scroll - use instant on Firefox iOS to prevent crashes
+            const isFirefox = navigator.userAgent
+              .toLowerCase()
+              .includes("firefox");
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: isFirefox ? "auto" : "smooth",
+            });
+          } else {
+            // Use scrollIntoView for desktop
+            section.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        } catch (e) {
+          // Fallback for Firefox iOS
+          try {
+            section.scrollIntoView();
+          } catch (err) {
+            // Ignore if all scroll methods fail
+          }
         }
 
         // Reset flag after scroll completes
@@ -97,8 +110,15 @@ export default function LandingPage() {
       }
     };
 
+    // Use passive listeners for better iOS performance
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Also listen to touchmove for iOS momentum scrolling
+    window.addEventListener("touchmove", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
+    };
   }, [location.pathname, navigate]);
 
   return (

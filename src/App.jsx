@@ -22,7 +22,10 @@ function App() {
   const isLandingPage = Object.keys(pathToSection).includes(location.pathname);
 
   return (
-    <div className="bg-background text-content min-h-screen transition-colors duration-300">
+    <div
+      className="bg-background text-content min-h-screen transition-colors duration-300"
+      style={{ WebkitOverflowScrolling: "touch" }}
+    >
       {/* Mobile Navbar: Fixed at top on small screens */}
       {isLandingPage && !isDesktop && <Navbar />}
 
