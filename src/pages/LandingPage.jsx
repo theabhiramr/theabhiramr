@@ -65,6 +65,9 @@ export default function LandingPage() {
 
   // 3. Handle URL updates when User Scrolls (Intersection Observer)
   useEffect(() => {
+    // We use a debounce timer to avoid rapid URL updates while scrolling quickly through sections
+    let debounceTimer;
+
     // Options: Trigger when an element is in the middle-top part of the screen
     const observerOptions = {
       root: null,
@@ -80,17 +83,26 @@ export default function LandingPage() {
       // Do not update URL if we are running an auto-scroll animation
       if (isAutoScrolling.current) return;
 
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const matched = SECTIONS.find((s) => s.id === entry.target.id);
-          if (matched && location.pathname !== matched.path) {
+      const intersectingEntry = entries.find((entry) => entry.isIntersecting);
+
+      if (intersectingEntry) {
+        const matched = SECTIONS.find(
+          (s) => s.id === intersectingEntry.target.id,
+        );
+        if (matched && location.pathname !== matched.path) {
+          // Clear any pending updates
+          if (debounceTimer) clearTimeout(debounceTimer);
+
+          // fast scrolling? wait a bit before committing the URL change.
+          // This prevents history flooding and performance stutters.
+          debounceTimer = setTimeout(() => {
             navigate(matched.path, {
               replace: true,
               state: { fromScroll: true },
             });
-          }
+          }, 350); // 350ms delay
         }
-      });
+      }
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
@@ -100,8 +112,11 @@ export default function LandingPage() {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
-  }, [navigate, location.pathname]);
+    return () => {
+      observer.disconnect();
+      if (debounceTimer) clearTimeout(debounceTimer);
+    };
+  }, [navigate]); // Removed location.pathname to prevent observer recreation on URL change
 
   return (
     <div className="px-6 lg:px-12">
