@@ -91,12 +91,14 @@ export default function LandingPage() {
       if (isScrollingRef.current) return;
 
       const sections = ["about", "work", "projects", "resume", "contact"];
-      
+
       // Firefox iOS needs different scroll detection
       const isFirefox = navigator.userAgent.toLowerCase().includes("firefox");
-      const offset = isFirefox ? window.innerHeight * 0.5 : window.innerHeight / 3;
+      const offset = isFirefox
+        ? window.innerHeight * 0.5
+        : window.innerHeight / 3;
       const scrollPosition = window.scrollY + offset;
-      
+
       // Add a minimum scroll threshold to prevent false triggers
       const minScrollThreshold = 50;
       if (window.scrollY < minScrollThreshold && location.pathname === "/") {
@@ -108,7 +110,7 @@ export default function LandingPage() {
         if (section) {
           const sectionTop = section.offsetTop;
           const sectionBottom = sectionTop + section.offsetHeight;
-          
+
           if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             const newPath = sectionToPath[sectionId];
             if (newPath && location.pathname !== newPath) {
