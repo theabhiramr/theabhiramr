@@ -30,38 +30,16 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevent body scroll when menu is open (iOS fix)
+  // Prevent body scroll when menu is open
   useEffect(() => {
-    try {
-      if (isOpen) {
-        const scrollY = window.scrollY;
-        document.body.style.overflow = "hidden";
-        document.body.style.position = "fixed";
-        document.body.style.top = `-${scrollY}px`;
-        document.body.style.width = "100%";
-      } else {
-        const scrollY = document.body.style.top;
-        document.body.style.overflow = "";
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.width = "";
-        if (scrollY) {
-          window.scrollTo(0, parseInt(scrollY || "0") * -1);
-        }
-      }
-    } catch (e) {
-      // Ignore errors in Firefox iOS
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
 
     return () => {
-      try {
-        document.body.style.overflow = "";
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.width = "";
-      } catch (e) {
-        // Ignore errors
-      }
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
