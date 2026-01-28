@@ -22,10 +22,14 @@ const sectionToPath = {
   contact: "/contact",
 };
 
+// Use a module-level variable to persist across remounts
+let isProgrammaticScroll = false;
+
 export default function LandingPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const isScrollingRef = useRef(false);
+  // Remove component-level ref to avoid reset on remount
+  // const isScrollingRef = useRef(false);
 
   // Disable browser scroll restoration
   useEffect(() => {
@@ -35,8 +39,8 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    // Skip if this is from the scroll listener
-    if (location.state?.fromScroll) {
+    // Skip if this is from the scroll listener or programmatic scroll
+    if (location.state?.fromScroll || isProgrammaticScroll) {
       return;
     }
 
@@ -44,7 +48,7 @@ export default function LandingPage() {
     const section = document.getElementById(sectionId);
 
     if (section) {
-      isScrollingRef.current = true;
+      isProgrammaticScroll = true;
 
       const scrollToSection = () => {
         const isMobile = window.innerWidth < 1024;
@@ -56,42 +60,60 @@ export default function LandingPage() {
           behavior: "auto",
         });
 
+        // specific timeout to allow scroll to finish
         setTimeout(() => {
-          isScrollingRef.current = false;
-        }, 300);
+          isProgrammaticScroll = false;
+        }, 800);
       };
 
+      // Slight delay to ensure layout is ready
       setTimeout(scrollToSection, 50);
     }
   }, [location.pathname, location.state]);
 
   // Update URL based on scroll position
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      if (isScrollingRef.current) return;
-
-      const sections = ["about", "work", "projects", "resume", "contact"];
-      const scrollY = window.scrollY;
-      const viewportMid = scrollY + window.innerHeight / 2;
-
-      for (const sectionId of sections) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionBottom = sectionTop + section.offsetHeight;
-
-          if (viewportMid >= sectionTop && viewportMid < sectionBottom) {
-            const newPath = sectionToPath[sectionId];
-            if (newPath && location.pathname !== newPath) {
-              isScrollingRef.current = true;
-              navigate(newPath, { replace: true, state: { fromScroll: true } });
-              setTimeout(() => {
-                isScrollingRef.current = false;
-              }, 100);
-            }
-            break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (isProgrammaticScroll) {
+            ticking = false;
+            return;
           }
-        }
+
+          const sections = ["about", "work", "projects", "resume", "contact"];
+          const scrollY = window.scrollY;
+          // Use a smaller offset for triggering triggers to avoid jumping at the bottom
+          const viewportMid = scrollY + window.innerHeight / 2;
+
+          for (const sectionId of sections) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+              const sectionTop = section.offsetTop;
+              const sectionBottom = sectionTop + section.offsetHeight;
+
+              if (viewportMid >= sectionTop && viewportMid < sectionBottom) {
+                const newPath = sectionToPath[sectionId];
+                if (newPath && location.pathname !== newPath) {
+                  isProgrammaticScroll = true;
+                  navigate(newPath, {
+                    replace: true,
+                    state: { fromScroll: true },
+                  });
+                  // Allow enough time for navigation and render
+                  setTimeout(() => {
+                    isProgrammaticScroll = false;
+                  }, 800);
+                }
+                break;
+              }
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
