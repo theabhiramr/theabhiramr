@@ -14,7 +14,7 @@ This is my personal portfolio website. I decided to improve on my website to bet
 ## Version History
 
 - ### v2.0.2
-  - Insanely overengineered the contact form
+  - Insanely overengineered the contact form to include phone number field
 - ### v2.0.1
   - switch from Formspree to Web3forms
   - removed website captcha
