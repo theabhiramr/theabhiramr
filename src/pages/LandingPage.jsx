@@ -6,138 +6,120 @@ import Projects from "./Projects";
 import Resume from "./Resume";
 import Contact from "./Contact";
 
-const pathToSection = {
-  "/": "about",
-  "/work": "work",
-  "/projects": "projects",
-  "/resume": "resume",
-  "/contact": "contact",
-};
-
-const sectionToPath = {
-  about: "/",
-  work: "/work",
-  projects: "/projects",
-  resume: "/resume",
-  contact: "/contact",
-};
-
-// Use a module-level variable to persist across remounts
-let isProgrammaticScroll = false;
+// Define sections configuration for easier management
+const SECTIONS = [
+  { id: "about", path: "/" },
+  { id: "work", path: "/work" },
+  { id: "projects", path: "/projects" },
+  { id: "resume", path: "/resume" },
+  { id: "contact", path: "/contact" },
+];
 
 export default function LandingPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  // Remove component-level ref to avoid reset on remount
-  // const isScrollingRef = useRef(false);
+  // Ref to track if we are currently performing an automated scroll
+  const isAutoScrolling = useRef(false);
 
-  // Disable browser scroll restoration
+  // 1. Handle browser scroll restoration
   useEffect(() => {
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
     }
   }, []);
 
+  // 2. Handle Scroll-to-Section logic when URL changes (e.g. Navigation clicked)
   useEffect(() => {
-    // Skip if this is from the scroll listener or programmatic scroll
-    if (location.state?.fromScroll || isProgrammaticScroll) {
-      return;
-    }
+    // If the navigation came from our own scroll observer, don't auto-scroll back
+    if (location.state?.fromScroll) return;
 
-    const sectionId = pathToSection[location.pathname] || "about";
-    const section = document.getElementById(sectionId);
+    const activeSection = SECTIONS.find((s) => s.path === location.pathname);
+    const targetId = activeSection ? activeSection.id : "about";
+    const element = document.getElementById(targetId);
 
-    if (section) {
-      isProgrammaticScroll = true;
+    if (element) {
+      // Calculate position
+      const isMobile = window.innerWidth < 1024;
+      const navbarOffset = isMobile ? 80 : 0;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
+      const targetPosition = elementPosition - navbarOffset;
 
-      const scrollToSection = () => {
-        const isMobile = window.innerWidth < 1024;
-        const navbarHeight = isMobile ? 64 : 0;
-        const targetY = section.offsetTop - navbarHeight;
+      // Avoid "micro-adjustments" if we are already close enough (prevents jitter)
+      if (Math.abs(window.scrollY - targetPosition) < 50) return;
 
-        window.scrollTo({
-          top: targetY,
-          behavior: "auto",
-        });
+      isAutoScrolling.current = true;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth", // Smooth scroll looks better and is standard
+      });
 
-        // specific timeout to allow scroll to finish
-        setTimeout(() => {
-          isProgrammaticScroll = false;
-        }, 800);
-      };
+      // Unlock the observer after the scroll animation roughly finishes
+      const timeout = setTimeout(() => {
+        isAutoScrolling.current = false;
+      }, 800);
 
-      // Slight delay to ensure layout is ready
-      setTimeout(scrollToSection, 50);
+      return () => clearTimeout(timeout);
     }
   }, [location.pathname, location.state]);
 
-  // Update URL based on scroll position
+  // 3. Handle URL updates when User Scrolls (Intersection Observer)
   useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (isProgrammaticScroll) {
-            ticking = false;
-            return;
-          }
-
-          const sections = ["about", "work", "projects", "resume", "contact"];
-          const scrollY = window.scrollY;
-          // Use a smaller offset for triggering triggers to avoid jumping at the bottom
-          const viewportMid = scrollY + window.innerHeight / 2;
-
-          for (const sectionId of sections) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-              const sectionTop = section.offsetTop;
-              const sectionBottom = sectionTop + section.offsetHeight;
-
-              if (viewportMid >= sectionTop && viewportMid < sectionBottom) {
-                const newPath = sectionToPath[sectionId];
-                if (newPath && location.pathname !== newPath) {
-                  isProgrammaticScroll = true;
-                  navigate(newPath, {
-                    replace: true,
-                    state: { fromScroll: true },
-                  });
-                  // Allow enough time for navigation and render
-                  setTimeout(() => {
-                    isProgrammaticScroll = false;
-                  }, 800);
-                }
-                break;
-              }
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+    // Options: Trigger when an element is in the middle-top part of the screen
+    const observerOptions = {
+      root: null,
+      // "Margin" shrinks the viewport box that triggers the intersection.
+      // -30% from top means the detection line starts 30% down the screen.
+      // -50% from bottom means the detection line ends 50% from the bottom.
+      // Roughly creates a detection zone in the upper-middle of the screen.
+      rootMargin: "-30% 0px -50% 0px",
+      threshold: 0,
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [location.pathname, navigate]);
+    const handleIntersect = (entries) => {
+      // Do not update URL if we are running an auto-scroll animation
+      if (isAutoScrolling.current) return;
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const matched = SECTIONS.find((s) => s.id === entry.target.id);
+          if (matched && location.pathname !== matched.path) {
+            navigate(matched.path, {
+              replace: true,
+              state: { fromScroll: true },
+            });
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    SECTIONS.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [navigate, location.pathname]);
 
   return (
     <div className="px-6 lg:px-12">
-      <div id="about">
+      <section id="about">
         <Home />
-      </div>
-      <div id="work">
+      </section>
+      <section id="work">
         <WorkExperience />
-      </div>
-      <div id="projects">
+      </section>
+      <section id="projects">
         <Projects />
-      </div>
-      <div id="resume">
+      </section>
+      <section id="resume">
         <Resume />
-      </div>
-      <div id="contact">
+      </section>
+      <section id="contact">
         <Contact />
-      </div>
+      </section>
     </div>
   );
 }
