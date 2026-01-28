@@ -116,7 +116,7 @@ export default function LandingPage() {
       observer.disconnect();
       if (debounceTimer) clearTimeout(debounceTimer);
     };
-  }, [navigate]); // Removed location.pathname to prevent observer recreation on URL change
+  }, [navigate, location.pathname]); // Add location.pathname back to dependencies to fix stale closure bug
 
   return (
     <div className="px-6 lg:px-12">
