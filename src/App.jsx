@@ -50,7 +50,7 @@ function App() {
                 - lg:pl-12: This is the ONLY gap between sidebar and content. 
                 - py-10: Vertical spacing.
             */}
-            <main className="w-full py-10 lg:py-16 lg:pl-12">
+            <main className="w-full py-6 md:py-10 lg:py-16 lg:pl-12">
               <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/work" element={<LandingPage />} />

@@ -81,7 +81,7 @@ const Contact = () => {
     "bg-surface border-border focus:border-content focus:ring-content/20 w-full rounded-lg border px-4 py-2.5 text-sm transition-all outline-none focus:ring-1 placeholder:opacity-30";
 
   return (
-    <div className="bg-background min-h-[80vh] px-4 py-12">
+    <div className="bg-background min-h-[80vh] py-12">
       <div className="font-geist text-content mx-auto max-w-7xl">
         <motion.h1
           variants={fadeUp}

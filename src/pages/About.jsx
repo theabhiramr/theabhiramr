@@ -135,7 +135,7 @@ export default function About() {
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-7xl px-5 py-10 lg:px-8 lg:py-24">
+    <div className="py-12">
       <section className="flex flex-col gap-12 lg:grid lg:grid-cols-12 lg:gap-20">
         {/* LEFT COLUMN: Sticky Identity (Desktop Only) */}
         <div className="flex flex-col space-y-6 lg:sticky lg:top-24 lg:col-span-5 lg:h-fit">

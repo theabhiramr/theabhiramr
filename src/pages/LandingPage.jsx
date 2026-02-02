@@ -119,7 +119,7 @@ export default function LandingPage() {
   }, [navigate, location.pathname]); // Add location.pathname back to dependencies to fix stale closure bug
 
   return (
-    <div className="px-6 lg:px-12">
+    <div>
       <section id="about">
         <Home />
       </section>
