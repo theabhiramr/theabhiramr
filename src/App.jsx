@@ -33,7 +33,7 @@ function App() {
           Matches Footer: mx-auto, max-w-7xl, px-8.
           This ensures the Sidebar + Content line up exactly with the Footer edges.
       */}
-      <div className="mx-auto max-w-7xl px-6 md:px-8">
+      <div className="mx-auto max-w-7xl px-8">
         <div className="flex min-h-screen flex-col lg:flex-row">
           {/* Sidebar: Sits snugly on the left inside the 7xl container */}
           {isLandingPage && isDesktop && (
