@@ -8,9 +8,11 @@ const workExperience = [
     location: "Princeton, NJ",
     image: bmsJpeg,
     content: [
-      "Collaborate with cross-functional teams to design, develop, and deploy cloud-based solutions that enhance pharmaceutical research and development processes",
-      "Provide support in migrating legacy applications to cloud platforms, ensuring scalability, security, and compliance with industry standards",
-      "Engage in the usage of cutting-edge cloud technologies and services to optimize data management and analytics for improved decision-making",
+      "Transform 100+ BMS training materials into clearer, interactive content using Claude Code via custom MCP servers.", 
+      "Streamline AWS Fargate and ALB deployments across 75+ Cloud team projects with agentic workflows and GitHub Actions, cutting development time by 4 months. ",
+      "Build improved notification pipelines with Amazon SQS and SES to alert employees of critical CloudWatch events across 500+ AWS accounts on the BMS Multiverse Platform.",
+      "Author whitepaper on implementing AWS MCP and AgentCore within BMS, outlining adoption strategies for more efficient agentic workflow orchestration"
+
     ],
     links: [
       { label: "Organization", href: "https://www.bms.com" }
