@@ -86,7 +86,7 @@ const projects = [
       "Tailwind CSS",
       "Vite",
       "Firebase",
-      "Cloudflare",
+      "Cloudflare Pages",
     ],
     githubLink: "https://github.com/theabhiramr/theabhiramr",
     link: "https://theabhiramr.com/",

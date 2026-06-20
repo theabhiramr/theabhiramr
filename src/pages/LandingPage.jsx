@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Home from "./About";
 import WorkExperience from "./WorkExperience";
 import Projects from "./Projects";
 import Resume from "./Resume";
 import Contact from "./Contact";
 
-// Define sections configuration for easier management
 const SECTIONS = [
   { id: "about", path: "/" },
   { id: "work", path: "/work" },
@@ -15,97 +14,53 @@ const SECTIONS = [
   { id: "contact", path: "/contact" },
 ];
 
-export default function LandingPage() {
+export default function LandingPage({ onSectionChange }) {
   const location = useLocation();
-  const navigate = useNavigate();
-  // Ref to track if we are currently performing an automated scroll
-  const isAutoScrolling = useRef(false);
 
-  // 1. Handle browser scroll restoration
+  // Disable browser scroll restoration so our scroll-to-section works correctly
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, []);
 
-  // 2. Handle Scroll-to-Section logic when URL changes (e.g. Navigation clicked)
+  // Scroll to the section matching the current URL on navigation
   useEffect(() => {
-    // If the navigation came from our own scroll observer, don't auto-scroll back
-    if (location.state?.fromScroll) return;
-
     const activeSection = SECTIONS.find((s) => s.path === location.pathname);
     const targetId = activeSection ? activeSection.id : "about";
     const element = document.getElementById(targetId);
 
-    if (element) {
-      // Calculate position
-      const isMobile = window.innerWidth < 1024;
-      const navbarOffset = isMobile ? 80 : 0;
-      const elementPosition =
-        element.getBoundingClientRect().top + window.scrollY;
-      const targetPosition = elementPosition - navbarOffset;
+    if (!element) return;
 
-      // Avoid "micro-adjustments" if we are already close enough (prevents jitter)
-      if (Math.abs(window.scrollY - targetPosition) < 50) return;
+    const isMobile = window.innerWidth < 1024;
+    const navbarOffset = isMobile ? 80 : 0;
+    const targetPosition =
+      element.getBoundingClientRect().top + window.scrollY - navbarOffset;
 
-      isAutoScrolling.current = true;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth", // Smooth scroll looks better and is standard
-      });
+    if (Math.abs(window.scrollY - targetPosition) < 50) return;
 
-      // Unlock the observer after the scroll animation roughly finishes
-      const timeout = setTimeout(() => {
-        isAutoScrolling.current = false;
-      }, 800);
+    window.scrollTo({ top: targetPosition, behavior: "smooth" });
+  }, [location.pathname]);
 
-      return () => clearTimeout(timeout);
-    }
-  }, [location.pathname, location.state]);
-
-  // 3. Handle URL updates when User Scrolls (Intersection Observer)
+  // Update sidebar active state as the user scrolls
   useEffect(() => {
-    // We use a debounce timer to avoid rapid URL updates while scrolling quickly through sections
     let debounceTimer;
 
-    // Options: Trigger when an element is in the middle-top part of the screen
-    const observerOptions = {
-      root: null,
-      // "Margin" shrinks the viewport box that triggers the intersection.
-      // -30% from top means the detection line starts 30% down the screen.
-      // -50% from bottom means the detection line ends 50% from the bottom.
-      // Roughly creates a detection zone in the upper-middle of the screen.
-      rootMargin: "-30% 0px -50% 0px",
-      threshold: 0,
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((e) => e.isIntersecting);
+        if (!visible) return;
 
-    const handleIntersect = (entries) => {
-      // Do not update URL if we are running an auto-scroll animation
-      if (isAutoScrolling.current) return;
+        const matched = SECTIONS.find((s) => s.id === visible.target.id);
+        if (!matched) return;
 
-      const intersectingEntry = entries.find((entry) => entry.isIntersecting);
-
-      if (intersectingEntry) {
-        const matched = SECTIONS.find(
-          (s) => s.id === intersectingEntry.target.id,
-        );
-        if (matched && location.pathname !== matched.path) {
-          // Clear any pending updates
-          if (debounceTimer) clearTimeout(debounceTimer);
-
-          // fast scrolling? wait a bit before committing the URL change.
-          // This prevents history flooding and performance stutters.
-          debounceTimer = setTimeout(() => {
-            navigate(matched.path, {
-              replace: true,
-              state: { fromScroll: true },
-            });
-          }, 350); // 350ms delay
-        }
-      }
-    };
-
-    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          onSectionChange(matched.id);
+        }, 100);
+      },
+      { rootMargin: "-30% 0px -50% 0px", threshold: 0 },
+    );
 
     SECTIONS.forEach(({ id }) => {
       const el = document.getElementById(id);
@@ -114,9 +69,9 @@ export default function LandingPage() {
 
     return () => {
       observer.disconnect();
-      if (debounceTimer) clearTimeout(debounceTimer);
+      clearTimeout(debounceTimer);
     };
-  }, [navigate, location.pathname]); // Add location.pathname back to dependencies to fix stale closure bug
+  }, [onSectionChange]);
 
   return (
     <div>
