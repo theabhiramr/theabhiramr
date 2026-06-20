@@ -3,25 +3,17 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import TechBadge from "./TechBadge";
 import { SiGithub } from "react-icons/si";
 import { HiMapPin, HiArrowTopRightOnSquare } from "react-icons/hi2";
+import { fadeUp, stagger, inViewOptions } from "../utils/animations";
 
 function TimelineItem({ item, isLast }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  const shouldReduceMotion = useReducedMotion();
-
-  const animationProps = shouldReduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 15 },
-        animate: inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 },
-        transition: { duration: 0.5, ease: [0.21, 1.02, 0.47, 0.98] },
-      };
-
   const orgLink = item.links?.find((l) => l.label === "Organization");
   const footerLinks = item.links?.filter((l) => l.label !== "Organization") ?? [];
 
   return (
-    <div ref={ref} className="group relative pb-12 pl-10 last:pb-4 sm:pl-16">
+    <motion.div
+      variants={fadeUp}
+      className="group relative pb-12 pl-10 last:pb-4 sm:pl-16"
+    >
       {!isLast && (
         <div
           className="from-border via-border/50 absolute top-[24px] bottom-0 left-[15px] w-[1px] bg-gradient-to-b to-transparent sm:top-[30px] sm:left-[31px]"
@@ -33,10 +25,7 @@ function TimelineItem({ item, isLast }) {
         <div className="bg-content ring-background h-2 w-2 rounded-full ring-4 transition-transform group-hover:scale-125" />
       </div>
 
-      <motion.div
-        {...animationProps}
-        className="hover:border-border/40 hover:bg-surface/40 -m-3 rounded-2xl border border-transparent p-3 transition-all duration-300 sm:-m-4 sm:p-4"
-      >
+      <div className="hover:border-border/40 hover:bg-surface/40 -m-3 rounded-2xl border border-transparent p-3 transition-all duration-300 sm:-m-4 sm:p-4">
         <div className="flex flex-col gap-4">
           {/* Header */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -154,25 +143,35 @@ function TimelineItem({ item, isLast }) {
             </div>
           )}
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 
 export default function Timeline({ items = [] }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, inViewOptions);
+  const shouldReduceMotion = useReducedMotion();
+
   if (!items.length) return null;
 
   return (
-    <div className="w-full">
-      <div role="list" aria-label="Timeline" className="flex flex-col">
-        {items.map((item) => (
-          <TimelineItem
-            key={item.title}
-            item={item}
-            isLast={items[items.length - 1].title === item.title}
-          />
-        ))}
-      </div>
-    </div>
+    <motion.div
+      ref={ref}
+      role="list"
+      aria-label="Timeline"
+      className="flex w-full flex-col"
+      variants={shouldReduceMotion ? {} : stagger}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+    >
+      {items.map((item) => (
+        <TimelineItem
+          key={item.title}
+          item={item}
+          isLast={items[items.length - 1].title === item.title}
+        />
+      ))}
+    </motion.div>
   );
 }

@@ -44,26 +44,14 @@ function App() {
           >
             <main className="w-full py-6 md:py-10 lg:py-16 lg:pl-12">
               <Routes>
-                <Route
-                  path="/"
-                  element={<LandingPage onSectionChange={setActiveSection} />}
-                />
-                <Route
-                  path="/work"
-                  element={<LandingPage onSectionChange={setActiveSection} />}
-                />
-                <Route
-                  path="/projects"
-                  element={<LandingPage onSectionChange={setActiveSection} />}
-                />
-                <Route
-                  path="/resume"
-                  element={<LandingPage onSectionChange={setActiveSection} />}
-                />
-                <Route
-                  path="/contact"
-                  element={<LandingPage onSectionChange={setActiveSection} />}
-                />
+                {/* Layout route: LandingPage stays mounted across all section paths */}
+                <Route element={<LandingPage onSectionChange={setActiveSection} />}>
+                  <Route path="/" />
+                  <Route path="/work" />
+                  <Route path="/projects" />
+                  <Route path="/resume" />
+                  <Route path="/contact" />
+                </Route>
                 <Route path="/secret" element={<Secret />} />
                 <Route path="/404" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />
