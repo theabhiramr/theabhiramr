@@ -80,11 +80,7 @@ const projects = [
   {
     title: "Portfolio Website",
     dates: "Apr 2025 - Present",
-    content: [
-      "Develop and maintain an interactive and user-friendly portfolio website using React and Tailwind CSS to become a more experienced developer.",
-      "Create a responsive design, dark mode, and smooth animations using React hooks and external libraries to showcase the extent of what can be created with modern web development tools.",
-      "Deploy using Firebase and Cloudflare for safety and security and to adhere to industry standard development practices, providing insight into the app development lifecycle.",
-    ],
+    content: "An interactive and user-friendly portfolio website inspired by websites like Linear, GitHub and Vercel. Built with React, Vite and Tailwind CSS, and deployed on Firebase.",
     technologies: [
       "JavaScript",
       "React",
@@ -99,29 +95,10 @@ const projects = [
     ],
   },
   {
-    title: "NYT Games Birthday Puzzle",
-    dates: "Jan 2024",
-    content: [
-      "Developed a web-based clone of New York Times Games, using NextJS, Tailwind CSS and Vercel for an interactive birthday gift for my dad",
-      "Implemented responsive design principles to ensure optimal user experience across various devices and screen sizes",
-    ],
-    technologies: ["JavaScript", "React", "NextJS", "Tailwind CSS", "Vercel"],
-    links: [
-      { label: "GitHub", href: "https://github.com/theabhiramr/appa-55-surprise" },
-      { label: "Visit", href: "https://appa-55-surprise.vercel.app/" }
-    ],
-    additional:
-      "This was a fun little app I vibecoded in a day for my dad's 55th birthday. Play the games to see what we got him 👀",
-  },
-  {
     title: "CrashMath",
     org: "College of Computing & Informatics, Drexel University",
     dates: "Jan 2023 - Jun 2023",
-    content: [
-      "Led the creation of a gamified calculus learning platform powered by generative AI trained on 200+ exam questions to provide feedback and track performance",
-      "Wrote over 1000 lines of code in HTML, CSS and JavaScript to provide a smooth and approachable user interface to enable stronger learning, contributing to 40% of the MVP",
-      "Coordinated efforts with a multifunctional team to execute on over 25 user stories across a 5-sprint timeline to deliver on 500+ action items for the MVP",
-    ],
+    content: "A gamified calculus learning platform that leverages intelligent tutoring chatbot to provide personalized problem-solving assistance.",
     technologies: ["JavaScript", "CSS", "HTML", "Firebase", "OpenAI API"],
     additional:
       "Unfortunately, the backend of this app is no longer functional.",

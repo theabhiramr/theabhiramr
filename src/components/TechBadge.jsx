@@ -23,6 +23,8 @@ import {
   SiJupyter,
   SiPandas,
   SiScikitlearn,
+  SiHono,
+  SiPosthog,
 } from "react-icons/si";
 import { FaNodeJs, FaHtml5 } from "react-icons/fa6";
 import { TbBrandCSharp, TbBrandVite } from "react-icons/tb";
@@ -111,10 +113,20 @@ const icons = {
     icon: <SiExpo size={iconSize} className="mr-2" />,
     label: "Expo",
   },
-  Cloudflare: {
-    url: "https://www.cloudflare.com/",
+  "Cloudflare Pages": {
+    url: "https://www.cloudflare.com/pages/",
     icon: <SiCloudflare size={iconSize} className="mr-2" />,
-    label: "Cloudflare",
+    label: "Cloudflare Pages",
+  },
+ "Cloudflare Workers": {
+    url: "https://developers.cloudflare.com/workers/",
+    icon: <SiCloudflare size={iconSize} className="mr-2" />,
+    label: "Cloudflare Workers",
+  },
+  Hono: {
+    url: "https://hono.dev/",
+    icon: <SiHono size={iconSize} className="mr-2" />,
+    label: "Hono",
   },
   Python: {
     url: "https://www.python.org/",
@@ -217,6 +229,11 @@ const icons = {
     icon: <FaAws size={iconSize} className="mr-2" />,
     label: "AWS EC2",
   },
+  Posthog: {
+    url: "https://posthog.com/",
+    icon: <SiPosthog size={iconSize} className="mr-2" />,
+    label: "Posthog",
+  }
 };
 
 const TechBadge = ({ techString, textSize = "xs" }) => {

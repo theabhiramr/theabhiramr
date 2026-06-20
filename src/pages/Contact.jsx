@@ -6,17 +6,12 @@ import {
   FaCircleCheck,
   FaCircleExclamation,
 } from "react-icons/fa6";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
-};
+import { fadeUp, stagger, inViewOptions } from "../utils/animations";
 
 const Contact = () => {
   const contactRef = useRef(null);
-  const contactInView = useInView(contactRef, { once: true, margin: "-80px" });
+  const contactInView = useInView(contactRef, inViewOptions);
 
   const [status, setStatus] = useState(""); // "", "success", "error", "invalid-phone"
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -94,6 +89,7 @@ const Contact = () => {
 
         <motion.div
           ref={contactRef}
+          variants={stagger}
           initial="hidden"
           animate={contactInView ? "visible" : "hidden"}
           className="max-w-xl"
@@ -127,7 +123,7 @@ const Contact = () => {
           </AnimatePresence>
 
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-            <div className="flex gap-4">
+            <motion.div variants={fadeUp} className="flex gap-4">
               <div className="flex w-full flex-col">
                 <Label required>First Name</Label>
                 <input
@@ -146,48 +142,21 @@ const Contact = () => {
                   className={inputStyles}
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col">
-              <Label>Company</Label>
-              <input name="company" type="text" className={inputStyles} />
-            </div>
-
-            <div className="flex flex-col">
+            <motion.div variants={fadeUp} className="flex flex-col">
               <Label required>Email</Label>
               <input
                 name="email"
                 type="email"
                 required
-                // 2. Email validation pattern (standard RFC 5322)
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                 title="Please enter a valid email address"
                 className={inputStyles}
               />
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col">
-              <Label>Phone</Label>
-              <div className="phone-wrapper">
-                <PhoneInput
-                  international
-                  defaultCountry="US"
-                  value={phoneNumber}
-                  onChange={setPhoneNumber}
-                  className={`bg-surface focus-within:ring-content/20 focus-within:border-content flex items-center rounded-lg border px-3 transition-all focus-within:ring-1 ${
-                    status === "invalid-phone"
-                      ? "border-red-500"
-                      : "border-border"
-                  }`}
-                  numberInputProps={{
-                    className:
-                      "bg-transparent w-full py-2.5 pl-2 text-sm outline-none text-content placeholder:opacity-30",
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col">
+            <motion.div variants={fadeUp} className="flex flex-col">
               <Label required>Message</Label>
               <textarea
                 name="message"
@@ -196,24 +165,26 @@ const Contact = () => {
                 placeholder="How can I help you?"
                 className={`${inputStyles} resize-none`}
               />
-            </div>
+            </motion.div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="group hover:bg-content hover:text-background border-muted hover:border-content inline-flex items-center justify-center gap-2 rounded-full border px-8 py-3 text-sm font-medium transition-all active:scale-95 disabled:opacity-50"
-            >
-              {isSubmitting ? (
-                <>
-                  <FaSpinner className="animate-spin" /> Sending
-                </>
-              ) : (
-                <>
-                  Send Message
-                  <FaArrowRight className="transition-transform group-hover:translate-x-1" />
-                </>
-              )}
-            </button>
+            <motion.div variants={fadeUp}>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="group hover:bg-content hover:text-background border-muted hover:border-content inline-flex items-center justify-center gap-2 rounded-full border px-8 py-3 text-sm font-medium transition-all active:scale-95 disabled:opacity-50"
+              >
+                {isSubmitting ? (
+                  <>
+                    <FaSpinner className="animate-spin" /> Sending
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+                  </>
+                )}
+              </button>
+            </motion.div>
           </form>
         </motion.div>
       </div>
