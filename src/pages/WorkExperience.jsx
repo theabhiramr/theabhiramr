@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Timeline } from "../components";
-import { epiqsolutionsJpeg, evbuddyJpeg } from "../assets";
 import { workExperience } from "../constants/data";
 
 const WorkExperience = () => {

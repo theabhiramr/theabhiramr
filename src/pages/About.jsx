@@ -2,54 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { Timeline, TechBadge } from "../components";
-import {
-  drexelJpeg,
-  upfPng,
-  hhsPng,
-  profileJpeg,
-  aboutPic1Jpg,
-  aboutPic2Jpg,
-  aboutPic3Jpg,
-} from "../assets";
+import { profileJpeg, aboutPic1Jpg, aboutPic2Jpg, aboutPic3Jpg } from "../assets";
+import { education } from "../constants/data";
 
-const paragraphs = [
-  'I am an Honors CS student at <a href="https://drexel.edu/cs" className="text-muted hover:text-accent">Drexel University</a> with a focus on AI/ML and Systems. I recently studied at Universitat Pompeu Fabra in Barcelona — an experience that reshaped how I view global software development.',
-  "I have worked on bridging the gap between LLMs and practical education and building community-driven social platforms in my projects. I believe that if there is a better way to do something, I can build it.",
-  "From developing V2V charging systems at EV Buddy to streamlining SDR production at Epiq Solutions, I thrive in high-stakes engineering environments. I hope to continue challenging myself during my upcoming co-op at Bristol Myers Squibb this summer.",
-];
 
-const timelineItems = [
-  {
-    title: "Drexel University",
-    subtitle: "B.S. in Computer Science",
-    location: "Philadelphia, PA",
-    dates: "Sep 2022 - Present",
-    minor: "Business Analytics",
-    honorsAwards:
-      "Dean's List (2022), Pennoni Honors Program, A.J. Drexel Scholarship",
-    activities: "Drexel Society of Artificial Intelligence",
-    image: drexelJpeg,
-    link: "https://drexel.edu/cs",
-  },
-  {
-    title: "Universitat Pompeu Fabra",
-    subtitle: "International Exchange - Engineering",
-    location: "Barcelona, Spain",
-    dates: "Jan 2025 - Mar 2025",
-    activities: "Erasmus Student Network",
-    image: upfPng,
-    link: "https://www.upf.edu/web/incoming",
-  },
-  {
-    title: "Hightstown High School",
-    location: "Hightstown, NJ",
-    dates: "Sep 2018 - Jun 2022",
-    honorsAwards: "Math Honors Society, Honor Roll, AP Capstone Diploma",
-    activities: "Robotics, SAATHH, DECA, Track & Field",
-    image: hhsPng,
-    link: "https://www.ewrsd.org/o/hhs",
-  },
-];
 
 const programmingLanguages = [
   "Python",
@@ -282,7 +238,7 @@ export default function About() {
               Education
             </h4>
             <div className="border-border/30 ml-1 border-l pl-4 lg:ml-0 lg:pl-6">
-              <Timeline items={timelineItems} />
+              <Timeline items={education} />
             </div>
           </motion.div>
 
