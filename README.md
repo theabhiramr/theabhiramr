@@ -9,10 +9,18 @@ This is my personal portfolio website. I decided to improve on my website to bet
 - TailwindCSS
 - Framer Motion
 - Web3forms
-- Firebase
+- Cloudflare
 
 ## Version History
 
+- ### v2.1.0
+  - Refactored Timeline component for improved structure and readability
+  - Implemented layout routing for LandingPage
+  - Enhanced animations across components
+  - Updated 404 not found page
+  - Removed unused fields from contact form
+  - Switched from Firebase to Cloudflare
+  - Updated resume and profile picture
 - ### v2.0.2
   - Insanely overengineered the contact form to include phone number field
   - Added another project
