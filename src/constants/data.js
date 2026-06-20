@@ -1,27 +1,26 @@
-import React, { useRef } from "react";
-import { epiqsolutionsJpeg } from "../assets";
-import { evbuddyJpeg } from "../assets";
-import { bmsJpeg } from "../assets";
+import { epiqsolutionsJpeg, evbuddyJpeg, bmsJpeg, drexelJpeg, upfPng, hhsPng } from "../assets";
 
 const workExperience = [
   {
     title: "Cloud Developer Co-op",
-    subtitle: "Bristol Myers Squibb",
+    org: "Bristol Myers Squibb",
     dates: "Upcoming",
     location: "Princeton, NJ",
     image: bmsJpeg,
     content: [
-      "Collaborate with cross-functional teams to design, develop, and deploy cloud-based solutions that enhance pharmaceutical research and development processes",
-      "Provide support in migrating legacy applications to cloud platforms, ensuring scalability, security, and compliance with industry standards",
-      "Engage in the usage of cutting-edge cloud technologies and services to optimize data management and analytics for improved decision-making",
+      "Transform 100+ BMS training materials into clearer, interactive content using Claude Code via custom MCP servers.", 
+      "Streamline AWS Fargate and ALB deployments across 75+ Cloud team projects with agentic workflows and GitHub Actions, cutting development time by 4 months. ",
+      "Build improved notification pipelines with Amazon SQS and SES to alert employees of critical CloudWatch events across 500+ AWS accounts on the BMS Multiverse Platform.",
+      "Author whitepaper on implementing AWS MCP and AgentCore within BMS, outlining adoption strategies for more efficient agentic workflow orchestration"
+
     ],
     links: [
-      { label: "Learn More", href: "https://www.bms.com" }
+      { label: "Organization", href: "https://www.bms.com" }
     ],
   },
   {
     title: "Software Development Engineering Co-op",
-    subtitle: "Epiq Solutions",
+    org: "Epiq Solutions",
     dates: "Apr 2024 - Sep 2024",
     location: "Mount Airy, MD",
     image: epiqsolutionsJpeg,
@@ -32,13 +31,13 @@ const workExperience = [
       "Tested 200+ digital, tuner and reference modules in SDRs for appropriate phase noise and power distribution, hitting quality assurance (QA) targets",
     ],
     links: [
-      { label: "Learn More", href: "https://epiqsolutions.com" }
+      { label: "Organization", href: "https://epiqsolutions.com" }
     ],
   },
   {
     title: "Software Development Intern",
+    org: "EV Buddy, Inc.",
     image: evbuddyJpeg,
-    subtitle: "EV Buddy, Inc.",
     location: "Edison, NJ",
     dates: "Jun 2023 - Sep 2023",
     content: [
@@ -48,7 +47,7 @@ const workExperience = [
       "Developed user experience (UX) flow for a social app over 50+ Figma design iterations to electric vehicle (EV) owners",
     ],
     links: [
-      { label: "Visit", href: "https://evbuddy.net" }
+      { label: "Organization", href: "https://evbuddy.net" }
     ],
   },
 ];
@@ -56,7 +55,7 @@ const workExperience = [
 const projects = [
   {
     title: "Janata",
-    subtitle: "Chinmaya Mission",
+    org: "Chinmaya Mission",
     dates: "Aug 2025 - Present",
     content: [
       "Architect and lead development of cross-platform social media app to foster better community for Chinmaya Mission's 1000+ member youth wing, Chinmaya Yuva Kendra (CHYK)",
@@ -65,7 +64,7 @@ const projects = [
       "Implement Agile methodologies to follow an industry standard development practices on a 2 week sprint timelines and execute on 25+ user stories to ensure fast and flexible development",
     ],
     technologies: [
-      "NodeJS",
+      "Node.js",
       "React",
       "Expo",
       "Nativewind",
@@ -83,17 +82,12 @@ const projects = [
   {
     title: "Portfolio Website",
     dates: "Apr 2025 - Present",
-    content: [
-      "Develop and maintain an interactive and user-friendly portfolio website using React and Tailwind CSS to become a more experienced developer.",
-      "Create a responsive design, dark mode, and smooth animations using React hooks and external libraries to showcase the extent of what can be created with modern web development tools.",
-      "Deploy using Firebase and Cloudflare for safety and security and to adhere to industry standard development practices, providing insight into the app development lifecycle.",
-    ],
+    content: "An interactive and user-friendly portfolio website inspired by websites like Linear, GitHub and Vercel. Built with React, Vite and Tailwind CSS, and deployed on Firebase.",
     technologies: [
       "JavaScript",
       "React",
       "Tailwind CSS",
       "Vite",
-      "Firebase",
       "Cloudflare Pages",
     ],
     links: [
@@ -102,36 +96,60 @@ const projects = [
     ],
   },
   {
-    title: "NYT Games Birthday Puzzle",
-    dates: "Jan 2024",
-    content: [
-      "Developed a web-based clone of New York Times Games, using NextJS, Tailwind CSS and Vercel for an interactive birthday gift for my dad",
-      "Implemented responsive design principles to ensure optimal user experience across various devices and screen sizes",
-    ],
-    technologies: ["JavaScript", "React", "NextJS", "Tailwind CSS", "Vercel"],
-    links: [
-      { label: "GitHub", href: "https://github.com/theabhiramr/appa-55-surprise" },
-      { label: "Visit", href: "https://appa-55-surprise.vercel.app/" }
-    ],
-    additional:
-      "This was a fun little app I vibecoded in a day for my dad's 55th birthday. Play the games to see what we got him 👀",
-  },
-  {
     title: "CrashMath",
-    subtitle: "College of Computing & Informatics, Drexel University",
+    org: "College of Computing & Informatics, Drexel University",
     dates: "Jan 2023 - Jun 2023",
-    content: [
-      "Led the creation of a gamified calculus learning platform powered by generative AI trained on 200+ exam questions to provide feedback and track performance",
-      "Wrote over 1000 lines of code in HTML, CSS and JavaScript to provide a smooth and approachable user interface to enable stronger learning, contributing to 40% of the MVP",
-      "Coordinated efforts with a multifunctional team to execute on over 25 user stories across a 5-sprint timeline to deliver on 500+ action items for the MVP",
-    ],
+    content: "A gamified calculus learning platform that leverages intelligent tutoring chatbot to provide personalized problem-solving assistance.",
     technologies: ["JavaScript", "CSS", "HTML", "Firebase", "OpenAI API"],
     additional:
-      "Unfortunately, due to Firebase restrictions, the app is no longer functional.",
+      "Unfortunately, the backend of this app is no longer functional.",
     links: [
       { label: "Visit", href: "https://crashmath-16dc6.web.app/" }
     ],
   },
 ];
 
-export { workExperience, projects };
+const education = [
+  {
+    title: "B.S. in Computer Science",
+    org: "Drexel University",
+    location: "Philadelphia, PA",
+    dates: "Sep 2022 - Present",
+    image: drexelJpeg,
+    meta: [
+      { label: "Minor", value: "Business Analytics" },
+      {
+        label: "Honors",
+        value: "Dean's List (2022), Pennoni Honors Program, A.J. Drexel Scholarship",
+      },
+      { label: "Activities", value: "Drexel Society of Artificial Intelligence" },
+    ],
+    links: [{ label: "Organization", href: "https://drexel.edu/cs" }],
+  },
+  {
+    title: "International Exchange — Engineering",
+    org: "Universitat Pompeu Fabra",
+    location: "Barcelona, Spain",
+    dates: "Jan 2025 - Mar 2025",
+    image: upfPng,
+    meta: [{ label: "Activities", value: "Erasmus Student Network" }],
+    links: [{ label: "Organization", href: "https://www.upf.edu/web/incoming" }],
+  },
+  {
+    title: "High School Diploma",
+    org: "Hightstown High School",
+    location: "Hightstown, NJ",
+    dates: "Sep 2018 - Jun 2022",
+    image: hhsPng,
+    meta: [
+      {
+        label: "Honors",
+        value: "Math Honors Society, Honor Roll, AP Capstone Diploma",
+      },
+      { label: "Activities", value: "Robotics, SAATHH, DECA, Track & Field" },
+    ],
+    links: [{ label: "Organization", href: "https://www.ewrsd.org/o/hhs" }],
+  },
+];
+
+export { workExperience, projects, education };

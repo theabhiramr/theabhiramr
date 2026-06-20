@@ -1,5 +1,5 @@
 import logoSvg from "./logo.svg";
-import profileJpeg from "./profile.jpeg";
+import profilePng from "./profile.png";
 import reactSvg from "./react.svg";
 import evbuddyJpeg from "./evbuddy.jpg";
 import epiqsolutionsJpeg from "./epiqsolutions.jpg";
@@ -16,7 +16,7 @@ export {
   logoLight,
   logoDark,
   logoSvg,
-  profileJpeg,
+  profilePng,
   reactSvg,
   evbuddyJpeg,
   epiqsolutionsJpeg,

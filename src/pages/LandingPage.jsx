@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import Home from "./About";
 import WorkExperience from "./WorkExperience";
 import Projects from "./Projects";
@@ -75,6 +75,7 @@ export default function LandingPage({ onSectionChange }) {
 
   return (
     <div>
+      <Outlet />
       <section id="about">
         <Home />
       </section>
