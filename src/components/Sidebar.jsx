@@ -39,7 +39,7 @@ export default function Sidebar({ activeSection }) {
 
         {/* Navigation */}
         <nav className="hidden lg:block">
-          <ul className="space-y-6">
+          <ul className="space-y-4">
             {navItems.map((item) => {
               const isActive = activeSection === item.section;
               return (
@@ -73,7 +73,7 @@ export default function Sidebar({ activeSection }) {
   );
 
   return (
-    <aside className="hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-1/3 lg:flex-col lg:justify-between lg:p-16">
+    <aside className="hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-56 lg:shrink-0 lg:flex-col lg:justify-between lg:py-16">
       <SidebarContent />
     </aside>
   );
