@@ -62,7 +62,7 @@ const projects = [
       "Implement Agile methodologies to follow an industry standard development practices on a 2 week sprint timelines and execute on 25+ user stories to ensure fast and flexible development",
     ],
     technologies: [
-      "NodeJS",
+      "Node.js",
       "React",
       "Expo",
       "Nativewind",
@@ -86,7 +86,6 @@ const projects = [
       "React",
       "Tailwind CSS",
       "Vite",
-      "Firebase",
       "Cloudflare Pages",
     ],
     links: [

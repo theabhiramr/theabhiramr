@@ -8,18 +8,17 @@ import { fadeUp, stagger, inViewOptions } from "../utils/animations";
 
 const programmingLanguages = [
   "Python", "C", "C++", "Java", "C#", "Makefile",
-  "JavaScript", "TypeScript", "Assembly", "R",
+  "JavaScript", "TypeScript", "Markdown", "Assembly", "R", "Dockerfile",
 ];
 
 const toolsFrameworks = [
-  "VS Code", "IntelliJ", "PyCharm", "Git", "React", "NextJS",
-  "Tailwind CSS", "Expo", "Firebase", "LangChain", "OpenAI API",
-  "PyTorch", "Jupyter",
+  "VS Code", "IntelliJ", "PyCharm", "Git", "Node.js", "Expo", "AWS", "Firebase", "Claude Code", "MCP",
+  "PyTorch", "Jupyter", "Docker", "Databricks"
 ];
 
 const skills = [
   "Full Stack Development", "Embedded Systems", "Cloud Computing",
-  "DevOps", "Agile", "Kanban",
+  "DevOps", "Agile", "Kanban", "Agentic AI"
 ];
 
 function ScrollReveal({ children, className }) {

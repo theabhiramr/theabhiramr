@@ -25,13 +25,16 @@ import {
   SiScikitlearn,
   SiHono,
   SiPosthog,
+  SiDocker,
+  SiClaude,
+  SiDatabricks,
 } from "react-icons/si";
 import { FaNodeJs, FaHtml5 } from "react-icons/fa6";
 import { TbBrandCSharp, TbBrandVite } from "react-icons/tb";
 import { RiFirebaseFill } from "react-icons/ri";
 import { MdCss } from "react-icons/md";
 import { FaAws, FaJava, FaRProject } from "react-icons/fa";
-import { VscVscode } from "react-icons/vsc";
+import { VscVscode, VscMcp } from "react-icons/vsc";
 
 const iconSize = 12;
 
@@ -61,15 +64,10 @@ const icons = {
     icon: <RiFirebaseFill size={iconSize} className="mr-2" />,
     label: "Firebase",
   },
-  ExpressJS: {
-    url: "https://expressjs.com/",
-    icon: <SiExpress size={iconSize} className="mr-2" />,
-    label: "ExpressJS",
-  },
-  NodeJS: {
+  "Node.js": {
     url: "https://nodejs.org/",
     icon: <FaNodeJs size={iconSize} className="mr-2" />,
-    label: "NodeJS",
+    label: "Node.js",
   },
   Vercel: {
     url: "https://vercel.com/",
@@ -92,7 +90,6 @@ const icons = {
     icon: <SiLangchain size={iconSize} className="mr-2" />,
     label: "LangChain",
   },
-  Manim: { url: "https://www.manim.community/", icon: "", label: "Manim" },
   NextJS: {
     url: "https://nextjs.org/",
     icon: <SiNextdotjs size={iconSize} className="mr-2" />,
@@ -233,7 +230,37 @@ const icons = {
     url: "https://posthog.com/",
     icon: <SiPosthog size={iconSize} className="mr-2" />,
     label: "Posthog",
-  }
+  },
+  Dockerfile: {
+    url: "https://docs.docker.com/engine/reference/builder/",
+    icon: <SiDocker size={iconSize} className="mr-2" />,
+    label: "Dockerfile",
+  },
+  Docker: {
+    url: "https://www.docker.com/",
+    icon: <SiDocker size={iconSize} className="mr-2" />,
+    label: "Docker",
+  },
+  AWS: {
+    url: "https://aws.amazon.com/",
+    icon: <FaAws size={iconSize} className="mr-2" />,
+    label: "AWS",
+  },
+   "Claude Code": {
+    url: "https://claude.ai/code",
+    icon: <SiClaude size={iconSize} className="mr-2" />,
+    label: "Claude Code",
+  },
+    "MCP": {
+    url: "https://modelcontextprotocol.io/",
+    icon: <VscMcp size={iconSize} className="mr-2" />,
+    label: "MCP",
+  },
+  Databricks: {
+    url: "https://databricks.com/",
+    icon: <SiDatabricks size={iconSize} className="mr-2" />,
+    label: "Databricks",
+  },
 };
 
 const TechBadge = ({ techString, textSize = "xs" }) => {
