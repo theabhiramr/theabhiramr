@@ -15,7 +15,9 @@ const workExperience = [
       "Provide support in migrating legacy applications to cloud platforms, ensuring scalability, security, and compliance with industry standards",
       "Engage in the usage of cutting-edge cloud technologies and services to optimize data management and analytics for improved decision-making",
     ],
-    link: "https://www.bms.com",
+    links: [
+      { label: "Learn More", href: "https://www.bms.com" }
+    ],
   },
   {
     title: "Software Development Engineering Co-op",
@@ -29,7 +31,9 @@ const workExperience = [
       "Designed Linux user interfaces (UIs) in Python for test stations using PyQt and Matplotlib modules to streamline production testing procedures",
       "Tested 200+ digital, tuner and reference modules in SDRs for appropriate phase noise and power distribution, hitting quality assurance (QA) targets",
     ],
-    link: "https://epiqsolutions.com",
+    links: [
+      { label: "Learn More", href: "https://epiqsolutions.com" }
+    ],
   },
   {
     title: "Software Development Intern",
@@ -43,7 +47,9 @@ const workExperience = [
       "Used OpenEVSE Arduino embedded system to build a prototype architecture that interfaced with RS485 and CAN protocols used in EVs",
       "Developed user experience (UX) flow for a social app over 50+ Figma design iterations to electric vehicle (EV) owners",
     ],
-    link: "https://evbuddy.net",
+    links: [
+      { label: "Visit", href: "https://evbuddy.net" }
+    ],
   },
 ];
 
@@ -69,8 +75,10 @@ const projects = [
     ],
     additional:
       "This app is in a private beta! Launches at Chinmaya Mahasamadhi Camp on July 1st, 2026",
-    link: "https://chinmayajanata.org",
-    githubLink: "https://github.com/Project-Janatha/Project-Janatha",
+    links: [
+      { label: "Visit", href: "https://chinmayajanata.org" },
+      { label: "GitHub", href: "https://github.com/Project-Janata/Janata" }
+    ],
   },
   {
     title: "Portfolio Website",
@@ -88,8 +96,10 @@ const projects = [
       "Firebase",
       "Cloudflare Pages",
     ],
-    githubLink: "https://github.com/theabhiramr/theabhiramr",
-    link: "https://theabhiramr.com/",
+    links: [
+      { label: "GitHub", href: "https://github.com/theabhiramr/theabhiramr" },
+      { label: "Visit", href: "https://theabhiramr.com/" }
+    ],
   },
   {
     title: "NYT Games Birthday Puzzle",
@@ -99,8 +109,10 @@ const projects = [
       "Implemented responsive design principles to ensure optimal user experience across various devices and screen sizes",
     ],
     technologies: ["JavaScript", "React", "NextJS", "Tailwind CSS", "Vercel"],
-    githubLink: "https://github.com/theabhiramr/appa-55-surprise",
-    link: "https://appa-55-surprise.vercel.app/",
+    links: [
+      { label: "GitHub", href: "https://github.com/theabhiramr/appa-55-surprise" },
+      { label: "Visit", href: "https://appa-55-surprise.vercel.app/" }
+    ],
     additional:
       "This was a fun little app I vibecoded in a day for my dad's 55th birthday. Play the games to see what we got him 👀",
   },
@@ -116,7 +128,9 @@ const projects = [
     technologies: ["JavaScript", "CSS", "HTML", "Firebase", "OpenAI API"],
     additional:
       "Unfortunately, due to Firebase restrictions, the app is no longer functional.",
-    link: "https://crashmath-16dc6.web.app/",
+    links: [
+      { label: "Visit", href: "https://crashmath-16dc6.web.app/" }
+    ],
   },
 ];
 
