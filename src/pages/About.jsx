@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { Timeline, TechBadge } from "../components";
-import { profileJpeg } from "../assets";
+import { profilePng } from "../assets";
 import { education } from "../constants/data";
 import { fadeUp, stagger, inViewOptions } from "../utils/animations";
 
@@ -81,7 +81,7 @@ export default function About() {
             <div className="relative inline-block">
               <a href="https://github.com/theabhiramr" target="_blank" rel="noopener noreferrer">
                 <img
-                  src={profileJpeg}
+                  src={profilePng}
                   alt="Abhi Ramachandran"
                   className="border-border h-24 w-24 rounded-2xl border object-cover grayscale-[0.5] transition-all duration-500 hover:grayscale-0 lg:h-36 lg:w-36"
                 />
