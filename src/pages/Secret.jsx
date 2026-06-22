@@ -7,6 +7,15 @@ const fileTree = [
     children: [
       { name: "boolean.html", path: "/cs164/labs/boolean.html" },
       { name: "compare.html", path: "/cs164/labs/compare.html" },
+      {
+        name: "logwb",
+        children: [
+          { name: "blank.html", path: "/cs164/labs/logwb/blank.html" },
+          { name: "get_and_set.html", path: "/cs164/labs/logwb/get_and_set.html" },
+          { name: "logwb.html", path: "/cs164/labs/logwb/logwb.html" },
+          { name: "sample.html", path: "/cs164/labs/logwb/sample.html" },
+        ],
+      },
       { name: "numbers.html", path: "/cs164/labs/numbers.html" },
     ],
   },
@@ -19,6 +28,7 @@ const fileTree = [
           { name: "vpet_docs.html", path: "/cs164/tranq/docs/vpet_docs.html" },
         ],
       },
+      { name: "3x1.html", path: "/cs164/tranq/3x1.html" },
       { name: "cubes.html", path: "/cs164/tranq/cubes.html" },
       { name: "fsm.html", path: "/cs164/tranq/fsm.html" },
       { name: "hello.html", path: "/cs164/tranq/hello.html" },
