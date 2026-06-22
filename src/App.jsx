@@ -24,24 +24,28 @@ function App() {
 
   const isLandingPage = Object.keys(pathToSection).includes(location.pathname);
 
+  if (!isLandingPage) {
+    return (
+      <Routes>
+        <Route path="/secret" element={<Secret />} />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    );
+  }
+
   return (
     <div
       className="bg-background text-content min-h-screen transition-colors duration-300"
       style={{ WebkitOverflowScrolling: "touch" }}
     >
-      {isLandingPage && !isDesktop && <Navbar />}
+      {!isDesktop && <Navbar />}
 
       <div className="mx-auto max-w-7xl px-8">
         <div className="flex min-h-screen flex-col lg:flex-row">
-          {isLandingPage && isDesktop && (
-            <Sidebar activeSection={activeSection} />
-          )}
+          {isDesktop && <Sidebar activeSection={activeSection} />}
 
-          <div
-            className={`w-full flex-1 ${
-              !isDesktop && isLandingPage ? "pt-16" : ""
-            }`}
-          >
+          <div className={`w-full flex-1 ${!isDesktop ? "pt-16" : ""}`}>
             <main className="w-full py-6 md:py-10 lg:py-16 lg:pl-12">
               <Routes>
                 {/* Layout route: LandingPage stays mounted across all section paths */}
@@ -52,16 +56,13 @@ function App() {
                   <Route path="/resume" />
                   <Route path="/contact" />
                 </Route>
-                <Route path="/secret" element={<Secret />} />
-                <Route path="/404" element={<NotFound />} />
-                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
           </div>
         </div>
       </div>
 
-      {isLandingPage && <Footer />}
+      <Footer />
     </div>
   );
 }
