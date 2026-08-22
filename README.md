@@ -10,8 +10,11 @@ Currently a Cloud Developer Co-op at Bristol Myers Squibb, building agentic tool
 ## What I'm working on
 
 - **[theabhiramr/theabhiramr-website](https://github.com/theabhiramr/theabhiramr-website)** — my personal portfolio site built with Vite and Tailwind, showcasing my work experience and projects (and hopefully a blog soon!)
+
   > [Check it out →](https://theabhiramr.com/)
-- \*\*[Project-Janata/Janata] — a cross-platform social app (Expo, React Native, Cloudflare Workers) built for Chinmaya Mission's youth wing that helps members discover events, volunteer opportunities, and community — now officially merged into the Chinmaya Mission app
+
+- **[Project-Janata/Janata](https://github.com/Project-Janata/Janata)** — a cross-platform social app (Expo, React Native, Cloudflare Workers) built for Chinmaya Mission's youth wing that helps members discover events, volunteer opportunities, and community — now officially merged into the Chinmaya Mission app
+  > [Check it out →](https://chinmayajanata.org/)
 
 ## Tech Stack
 
