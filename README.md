@@ -1,6 +1,6 @@
 # Abhi Ramachandran
 
-I'm an honors Computer Science student at Drexel with interests in full-stack development and AI/ML I want to build impactful, scalable technologies.
+Hi, I'm Abhi! I'm an honors Computer Science student at Drexel with interests in full-stack development and AI/ML I want to build impactful, scalable technologies.
 
 Currently a Cloud Developer Co-op at Bristol Myers Squibb, building agentic tooling and cloud infrastructure automation.
 
