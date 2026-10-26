@@ -2,8 +2,6 @@
 
 Hi, I'm Abhi! I'm an honors Computer Science student at Drexel with interests in full-stack development and AI/ML I want to build impactful, scalable technologies.
 
-Currently a Cloud Developer Co-op at Bristol Myers Squibb, building agentic tooling and cloud infrastructure automation.
-
 ![GitHub followers](https://img.shields.io/github/followers/theabhiramr?label=Followers&style=for-the-badge&logo=github&color=181717&logoColor=white)
 ![Github User's stars](https://img.shields.io/github/stars/theabhiramr?label=Stars&style=for-the-badge&logo=github&color=181717&logoColor=white)
 
